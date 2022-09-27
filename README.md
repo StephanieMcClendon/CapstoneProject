@@ -1,7 +1,7 @@
 # CapstoneProject
 
 ## Table of Contents 
-1. [About The Project](#Project-Details)
+1. [Project Details](#Project-Details)
 2. Dev Team
 
 ## Project Details
