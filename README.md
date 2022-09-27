@@ -9,14 +9,14 @@
 - ER Diagram : https://lucid.app/lucidchart/62eb97fd-618b-4269-a693-eb789489f71c/edit?view_items=3q9UIFbfGgU3&invitationId=inv_aae7cc46-a127-45cc-9afb-1e68ef39787c#
 
 ## Dev Team
-** Team Lead ** 
+**Team Lead** 
 - Hamad Bangash
 
-** Backend Engineers **
+**Backend Engineers**
 - Oliver Chang
 - Tariq Sabree
 - Jordan Loudis 
 
-** Frontend Engineers ** 
+**Frontend Engineers** 
 - Stephanie McClendon
 - Mohammad Hashmi 
