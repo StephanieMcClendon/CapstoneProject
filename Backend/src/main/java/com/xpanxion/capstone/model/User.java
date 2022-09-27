@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -21,6 +22,9 @@ public class User
     private String email;
     private String phoneNumber;
     private String role; // ROLE_USER, ROLE_ADMIN
+
+    @OneToMany(mappedBy = "user")
+    private List<Goal> goal;
 
     public User(Long id, String firstName, String lastName, String username, String password, String email, String phoneNumber, String role) {
         this.id = id;
