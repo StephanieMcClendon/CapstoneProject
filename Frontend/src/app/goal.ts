@@ -1,5 +1,5 @@
 export class Goal {
-    goalId!: number;
+    id!: number;
     saveAmount?: number;
     goalAmount?: number;
     time_in_months?: number;
