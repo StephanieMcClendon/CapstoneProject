@@ -26,7 +26,7 @@ export class CalculatorComponent implements OnInit {
     console.log(this.startingBalance);
     console.log(this.savingsGoal);
     console.log(this.years);
-    console.log(this.months);
+    console.log(this.months); //
     this.monthlyPayment = (this.savingsGoal - this.startingBalance) / ((this.months) + (this.years * 12));
     console.log(this.monthlyPayment);
   }
