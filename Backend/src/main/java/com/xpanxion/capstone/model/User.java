@@ -27,6 +27,9 @@ public class User
     private List<Goal> goals;
     @OneToMany(mappedBy = "user")
     private List<Income> incomes;
+    @OneToMany(mappedBy = "user")
+    private List<Expense> expenses;
+
 
     public User(Long id, String firstName, String lastName, String username, String password, String email, String phoneNumber, String role) {
         this.id = id;
