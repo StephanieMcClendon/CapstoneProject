@@ -1,6 +1,8 @@
 package com.xpanxion.capstone.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,6 +12,8 @@ import java.util.List;
 @Table(name = "users")
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class User
 {
     @Id
@@ -29,21 +33,6 @@ public class User
     private List<Income> incomes;
     @OneToMany(mappedBy = "user")
     private List<Expense> expenses;
-
-
-    public User(Long id, String firstName, String lastName, String username, String password, String email, String phoneNumber, String role) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.role = role;
-    }
-
-    public User() {
-    }
 
 
 }
