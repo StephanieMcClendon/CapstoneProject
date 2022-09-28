@@ -24,7 +24,9 @@ public class User
     private String role; // ROLE_USER, ROLE_ADMIN
 
     @OneToMany(mappedBy = "user")
-    private List<Goal> goal;
+    private List<Goal> goals;
+    @OneToMany(mappedBy = "user")
+    private List<Income> incomes;
 
     public User(Long id, String firstName, String lastName, String username, String password, String email, String phoneNumber, String role) {
         this.id = id;
