@@ -7,17 +7,23 @@ import { CalculatorComponent } from './finances/calculator/calculator.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from "@angular/material/slider";
 import {FormsModule} from "@angular/forms";
+import { GoalDetailsComponent } from './goal-details/goal-details.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalculatorComponent
+    CalculatorComponent,
+    GoalDetailsComponent
   ],
+
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         MatSliderModule,
+        HttpClientModule,
         FormsModule
     ],
   providers: [],
