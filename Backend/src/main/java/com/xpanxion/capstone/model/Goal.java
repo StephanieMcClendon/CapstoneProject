@@ -21,6 +21,6 @@ public class Goal {
     private int time_in_months;
 
     @ManyToOne
-    private User user; // FK
+    private User user; // Foreign Key
 
 }
