@@ -21,7 +21,7 @@ public class Income {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private double income_source;
-    private int amount;
+    private double amount;
     private int frequency;
     private String description;
 
