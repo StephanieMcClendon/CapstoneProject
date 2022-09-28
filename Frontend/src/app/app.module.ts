@@ -6,16 +6,18 @@ import { AppComponent } from './app.component';
 import { CalculatorComponent } from './finances/calculator/calculator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from "@angular/material/slider";
-import {FormsModule} from "@angular/forms";
 import { GoalDetailsComponent } from './goal-details/goal-details.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GoalListComponent } from './goal-list/goal-list.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CalculatorComponent,
-    GoalDetailsComponent
+    GoalDetailsComponent,
+      GoalListComponent
   ],
 
     imports: [
@@ -26,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
         HttpClientModule,
         FormsModule
     ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
