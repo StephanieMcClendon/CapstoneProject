@@ -12,11 +12,9 @@
 **Team Lead** 
 - Hamad Bangash
 
-**Backend Engineers**
+**Software Engineers**
 - Oliver Chang
 - Tariq Sabree
 - Jordan Loudis 
-
-**Frontend Engineers** 
 - Stephanie McClendon
 - Mohammad Hashmi 
