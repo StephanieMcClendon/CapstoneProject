@@ -10,7 +10,10 @@ import { GoalDetailsComponent } from './goal-details/goal-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GoalListComponent } from './goal-list/goal-list.component';
 import { FormsModule } from '@angular/forms';
-
+import {GOOGLE_CHARTS_LAZY_CONFIG, GoogleChartsConfig, GoogleChartsModule} from "angular-google-charts";
+import {config, ReplaySubject} from "rxjs";
+import {NgChartsModule } from 'ng2-charts';
+export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1);
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { FormsModule } from '@angular/forms';
         BrowserAnimationsModule,
         MatSliderModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        GoogleChartsModule,
+        NgChartsModule
     ],
 
   providers: [],

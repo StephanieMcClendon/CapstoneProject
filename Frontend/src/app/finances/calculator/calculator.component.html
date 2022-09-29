@@ -5,8 +5,6 @@
                 <div class="card bg-dark text-white" style="border-radius: 1rem;">
                     <div class="card-body p-5">
 
-                        <p></p>
-
                         <form (submit)="onSubmit()">
                         <div class="mb-md-5 mt-md-4 pb-5">
 
@@ -39,21 +37,35 @@
                             </div>
                             </div>
 
-                            <p class="small pb-lg-2"></p>
 
                             <button class="btn btn-outline-light btn-lg px-5 mt-4" type="submit">Calculate</button>
 
                         </div>
                         </form>
 
-
                         <div>
-                            <h1> Suggested Monthly Payment: ${{monthlyPayment | number:'1.0-2'}}</h1>
+                            <h1> Monthly Payment: ${{monthlyPayment | number:'1.0-2'}}</h1>
                         </div>
 
                     </div>
+
+
                 </div>
+
+
             </div>
+            <div class="col-md-6 card-body card bg-dark" *ngIf="yAxis">
+                <canvas (submit)="chartUpdate()"
+                        baseChart
+                        [type]="'line'"
+                        [datasets]="chartData.datasets"
+                        [labels]="chartLabels"
+                        [options]="chartOptions"
+                >
+                </canvas>
+            </div>
+
+
         </div>
     </div>
 </section>
