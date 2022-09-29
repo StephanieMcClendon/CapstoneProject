@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Goal } from '../goal';
 import { GoalService } from '../goal.service';
 
-
 import DatalabelsPlugin from 'chartjs-plugin-datalabels'; // npm installed this
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js'; // npm installed chart.js
 import { BaseChartDirective } from 'ng2-charts'; //npm installed ng2-charts
@@ -57,7 +56,7 @@ export class GoalDetailsComponent implements OnInit {
     labels: [ [`Goal ${this.goal.id}`]],
     datasets: [ {
       // input variables [current progress, total goal - current progress]
-      // how do we keep track of current progress?
+      // how do we keep track of current progress? need value to store in db
       data: [200, 250]
     } ]
   };

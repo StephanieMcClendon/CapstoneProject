@@ -1,0 +1,72 @@
+<section class="vh-100 gradient-custom">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5">
+
+                        <form (submit)="onSubmit()">
+                        <div class="mb-md-5 mt-md-4 pb-5">
+
+                            <h2 class="fw-bold mb-2 text-uppercase">Simple Calculator</h2>
+                            <p class="text-white-50 mb-5">Please enter the information below: </p>
+
+                            <div class="form-outline form-white mb-4">
+                                <label class="form-label" for="savingsGoal">Savings Goal</label>
+                                <input type="number" id="savingsGoal" name="savingsGoal" [(ngModel)]="savingsGoal" class="form-control form-control-lg" />
+                            </div>
+
+                            <div class="form-outline form-white mb-4">
+                                <label class="form-label" for="startingBalance">Starting Balances</label>
+                                <input type="number" id="startingBalance" name="startingBalance" [(ngModel)]="startingBalance" class="form-control form-control-lg" />
+                            </div>
+
+                            <div>
+
+
+                            <div class="d-flex flex-row row align-items-center col-md-6">
+                                <div class="form-outline flex-fill col-md-2 ">
+                                    <label class="form-label" for="years">Years</label>
+                                    <input type="number" id="years" name="years" [(ngModel)]="years" class="form-control" />
+                                </div>
+                                <div class="form-outline flex-fill col-md-2 ">
+                                    <label class="form-label" for="months">Months</label>
+                                    <input type="number" id="months" name="months" [(ngModel)]="months" class="form-control" />
+                                </div>
+
+                            </div>
+                            </div>
+
+
+                            <button class="btn btn-outline-light btn-lg px-5 mt-4" type="submit">Calculate</button>
+
+                        </div>
+                        </form>
+
+                        <div>
+                            <h1> Monthly Payment: ${{monthlyPayment | number:'1.0-2'}}</h1>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+            <div class="col-md-6 card-body card bg-dark" *ngIf="yAxis">
+                <canvas (submit)="chartUpdate()"
+                        baseChart
+                        [type]="'line'"
+                        [datasets]="chartData.datasets"
+                        [labels]="chartLabels"
+                        [options]="chartOptions"
+                >
+                </canvas>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+

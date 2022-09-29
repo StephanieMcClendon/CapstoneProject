@@ -11,16 +11,24 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^14.1.0",
+    "@angular/cdk": "^14.2.3",
     "@angular/common": "^14.1.0",
     "@angular/compiler": "^14.1.0",
     "@angular/core": "^14.2.3",
     "@angular/forms": "^14.1.0",
+    "@angular/material": "^14.2.3",
     "@angular/platform-browser": "^14.1.0",
     "@angular/platform-browser-dynamic": "^14.1.0",
+
     "@angular/router": "^14.2.3",
     "angular-google-charts": "^2.2.3",
     "chart.js": "^3.9.1",
     "chartjs-plugin-datalabels": "^2.1.0",
+
+    "@angular/router": "^14.1.0",
+    "angular-google-charts": "^2.2.3",
+    "bootstrap": "^5.2.1",
+    "chart.js": "^3.9.1",
     "ng2-charts": "^4.0.1",
     "rxjs": "~7.5.0",
     "zone.js": "~0.11.4"
