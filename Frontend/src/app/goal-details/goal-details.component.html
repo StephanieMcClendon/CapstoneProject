@@ -7,24 +7,51 @@
         </header>
 <div>
     <br>
-    <div class="form-group" style="text-align:center"><button title = "Edit Goal" class = "w3-btn- w3-white w3-border w3-border-blue w3-round" type="submit"> Edit </button></div>
+    <div class="form-group" style="text-align:center"><button title = "Edit Goal" class = "btn btn-secondary" type="submit"> Edit </button></div>
     <div>
-        <label style="margin-left: 20px"> <b> Goal Id: </b></label> {{goal.id}}
+        <label style="margin-left: 20px"> <b> Goal ID: {{ goal.id }} </b></label> 
     </div>
     <div>
-        <label style="margin-left: 20px"> <b> Amount to save per month: </b></label> {{goal.saveAmount}}
+        <label style="margin-left: 20px"> <b> Amount to save per month: {{ goal.saveAmount }}</b></label> 
     </div>
     <div>
-        <label style="margin-left: 20px"> <b> Goal amount: </b></label> {{goal.goalAmount}}
+        <label style="margin-left: 20px"> <b> Goal amount: {{ goal.goalAmount }}</b></label> 
     </div>
     <div>
-        <label style="margin-left: 20px"> <b> Time in months: </b></label> {{goal.time_in_months}}
+        <label style="margin-left: 20px"> <b> Time in months: {{ goal.time_in_months }}</b></label> 
     </div>
     <div>
-        <label style="margin-left: 20px"> <b> User: </b></label> {{goal.userId}}
+        <label style="margin-left: 20px"> <b> User: {{ goal.userId }}</b></label> 
     </div>
     <br>
+    <div>
+        <label style="margin-left: 20px"> <b> Time in months x Amount saved per month: </b> </label>
+    </div>
 </div>
 </div>
 </div>
 </div>
+
+<div>
+    <div>
+      <div class="chart" style="display: block; width: 500px; height: 400px;">
+        <canvas baseChart
+                [data]="pieChartData"
+                [type]="pieChartType"
+                [options]="pieChartOptions"
+                [plugins]="pieChartPlugins">
+        </canvas>
+      </div>
+    </div>
+  </div>
+  <!-- PieChart buttons
+    // repurpose buttons for CRUD functions
+  <div class="button-row">
+    <button mat-button mat-raised-button color="primary" (click)="toggleLegend()">Toggle Legend</button>
+    <button mat-button mat-raised-button color="primary" (click)="changeLabels()">Change Labels</button>
+    <button mat-button mat-raised-button color="primary" (click)="addSlice()">Add Slice</button>
+    <button mat-button mat-raised-button color="primary" (click)="removeSlice()">Remove Slice</button>
+    <button mat-button mat-raised-button color="primary" (click)="changeLegendPosition()">Change Legend Position</button>
+  </div>
+
+  -->

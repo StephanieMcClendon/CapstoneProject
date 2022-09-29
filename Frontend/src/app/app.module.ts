@@ -7,6 +7,8 @@ import { GoalDetailsComponent } from './goal-details/goal-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GoalListComponent } from './goal-list/goal-list.component';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -19,7 +21,10 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CommonModule,
+    NgChartsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
