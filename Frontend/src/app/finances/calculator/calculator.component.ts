@@ -26,7 +26,7 @@ export class CalculatorComponent implements OnInit {
     datasets: [
         {
           // ⤵️ Add these
-          label: '$',
+          label: '$ USD by Month',
           data: [],
 
           pointHitRadius: 15, // expands the hover 'detection' area
@@ -37,6 +37,7 @@ export class CalculatorComponent implements OnInit {
           borderColor: '#ffffff', // main line color aka $midnight-medium from @riapacheco/yutes/seasonal.scss
           pointBackgroundColor: '#ffffff',
           pointHoverBackgroundColor: '#ffffff',
+          pointBorderColor: '#ffffff',
           borderWidth: 2, // main line width
           hoverBorderWidth: 0, // borders on points
           pointBorderWidth: 0, // removes POINT borders
@@ -51,6 +52,7 @@ export class CalculatorComponent implements OnInit {
   public chartOptions: ChartConfiguration<'line'>['options'] = {
     responsive: true,
     maintainAspectRatio: true
+
   };
 
   line: string = "line";
