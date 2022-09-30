@@ -2,6 +2,7 @@ package com.xpanxion.capstone.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class Goal {
     private int time_in_months;
 
     @ManyToOne
+    @JsonIgnore
     private User user; // Foreign Key
 
 }

@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class GoalController {
-
+    @Autowired
     private GoalRepository goalRepository;
 
     // dependency injection  > field injection (@Autowired)
@@ -28,7 +29,7 @@ public class GoalController {
     }
 
     // link to user id
-    @PostMapping("/create-goal")
+    @PostMapping("/goals")
     public Goal createGoal(@RequestBody Goal goal){
         return this.goalRepository.save(goal);
     }
