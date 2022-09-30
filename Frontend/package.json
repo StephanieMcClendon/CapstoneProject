@@ -19,6 +19,7 @@
     "@angular/material": "^14.2.3",
     "@angular/platform-browser": "^14.1.0",
     "@angular/platform-browser-dynamic": "^14.1.0",
+    "chartjs-plugin-datalabels": "^2.1.0",
     "@angular/router": "^14.1.0",
     "angular-google-charts": "^2.2.3",
     "bootstrap": "^5.2.1",
