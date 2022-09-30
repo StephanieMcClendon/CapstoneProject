@@ -59,8 +59,9 @@ export class CalculatorComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
-    console.log(this.chartData.datasets[0].data);
+  ngOnInit(): void
+  {
+    console.log("This is a simple calc")
 
   }
 

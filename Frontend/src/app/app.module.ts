@@ -15,6 +15,7 @@ import {GOOGLE_CHARTS_LAZY_CONFIG, GoogleChartsConfig, GoogleChartsModule} from 
 import {config, ReplaySubject} from "rxjs";
 import {NgChartsModule } from 'ng2-charts';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1);
 
 @NgModule({
@@ -23,7 +24,8 @@ export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1
     CalculatorComponent,
     GoalDetailsComponent,
     GoalListComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
   ],
     imports: [
         BrowserModule,
