@@ -26,6 +26,7 @@ public class User
     private String email;
     private String phoneNumber;
     private String role; // ROLE_USER, ROLE_ADMIN
+    private boolean isEnabled;
 
     @OneToMany(mappedBy = "user")
     private List<Goal> goals;
