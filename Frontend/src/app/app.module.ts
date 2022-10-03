@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import {GOOGLE_CHARTS_LAZY_CONFIG, GoogleChartsConfig, GoogleChartsModule} from "angular-google-charts";
 import {config, ReplaySubject} from "rxjs";
 import {NgChartsModule } from 'ng2-charts';
+import { ExpenseComponent } from './expense/expense.component';
 export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1);
 
 @NgModule({
@@ -20,7 +21,8 @@ export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1
     AppComponent,
     CalculatorComponent,
     GoalDetailsComponent,
-      GoalListComponent
+      GoalListComponent,
+      ExpenseComponent
   ],
 
     imports: [
