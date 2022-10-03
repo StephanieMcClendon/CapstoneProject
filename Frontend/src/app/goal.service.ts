@@ -24,7 +24,7 @@ export class GoalService {
     return this.httpClient.delete<Goal>(`${this.baseURL}/${id}`);
   }
 
-  createGoal(goal: Goal): Observable<Goal>{
+  createGoal(goal: Goal): Observable<any>{
     return this.httpClient.post(`${this.baseURL}`, goal);
   }
 

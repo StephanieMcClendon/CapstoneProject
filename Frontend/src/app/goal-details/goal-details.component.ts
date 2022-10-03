@@ -20,6 +20,8 @@ export class GoalDetailsComponent implements OnInit {
   goal_amount?: number = this.goal.goalAmount;
   save_amount?: number = this.goal.saveAmount;
   time_in_months?: number = this.time_in_months;
+
+  chartGoalAmount!: number;
   
   constructor(private goalService: GoalService, 
     private route: ActivatedRoute,
@@ -27,29 +29,29 @@ export class GoalDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
+    this.loadGoals(this.id);
+    console.log(this.chartGoalAmount)
+  }
 
-    this.goal = new Goal();
-    this.goalService.getGoalById(this.id).subscribe( data => {
+  public loadGoals(goalId: number)
+  {
+    this.goalService.getGoalById(goalId).subscribe( data => {
       this.goal = data;
+      console.log(this.goal);
+      this.chartGoalAmount = this.goal.goalAmount;
+      console.log(this.chartGoalAmount)
+      this.pieChartData.datasets[0].data[0] = this.chartGoalAmount;
+      this.pieChartData.datasets[0].data[1] = this.goal.saveAmount;
+      this.chart?.update();
+
     });
+
   }
 
   public pieChartOptions: ChartConfiguration['options'] = {
     responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top',
-      },
-      datalabels: {
-        formatter: (value, ctx) => {
-          if (ctx.chart.data.labels) {
-            return ctx.chart.data.labels[ctx.dataIndex];
-          }
-        },
-      },
-    }
+    maintainAspectRatio: false
+
   };
   public pieChartData: ChartData<'pie', number[], string | string[]> = {
     //input variables
@@ -57,7 +59,7 @@ export class GoalDetailsComponent implements OnInit {
     datasets: [ {
       // input variables [current progress, total goal - current progress]
       // how do we keep track of current progress? need value to store in db
-      data: [200, 250]
+      data: []
     } ]
   };
   public pieChartType: ChartType = 'pie';

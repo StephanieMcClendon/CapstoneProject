@@ -22,11 +22,13 @@ export class GoalListComponent implements OnInit {
     // @JsonIgnore in sprint boot to avoid over populating db
     // OR update application.properties to update db instead of create
     this.getGoals();
+    console.log(this.goals)
   }
 
   private getGoals(){
     this.goalService.getGoalsList().subscribe(data => {
       this.goals = data;
+      console.log(this.goals);
     });
   }
 

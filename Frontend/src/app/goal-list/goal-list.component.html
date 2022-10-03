@@ -47,9 +47,9 @@
             <td> {{ goal.goalAmount }}</td>
             <td> {{ goal.time_in_months }}</td>
             <td>
-                <button (click) = "updateGoal(1)" title="Update Goal" class = "btn btn-secondary" style="margin-left: 15px"> Update goal (no function yet)  </button>               
-                  <button (click) = "deleteGoal(1)" title="Delete goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal (no function yet) </button>                    
-                  <button (click) = "goToGoalDetails(1)" title="View Goal Details" class = "btn btn-primary" style="margin-left: 15px"> View Goal Details </button>
+                <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-secondary" style="margin-left: 15px"> Update goal (no function yet)  </button>
+                  <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal (no function yet) </button>
+                  <button (click) = "goToGoalDetails(goal.id)" title="View Goal Details" class = "btn btn-primary" style="margin-left: 15px"> View Goal Details </button>
             </td>
 
         </tr>
