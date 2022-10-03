@@ -7,14 +7,17 @@ import { GoalListComponent } from './goal-list/goal-list.component';
 import {LoginComponent} from "./login/login.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {AuthenticationGuard} from "./guard/authentication.guard";
+import { UpdateGoalComponent } from './update-goal/update-goal.component';
+
 
 
 const routes: Routes = [
   {path: "calculator", component: CalculatorComponent},
   {path: 'goal-details/:id', component: GoalDetailsComponent},
-  {path: 'goals', component: GoalListComponent, canActivate: [AuthenticationGuard]},
+  {path: 'goals', component: GoalListComponent},
   {path: "login", component: LoginComponent},
   {path: "logout", component: LogoutComponent, canActivate: [AuthenticationGuard]},
+  {path: "update-goal/:id", component: UpdateGoalComponent},
   {path: "", redirectTo: "calculator", pathMatch: "full"}
   ];
 
