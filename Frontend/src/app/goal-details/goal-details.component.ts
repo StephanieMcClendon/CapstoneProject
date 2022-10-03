@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Goal } from '../goal';
 import { GoalService } from '../goal.service';
 
-import DatalabelsPlugin from 'chartjs-plugin-datalabels'; // npm installed this
-import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js'; // npm installed chart.js
-import { BaseChartDirective } from 'ng2-charts'; //npm installed ng2-charts
+import DatalabelsPlugin from 'chartjs-plugin-datalabels';
+import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-goal-details',
@@ -20,8 +20,10 @@ export class GoalDetailsComponent implements OnInit {
   goal_id = this.goal.id;
   goal_amount!: number;
   save_amount = this.goal.saveAmount;
-  time_in_months = this.goal.time_in_months;
-  current_month?:number = this.time_in_months!;
+  presentDate = this.goal.presentDate;
+  startDate = this.goal.startDate;
+  trackDays!: number;
+  currDate = new Date();
 
   constructor(private goalService: GoalService,
     private route: ActivatedRoute,
@@ -34,18 +36,23 @@ export class GoalDetailsComponent implements OnInit {
     this.loadGoals(this.id);
   }
   public loadGoals(goalId: number)
-{
-  this.goalService.getGoalById(this.id).subscribe( data => {
-    this.goal = data;
-    console.log(this.goal);
-    this.goal_amount = this.goal.goalAmount;
-    console.log(this.goal_amount)
-    this.pieChartData.datasets[0].data[0] = this.goal_amount;
-    this.pieChartData.datasets[0].data[1] = this.goal.saveAmount;
-    this.chart?.update();
-  });
+  {
+    this.goalService.getGoalById(this.id).subscribe( data => {
+      this.goal = data;
+      console.log(this.goal);
+      this.goal_amount = this.goal.goalAmount;
+      console.log(this.goal_amount)
+      this.pieChartData.datasets[0].data[0] = this.goal.saveAmount;
+      this.pieChartData.datasets[0].data[1] = this.goal_amount;
+      this.chart?.update();
+      this.goal.time_in_months = Math.round(this.goal_amount / 30);
+      // this.trackDays = Math.floor((this.presentDate - this.startDate) / (1000*60*60*24));
+      // this.presentDate = this.currDate.getDate();
+      console.log(this.presentDate);
+    });
+  }
 
-}
+//Math.floor((current_date - start_date) / (1000*60*60*24))
   
     public pieChartOptions: ChartConfiguration['options'] = {
       responsive: true,
@@ -78,13 +85,6 @@ export class GoalDetailsComponent implements OnInit {
 
   updateGoal(id: number){
     this.router.navigate(['update-goal', id]);
-  }
-
-  //test method
-  calcMonthToSave(){
-    // this.result = this.goal_amount;
-    // console.log(this.result);
-    // return this.result;
   }
 
 }
