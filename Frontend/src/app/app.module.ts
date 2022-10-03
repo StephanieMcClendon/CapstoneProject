@@ -27,7 +27,11 @@ export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1
     AppComponent,
     CalculatorComponent,
     GoalDetailsComponent,
-      GoalListComponent
+      GoalListComponent,
+      IncomeDetailsComponent,
+      IncomeListComponent,
+      CreateIncomeComponent,
+      UpdateIncomeComponent
   ],
 
     imports: [

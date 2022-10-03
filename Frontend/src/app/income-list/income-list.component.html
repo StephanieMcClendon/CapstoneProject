@@ -1,1 +1,71 @@
 <p>income-list works!</p>
+<div class = "row">
+    <h2> Income List</h2>
+</div>
+<div class="row">
+    <div class="card col-md-6 offset-md-3 offset-md-3">
+        <div class="row">
+            <h3 class="text-center"> Update Income </h3>
+            <hr />
+            <div class="card-body">
+                <form (ngSubmit)="onSubmit()">
+
+                    <div class="form-group">
+                        <label> income_source</label>
+                        <input type="text" class="form-control" id="income" [(ngModel)]="income_source"
+                            name="income_source">
+                    </div>
+
+                    <div class="form-group">
+                        <label> amount</label>
+                        <input type="text" class="form-control" id="amount" [(ngModel)]="amount"
+                            name="amount">
+                    </div>
+
+                    <div class="form-group">
+                        <label> Frequency</label>
+                        <input type="text" class="form-control" id="frequecy" [(ngModel)]="frequecy"
+                            name="frequecy">
+                    </div>
+                    <div class="form-group">
+                        <label> Description</label>
+                        <input type="text" class="form-control" id="description" [(ngModel)]="description"
+                            name="description"></div>
+                            <div class="form-group">
+                                <label> User_id</label>
+                                <input type="text" class="form-control" id="user_id" [(ngModel)]="user_id"
+                                    name="user_id"></div>     
+
+                    <br />
+                    <button class="btn btn-success" type="submit">Submit</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<table class = "table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th> income_source</th>
+            <th>amount  </th>
+            <th> frequecy</th>
+            <th> description </th>
+            <th>user_id</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let income of  incomes" >
+            <td> {{income.income_source }} </td>
+            <td> {{ income.amount}} </td>
+            <td> {{ income.frequency }} </td>
+            <td>{{ income.description}}</td>
+            <td>{{ income.user_id}}</td>
+            <td>
+                <button (click) = "updateIncome(income.id)" class = "btn btn-primary"> Update</button>
+                <button (click) = "deleteIncome(income.id)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+                <button (click) = "incomeDetails(income.id)" class = "btn btn-primary" style="margin-left: 10px"> View</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
