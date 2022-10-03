@@ -23,7 +23,7 @@ public class GoalController {
         return this.goalRepository.findAll();
     }
 
-    @GetMapping("/goal/{id}")
+    @GetMapping("/goals/{id}")
     public Goal listGoal(@PathVariable Long id){
         return this.goalRepository.findById(id).get();
     }
@@ -41,7 +41,7 @@ public class GoalController {
     }
 
     // link to user id
-    @PutMapping("/update-goal/{id}")
+    @PutMapping("/goals/{id}")
     public Goal updateGoal(@RequestBody Goal inputGoal, @PathVariable Long id){
         Goal goal = this.goalRepository.findById(id).get();
         goal.setGoalAmount(inputGoal.getGoalAmount());

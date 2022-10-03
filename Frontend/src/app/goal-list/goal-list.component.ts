@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class GoalListComponent implements OnInit {
 
-  goals?: Goal[];
+  goals?: any[];
   goal: Goal = new Goal();
   searchText: any;
 
@@ -19,7 +19,7 @@ export class GoalListComponent implements OnInit {
     private router: Router) { }
   
   ngOnInit(): void {
-    // @JsonIgnore in sprint boot to avoid over populating db
+    // @JsonIgnore in spring boot to avoid over populating db
     // OR update application.properties to update db instead of create
     this.getGoals();
   }
@@ -35,14 +35,14 @@ export class GoalListComponent implements OnInit {
   }
 
   updateGoal(id: number){
-    // update-goal not in app.routing.module yet
     this.router.navigate(['update-goal', id]);
   }
 
   deleteGoal(id: number){
-    // delete button
+    // routed to delete button
     this.goalService.deleteGoal(id).subscribe( data => {
       console.log(data);
+      this.goToGoalList();
       this.getGoals();
     })
   }
@@ -51,7 +51,6 @@ export class GoalListComponent implements OnInit {
     // create button
     this.goalService.createGoal(this.goal).subscribe( data =>{
       console.log(data);
-      this.goToGoalList();
       this.getGoals();
     },
     error => console.log(error));

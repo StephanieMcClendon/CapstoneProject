@@ -13,65 +13,78 @@ import { BaseChartDirective } from 'ng2-charts'; //npm installed ng2-charts
   styleUrls: ['./goal-details.component.css']
 })
 export class GoalDetailsComponent implements OnInit {
-  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  @ViewChild(BaseChartDirective) chart!: BaseChartDirective;
   id!: number;
-  result?: number = 0;
+  result: number = 0;
   goal: Goal = new Goal();
-  goal_amount?: number = this.goal.goalAmount;
-  save_amount?: number = this.goal.saveAmount;
-  time_in_months?: number = this.time_in_months;
-  
-  constructor(private goalService: GoalService, 
+  goal_id = this.goal.id;
+  goal_amount!: number;
+  save_amount = this.goal.saveAmount;
+  time_in_months = this.goal.time_in_months;
+  current_month?:number = this.time_in_months!;
+
+  constructor(private goalService: GoalService,
     private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
+  
     this.id = this.route.snapshot.params['id'];
-
-    this.goal = new Goal();
-    this.goalService.getGoalById(this.id).subscribe( data => {
-      this.goal = data;
-    });
+    console.log(this.goal_amount);
+    this.loadGoals(this.id);
   }
+  public loadGoals(goalId: number)
+{
+  this.goalService.getGoalById(this.id).subscribe( data => {
+    this.goal = data;
+    console.log(this.goal);
+    this.goal_amount = this.goal.goalAmount;
+    console.log(this.goal_amount)
+    this.pieChartData.datasets[0].data[0] = this.goal_amount;
+    this.pieChartData.datasets[0].data[1] = this.goal.saveAmount;
+    this.chart?.update();
+  });
 
-  public pieChartOptions: ChartConfiguration['options'] = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top',
-      },
-      datalabels: {
-        formatter: (value, ctx) => {
-          if (ctx.chart.data.labels) {
-            return ctx.chart.data.labels[ctx.dataIndex];
-          }
+}
+  
+    public pieChartOptions: ChartConfiguration['options'] = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top',
         },
-      },
-    }
+        datalabels: {
+          formatter: (value, ctx) => {
+            if (ctx.chart.data.labels) {
+              return ctx.chart.data.labels[ctx.dataIndex];
+              
+            }
+          },
+        },
+      }
+    };
+    public pieChartData: ChartData<'pie',number[]> = {
+
+        labels:["Current Progress", "Goal Amount"],
+        datasets:[{
+          data: []
+        }]
   };
-  public pieChartData: ChartData<'pie', number[], string | string[]> = {
-    //input variables
-    labels: [ [`Goal ${this.goal.id}`]],
-    datasets: [ {
-      // input variables [current progress, total goal - current progress]
-      // how do we keep track of current progress? need value to store in db
-      data: [200, 250]
-    } ]
-  };
-  public pieChartType: ChartType = 'pie';
-  public pieChartPlugins = [ DatalabelsPlugin ];
+
+    public pieChartType: ChartType = 'pie';
+    public pieChartPlugins = [ DatalabelsPlugin ];
 
   updateGoal(id: number){
-    this.router.navigate(['goal-details', id]);
+    this.router.navigate(['update-goal', id]);
   }
 
   //test method
-  displayCalculation(){
-    this.result = this.time_in_months! * this.save_amount!;
-    return this.result;
+  calcMonthToSave(){
+    // this.result = this.goal_amount;
+    // console.log(this.result);
+    // return this.result;
   }
-
 
 }
