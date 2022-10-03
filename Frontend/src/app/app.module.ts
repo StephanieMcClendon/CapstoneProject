@@ -14,8 +14,11 @@ import { CommonModule } from '@angular/common';
 import {GOOGLE_CHARTS_LAZY_CONFIG, GoogleChartsConfig, GoogleChartsModule} from "angular-google-charts";
 import {config, ReplaySubject} from "rxjs";
 import {NgChartsModule } from 'ng2-charts';
+
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { UpdateGoalComponent } from './update-goal/update-goal.component';
+
 export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1);
 
 @NgModule({
@@ -25,7 +28,8 @@ export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1
     GoalDetailsComponent,
     GoalListComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    UpdateGoalComponent
   ],
     imports: [
         BrowserModule,
@@ -34,7 +38,6 @@ export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1
         MatSliderModule,
         HttpClientModule,
         FormsModule,
-        GoogleChartsModule,
         NgChartsModule
     ],
 

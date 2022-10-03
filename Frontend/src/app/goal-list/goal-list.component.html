@@ -1,7 +1,7 @@
 <h3>Goalolololololsss</h3>
-<div class="card">
+<div class="card text-center" style="width: 335px">
     <div class="card-body">
-<form (ngSubmit) = "onSubmit()">
+<form (ngSubmit) = "onSubmit()" style="width: 300px" class="justify-content-center">
     <label> Create a Goal (TEST FORM)</label><br><br>
     <div class="form-group">
         <label for="saveAmount">Amount to save per month:</label><br>
@@ -18,7 +18,7 @@
     <br>
 
     <div class="form-group">
-        <label for="time_in_months">Time in months:</label><br>
+        <label for="time_in_months">Time in months: {{ goal.time_in_months }}</label><br>
         <input type="text" class="form-control" id="time_in_months" [(ngModel)]="goal.time_in_months" name="time_in_months">
     </div>
 
@@ -34,7 +34,7 @@
 <table class = "table table-striped">
     <thead>
         <tr>
-           <th> Goal Id</th>
+           <th> Goal #</th>
             <th> Amount to Save</th>
             <th> Goal Amount</th>
             <th> Time in months</th>
@@ -42,10 +42,10 @@
     </thead>
     <tbody>
         <tr *ngFor = "let goal of goals" >
-            <td> {{ goal.id }}</td>
-            <td > {{ goal.saveAmount }} </td>
-            <td> {{ goal.goalAmount }}</td>
-            <td> {{ goal.time_in_months }}</td>
+            <td> {{goal.id}}</td>
+            <td > {{goal.saveAmount}} </td>
+            <td> {{goal.goalAmount}}</td>
+            <td> {{goal.time_in_months}}</td>
             <td>
                 <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-secondary" style="margin-left: 15px"> Update goal (no function yet)  </button>
                   <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal (no function yet) </button>

@@ -46,6 +46,8 @@ public class GoalController {
         Goal goal = this.goalRepository.findById(id).get();
         goal.setGoalAmount(inputGoal.getGoalAmount());
         goal.setSaveAmount(inputGoal.getSaveAmount());
+        goal.setStartDate(inputGoal.getStartDate());
+        goal.setPresentDate(inputGoal.getPresentDate());
         goal.setTime_in_months(inputGoal.getTime_in_months());
         Goal updatedGoal = this.goalRepository.save(goal);
         return updatedGoal;

@@ -28,7 +28,7 @@ export class GoalService {
     return this.httpClient.post(`${this.baseURL}`, goal);
   }
 
-  updateTicket(id: number, goal: Goal): Observable<Object>{
+  updateGoal(id: number, goal: Goal): Observable<Object>{
     return this.httpClient.put(`${this.baseURL}/${id}`, goal);
   }
 }
