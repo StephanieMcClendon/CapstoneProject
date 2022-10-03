@@ -1,0 +1,30 @@
+<p>Update goal</p>
+<div class="card-body">
+    <div>
+        <label> Goal #: </label> {{ goal.id }}
+    </div>
+    <br>
+    <form (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label>Amount to save per month:</label>
+            <input type="text" class="form-control" id="saveAmount" [(ngModel)]="goal.saveAmount"
+                name="saveAmount">
+        </div>
+
+        <div class="form-group">
+            <label>Goal Amount:</label>
+            <input type="text" class="form-control" id="goalAmount" [(ngModel)]="goal.goalAmount"
+                name="goalAmount">
+        </div>
+
+        <div class="form-group">
+            <label>Time in months:</label>
+            <input type="text" class="form-control" id="time_in_months" [(ngModel)]="goal.time_in_months"
+                name="time_in_months">
+        </div>
+
+        <br />
+        <button class="btn btn-success" type="submit">Update</button>
+    </form>
+</div>

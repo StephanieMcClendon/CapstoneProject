@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Goal } from '../goal';
 import { GoalService } from '../goal.service';
+
+import DatalabelsPlugin from 'chartjs-plugin-datalabels'; // npm installed this
+import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js'; // npm installed chart.js
+import { BaseChartDirective } from 'ng2-charts'; //npm installed ng2-charts
 
 @Component({
   selector: 'app-goal-details',
@@ -9,27 +13,78 @@ import { GoalService } from '../goal.service';
   styleUrls: ['./goal-details.component.css']
 })
 export class GoalDetailsComponent implements OnInit {
-
+  @ViewChild(BaseChartDirective) chart!: BaseChartDirective;
   id!: number;
-  goalAmount?: number;
-  saveAmount?: number;
-  time_in_months?: number;
+  result: number = 0;
   goal: Goal = new Goal();
-  constructor(private goalService: GoalService, 
-    private route: ActivatedRoute,
-    private router: Router) { }
+  goal_id = this.goal.id;
+  goal_amount!: number;
+  save_amount = this.goal.saveAmount;
+  time_in_months = this.goal.time_in_months;
+  current_month?:number = this.time_in_months!;
+
+  constructor(private goalService: GoalService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
 
-    this.goal = new Goal();
+    this.id = this.route.snapshot.params['id'];
+    console.log(this.goal_amount);
+    this.loadGoals(this.id);
+  }
+  public loadGoals(goalId: number)
+  {
     this.goalService.getGoalById(this.id).subscribe( data => {
       this.goal = data;
+      console.log(this.goal);
+      this.goal_amount = this.goal.goalAmount;
+      console.log(this.goal_amount)
+      this.pieChartData.datasets[0].data[0] = this.goal_amount;
+      this.pieChartData.datasets[0].data[1] = this.goal.saveAmount;
+      this.chart?.update();
     });
+
   }
 
+  public pieChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top',
+      },
+      datalabels: {
+        formatter: (value, ctx) => {
+          if (ctx.chart.data.labels) {
+            return ctx.chart.data.labels[ctx.dataIndex];
+
+          }
+        },
+      },
+    }
+  };
+  public pieChartData: ChartData<'pie',number[]> = {
+
+    labels:["Current Progress", "Goal Amount"],
+    datasets:[{
+      data: []
+    }]
+  };
+
+  public pieChartType: ChartType = 'pie';
+  public pieChartPlugins = [ DatalabelsPlugin ];
+
   updateGoal(id: number){
-    this.router.navigate(['goal-details', id]);
+    this.router.navigate(['update-goal', id]);
+  }
+
+  //test method
+  calcMonthToSave(){
+    // this.result = this.goal_amount;
+    // console.log(this.result);
+    // return this.result;
   }
 
 }
