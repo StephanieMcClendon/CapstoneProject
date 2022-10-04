@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {Goal} from "../goal";
 import {GoalService} from "../goal.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import { MatTabGroup } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,7 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  @ViewChild('tabs') tabGroup!: MatTabGroup;
   goals?: any[];
   goal: Goal = new Goal();
   searchText: any;
@@ -65,14 +66,17 @@ export class DashboardComponent implements OnInit {
   onSubmitGoal(){
     console.log(this.goal);
     // user_id = user id of current user logged in
+    this.tabGroup.selectedIndex = 2;
     this.saveGoal();
   }
 
   onSubmitIncome() {
-
+    // swipes to income tab
+    this.tabGroup.selectedIndex = 0;
   }
 
   onSubmitExpense() {
-
+    // swipes to expense tab
+    this.tabGroup.selectedIndex = 1;
   }
 }

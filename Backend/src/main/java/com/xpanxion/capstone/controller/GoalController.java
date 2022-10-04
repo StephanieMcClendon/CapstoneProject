@@ -34,7 +34,7 @@ public class GoalController {
         return this.goalRepository.save(goal);
     }
 
-    @DeleteMapping("/delete-goal/{id}")
+    @DeleteMapping("/goals/{id}")
     public void deleteGoal(@PathVariable Long id){
         Goal goal = this.goalRepository.findById(id).get();
         this.goalRepository.deleteById(id);
@@ -49,6 +49,8 @@ public class GoalController {
         goal.setStartDate(inputGoal.getStartDate());
         goal.setPresentDate(inputGoal.getPresentDate());
         goal.setTime_in_months(inputGoal.getTime_in_months());
+        goal.setPresentDate(inputGoal.getPresentDate());
+        goal.setStartDate(inputGoal.getStartDate());
         Goal updatedGoal = this.goalRepository.save(goal);
         return updatedGoal;
     }
