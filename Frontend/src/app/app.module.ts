@@ -3,6 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { CreateIncomeComponent } from './create-income/create-income.component';
+import { UpdateIncomeComponent } from './update-income/update-income.component';
+import { IncomeListComponent } from './income-list/income-list.component';
+import { IncomeDetailsComponent } from './income-details/income-details.component';
+
 import { CalculatorComponent } from './finances/calculator/calculator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from "@angular/material/slider";
@@ -14,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import {GOOGLE_CHARTS_LAZY_CONFIG, GoogleChartsConfig, GoogleChartsModule} from "angular-google-charts";
 import {config, ReplaySubject} from "rxjs";
 import {NgChartsModule } from 'ng2-charts';
+import { ExpenseComponent } from './expense/expense.component';
 
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -23,16 +30,23 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1);
 
+
 @NgModule({
   declarations: [
     AppComponent,
     CalculatorComponent,
     GoalDetailsComponent,
-    GoalListComponent,
-    LoginComponent,
+      GoalListComponent,
+      ExpenseComponent,
+     LoginComponent,
+     // IncomeDetailsComponent,
+      IncomeListComponent,
+      CreateIncomeComponent,
+      UpdateIncomeComponent,
     LogoutComponent,
     UpdateGoalComponent,
     DashboardComponent
+
   ],
     imports: [
         BrowserModule,
