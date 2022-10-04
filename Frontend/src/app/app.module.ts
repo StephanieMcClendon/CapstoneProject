@@ -3,6 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { CreateIncomeComponent } from './create-income/create-income.component';
+import { UpdateIncomeComponent } from './update-income/update-income.component';
+import { IncomeListComponent } from './income-list/income-list.component';
+import { IncomeDetailsComponent } from './income-details/income-details.component';
+
 import { CalculatorComponent } from './finances/calculator/calculator.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from "@angular/material/slider";
@@ -24,6 +30,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1);
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,9 +39,14 @@ export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1
       GoalListComponent,
       ExpenseComponent,
      LoginComponent,
+     // IncomeDetailsComponent,
+      IncomeListComponent,
+      CreateIncomeComponent,
+      UpdateIncomeComponent,
     LogoutComponent,
     UpdateGoalComponent,
     DashboardComponent
+
   ],
     imports: [
         BrowserModule,

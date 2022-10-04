@@ -3,7 +3,6 @@ import {Goal} from "../goal";
 import {GoalService} from "../goal.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import { MatTabGroup } from '@angular/material/tabs';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
