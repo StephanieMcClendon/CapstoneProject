@@ -63,7 +63,6 @@ export class GoalListComponent implements OnInit {
   }
 
   saveGoal(){
-    // create button
     this.presentDate = this.cDate;
     this.dt = this.cDate.returnDate();
     this.goalService.createGoal(this.goal).subscribe( data =>{
@@ -75,7 +74,7 @@ export class GoalListComponent implements OnInit {
   }
 
   goToGoalList(){
-    this.router.navigate(['/goals']);
+    this.router.navigate(['/dashboard']);
   }
 
   onSubmit(){

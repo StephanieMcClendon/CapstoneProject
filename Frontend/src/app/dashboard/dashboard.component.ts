@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
     console.log(this.goals)
   }
 
+  // ** GOAL Methods **
   private getGoals(){
     this.goalService.getGoalsList().subscribe(data => {
       this.goals = data;
@@ -70,10 +71,50 @@ export class DashboardComponent implements OnInit {
     this.saveGoal();
   }
 
+  // ** INCOME Methods **
+
+  private getIncomes(){
+    this.goalService.getIncomeList().subscribe(data => {
+      this.incomes = data;
+      console.log(this.incomes);
+    });
+  }
+
+  // no need for income details page
+
+  updateIncome(id: number){
+    this.router.navigate(['update-goal', id]);
+  }
+
+  deleteIncome(id: number){
+    // routed to delete button
+    this.goalService.deleteGoal(id).subscribe( data => {
+      console.log(data);
+      this.goToGoalList();
+      this.getGoals();
+    })
+  }
+
+  saveIncome(){
+    // create button
+    this.goalService.createGoal(this.goal).subscribe( data =>{
+          console.log(data);
+          this.getGoals();
+        },
+        error => console.log(error));
+  }
+
+  // no goal list needed, switch to tab instead
+
   onSubmitIncome() {
     // swipes to income tab
     this.tabGroup.selectedIndex = 0;
+    this.saveIncome();
   }
+
+  // ** EXPENSE Methods **
+
+  
 
   onSubmitExpense() {
     // swipes to expense tab

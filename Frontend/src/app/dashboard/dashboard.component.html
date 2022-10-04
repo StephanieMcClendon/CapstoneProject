@@ -4,23 +4,23 @@
     <div class="card text-center m-auto" style="width: 345px">
         <div class="card-body">
             <form (ngSubmit) = "onSubmitIncome()" style="width: 300px" class="justify-content-center">
-                <label> Create a Income (TEST FORM)</label><br><br>
+                <label> Create a Income </label><br><br>
                 <div class="form-group">
-                    <label >Amount to save per month:</label><br>
+                    <label >Yearly Salary:</label><br>
                     <input type="text" class="form-control" >
                 </div>
 
                 <br>
 
                 <div class="form-group">
-                    <label >Goal Amount:</label><br>
+                    <label >#:</label><br>
                     <input type="text" class="form-control" >
                 </div>
 
                 <br>
 
                 <div class="form-group">
-                    <label >Time in months: {{ goal.time_in_months }}</label><br>
+                    <label >#: </label><br>
                     <input type="text" class="form-control" >
                 </div>
 
@@ -34,23 +34,23 @@
     <div class="card text-center m-auto" style="width: 345px">
         <div class="card-body">
             <form (ngSubmit) = "onSubmitExpense()" style="width: 300px" class="justify-content-center">
-                <label> Create a Expense (TEST FORM)</label><br><br>
+                <label> Create a Expense </label><br><br>
                 <div class="form-group">
-                    <label for="saveAmount">Amount to save per month:</label><br>
+                    <label for="saveAmount">Expense name:</label><br>
                     <input type="text" class="form-control">
                 </div>
 
                 <br>
 
                 <div class="form-group">
-                    <label >Goal Amount:</label><br>
+                    <label >Expense Amount:</label><br>
                     <input type="text" class="form-control" >
                 </div>
 
                 <br>
 
                 <div class="form-group">
-                    <label >Time in months: {{ goal.time_in_months }}</label><br>
+                    <label >#:</label><br>
                     <input type="text" class="form-control" >
                 </div>
 
@@ -64,7 +64,7 @@
     <div class="card text-center m-auto" style="width: 345px">
         <div class="card-body">
             <form (ngSubmit) = "onSubmitGoal()" style="width: 300px" class="justify-content-center">
-                <label> Create a Goal (TEST FORM)</label><br><br>
+                <label> Create a Goal </label><br><br>
                 <div class="form-group">
                     <label for="saveAmount">Amount to save per month:</label><br>
                     <input type="text" class="form-control" id="saveAmount" [(ngModel)]="goal.saveAmount" name="saveAmount">
@@ -125,8 +125,8 @@
                 <td> {{goal.time_in_months}}</td>
                 <td> {{goal.startDate}} <td>
                 <td>
-                    <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-secondary" style="margin-left: 15px"> Update goal (no function yet)  </button>
-                    <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal (no function yet) </button>
+                    <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-secondary" style="margin-left: 15px"> Update goal </button>
+                    <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal </button>
                     <button (click) = "goToGoalDetails(goal.id)" title="View Goal Details" class = "btn btn-primary" style="margin-left: 15px"> View Goal Details </button>
                 </td>
 
