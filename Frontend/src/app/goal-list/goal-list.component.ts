@@ -13,15 +13,17 @@ import { CurrDate } from 'src/app/currDate';
 })
 export class GoalListComponent implements OnInit {
 
+  /* DEPRECATED: INTEGRATED INTO DASHBOARD COMPONENT */
+
   goals?: any[];
   goal: Goal = new Goal();
   searchText: any;
-  presentDate = this.goal.presentDate;
-  startDate = this.goal.startDate;
+  // presentDate = this.goal.presentDate;
+  // startDate = this.goal.startDate;
   trackDays!: number;
-  currDate = new Date();
-  dt!: String;
-  cDate: CurrDate = new CurrDate(this.currDate.getMonth(), this.currDate.getDay(), this.currDate.getFullYear());
+  // currDate = new Date();
+  // dt!: String;
+  // cDate: CurrDate = new CurrDate(this.currDate.getMonth(), this.currDate.getDay(), this.currDate.getFullYear());
 
   constructor(private goalService: GoalService,
     private route: ActivatedRoute,
@@ -38,9 +40,9 @@ export class GoalListComponent implements OnInit {
     this.goalService.getGoalsList().subscribe(data => {
       this.goals = data;
       this.goal.time_in_months = Math.round(this.goal.goalAmount / 30);
-      this.trackDays = Math.floor((this.presentDate.getTime() - this.startDate.getTime()) / (1000*60*60*24));
-      this.presentDate = this.cDate;
-      this.dt = this.cDate.returnDate();
+      // this.trackDays = Math.floor((this.presentDate.getTime() - this.startDate.getTime()) / (1000*60*60*24));
+      // this.presentDate = this.cDate;
+      // this.dt = this.cDate.returnDate();
       console.log(this.goals);
     });
   }
@@ -63,8 +65,8 @@ export class GoalListComponent implements OnInit {
   }
 
   saveGoal(){
-    this.presentDate = this.cDate;
-    this.dt = this.cDate.returnDate();
+    // this.presentDate = this.cDate;
+    // this.dt = this.cDate.returnDate();
     this.goalService.createGoal(this.goal).subscribe( data =>{
       console.log(data);
       
