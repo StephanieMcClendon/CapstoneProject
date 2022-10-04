@@ -4,7 +4,10 @@
     <a class="nav-link" routerLink="/calculator"  routerLinkActive="active">Calculator</a>
     <a class="nav-link" routerLink="/dashboard"  routerLinkActive="active">Dashboard</a>
     <a class="nav-link ml-auto" routerLink="/login"> Login </a>
-    <a class="nav-link " routerLink="/logout"> Logout </a>
+    <div *ngIf="isLoggedIn">
+        <a class="nav-link" routerLink="/logout" > Logout </a>
+    </div>
+
 
 </nav>
 

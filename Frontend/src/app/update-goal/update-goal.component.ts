@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Goal } from '../goal';
 import { GoalService } from '../goal.service';
+import {DashboardComponent} from "../dashboard/dashboard.component";
 
 @Component({
   selector: 'app-update-goal',
@@ -12,7 +13,8 @@ export class UpdateGoalComponent implements OnInit {
 
   id!: number;
   goal: Goal = new Goal();
-  constructor(private goalService: GoalService, 
+
+  constructor(private goalService: GoalService,
     private route: ActivatedRoute, 
     private router: Router) { }
 

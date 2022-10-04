@@ -17,7 +17,7 @@ public class IncomeController
 {
     private final IncomeRepository incomeRepository;
      @Autowired
-        public IncomeController(IncomeRepository  incomeRepository) {// http://localhost:8080/api/v1/add-income
+     public IncomeController(IncomeRepository  incomeRepository) {// http://localhost:8080/api/v1/add-income
             this.incomeRepository = incomeRepository;
         }
 

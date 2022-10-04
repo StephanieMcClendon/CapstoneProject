@@ -12,6 +12,9 @@ export class DashboardComponent implements OnInit {
   @ViewChild('tabs') tabGroup!: MatTabGroup;
   goals?: any[];
   goal: Goal = new Goal();
+  incomeCard = false;
+  expenseCard = false;
+  goalsCard = false;
   searchText: any;
 
   constructor(private goalService: GoalService,
@@ -55,7 +58,10 @@ export class DashboardComponent implements OnInit {
           console.log(data);
           this.getGoals();
         },
-        error => console.log(error));
+        error => console.log(error)
+    );
+
+
   }
 
   goToGoalList(){
@@ -77,5 +83,11 @@ export class DashboardComponent implements OnInit {
   onSubmitExpense() {
     // swipes to expense tab
     this.tabGroup.selectedIndex = 1;
+  }
+
+  showForms() {
+    this.incomeCard = !this.incomeCard;
+    this.expenseCard = !this.expenseCard;
+    this.goalsCard = !this.goalsCard;
   }
 }

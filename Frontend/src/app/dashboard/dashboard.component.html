@@ -1,7 +1,13 @@
-<h3>Goalolololololsss</h3>
-<div class="row">
+<div class="container-fluid">
+    <a class="btn btn-outline-primary" (click)="showForms()"> Toggle Create Forms <i class="fa fa-sliders"></i> </a>
 
-    <div class="card text-center m-auto" style="width: 345px">
+
+<!--    <a class="btn btn-outline-primary" (click)="showForms()"></a>-->
+</div>
+<div style="margin-top: 10px">
+<div class="row" >
+
+    <div class="card text-center m-auto" style="width: 345px" *ngIf="incomeCard">
         <div class="card-body">
             <form (ngSubmit) = "onSubmitIncome()" style="width: 300px" class="justify-content-center">
                 <label> Create a Income (TEST FORM)</label><br><br>
@@ -31,7 +37,7 @@
         </div>
 
     </div>
-    <div class="card text-center m-auto" style="width: 345px">
+    <div class="card text-center m-auto" style="width: 345px" *ngIf="expenseCard">
         <div class="card-body">
             <form (ngSubmit) = "onSubmitExpense()" style="width: 300px" class="justify-content-center">
                 <label> Create a Expense (TEST FORM)</label><br><br>
@@ -61,26 +67,26 @@
         </div>
 
     </div>
-    <div class="card text-center m-auto" style="width: 345px">
+    <div class="card text-center m-auto" style="width: 345px" *ngIf="goalsCard">
         <div class="card-body">
             <form (ngSubmit) = "onSubmitGoal()" style="width: 300px" class="justify-content-center">
                 <label> Create a Goal (TEST FORM)</label><br><br>
                 <div class="form-group">
                     <label for="saveAmount">Amount to save per month:</label><br>
-                    <input type="text" class="form-control" id="saveAmount" [(ngModel)]="goal.saveAmount" name="saveAmount">
+                    <input type="number" class="form-control" id="saveAmount" [(ngModel)]="goal.saveAmount" name="saveAmount">
                 </div>
                 <br>
 
                 <div class="form-group">
                     <label for="goalAmount">Goal Amount:</label><br>
-                    <input type="text" class="form-control" id="goalAmount" [(ngModel)]="goal.goalAmount" name="goalAmount">
+                    <input type="number" class="form-control" id="goalAmount" [(ngModel)]="goal.goalAmount" name="goalAmount">
                 </div>
 
                 <br>
 
                 <div class="form-group">
                     <label for="time_in_months">Time in months: {{ goal.time_in_months }}</label><br>
-                    <input type="text" class="form-control" id="time_in_months" [(ngModel)]="goal.time_in_months" name="time_in_months">
+                    <input type="number" class="form-control" id="time_in_months" [(ngModel)]="goal.time_in_months" name="time_in_months">
                 </div>
 
                 <br>
@@ -91,6 +97,7 @@
 
     </div>
 
+</div>
 </div>
 <br>
 <br>
