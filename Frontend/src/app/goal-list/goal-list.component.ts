@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Goal } from 'src/app/goal';
 import { GoalService } from '../goal.service'
 import { ActivatedRoute, Router } from '@angular/router';
+import { getLocaleDateFormat } from '@angular/common';
+import {formatDate} from '@angular/common';
+import { CurrDate } from 'src/app/currDate';
 
 @Component({
   selector: 'app-goal-list',
@@ -13,6 +16,12 @@ export class GoalListComponent implements OnInit {
   goals?: any[];
   goal: Goal = new Goal();
   searchText: any;
+  presentDate = this.goal.presentDate;
+  startDate = this.goal.startDate;
+  trackDays!: number;
+  currDate = new Date();
+  dt!: String;
+  cDate: CurrDate = new CurrDate(this.currDate.getMonth(), this.currDate.getDay(), this.currDate.getFullYear());
 
   constructor(private goalService: GoalService,
     private route: ActivatedRoute,
@@ -28,6 +37,10 @@ export class GoalListComponent implements OnInit {
   private getGoals(){
     this.goalService.getGoalsList().subscribe(data => {
       this.goals = data;
+      this.goal.time_in_months = Math.round(this.goal.goalAmount / 30);
+      this.trackDays = Math.floor((this.presentDate.getTime() - this.startDate.getTime()) / (1000*60*60*24));
+      this.presentDate = this.cDate;
+      this.dt = this.cDate.returnDate();
       console.log(this.goals);
     });
   }
@@ -51,8 +64,11 @@ export class GoalListComponent implements OnInit {
 
   saveGoal(){
     // create button
+    this.presentDate = this.cDate;
+    this.dt = this.cDate.returnDate();
     this.goalService.createGoal(this.goal).subscribe( data =>{
       console.log(data);
+      
       this.getGoals();
     },
     error => console.log(error));
@@ -63,8 +79,8 @@ export class GoalListComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.goal);
     // user_id = user id of current user logged in
+    
     this.saveGoal();
   }
 }

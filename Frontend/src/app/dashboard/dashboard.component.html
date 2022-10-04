@@ -96,24 +96,25 @@
 <br>
 
 
-<mat-tab-group>
+<mat-tab-group #tabs>
 
-    <mat-tab label="Income">
+    <mat-tab label="Income" id="income">
         <h1>Put Code here for Income</h1>
     </mat-tab>
 
-    <mat-tab label="Expense">
+    <mat-tab label="Expense" id="expense">
         <h1>Put Code here for Expense</h1>
     </mat-tab>
 
-    <mat-tab label="Goals">
+    <mat-tab label="Goals" id="goal">
         <table class = "table table-striped">
             <thead>
             <tr>
                 <th> Goal #</th>
                 <th> Amount to Save</th>
                 <th> Goal Amount</th>
-                <th> Time in months</th>
+                <th> Time in days</th>
+                <th> Goal Created </th>
             </tr>
             </thead>
             <tbody>
@@ -122,6 +123,7 @@
                 <td > {{goal.saveAmount}} </td>
                 <td> {{goal.goalAmount}}</td>
                 <td> {{goal.time_in_months}}</td>
+                <td> {{goal.startDate}} <td>
                 <td>
                     <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-secondary" style="margin-left: 15px"> Update goal (no function yet)  </button>
                     <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal (no function yet) </button>
