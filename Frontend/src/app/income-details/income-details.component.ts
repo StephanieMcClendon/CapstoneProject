@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Income } from '../income';
+import { IncomeService } from '../income.service';
 
 @Component({
   selector: 'app-income-details',
@@ -22,10 +24,13 @@ export class IncomeDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.id=this.route.snapshot.params['id'];
-    this.income=new this.income();
-    this.incomeService.getIncomeById(this.id).subscribe(data =>){
-      this.goal=data;
-    }
+    
+    this.incomeService.getIncomeById(this.id).subscribe(data =>{
+       this.income=data;
+    
+  
+     }
+     )
   }
 
 }

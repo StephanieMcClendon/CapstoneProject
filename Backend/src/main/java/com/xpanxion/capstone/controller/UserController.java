@@ -4,24 +4,27 @@ import com.xpanxion.capstone.model.User;
 import com.xpanxion.capstone.repository.UserRepository;
 import net.bytebuddy.implementation.auxiliary.AuxiliaryType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.springframework.http.HttpStatus.OK;
+
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController
 {
 
     private UserRepository userRepository; //field injection (not recommended)
 
-
     @Autowired
-    public UserController(UserRepository userRepository) //dependency injection
-    {
+    public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
 
     @PostMapping("/create-user") // http://localhost:8080/api/v1/create-user
     public User createUser(@RequestBody User user)
@@ -63,10 +66,6 @@ public class UserController
 
         return this.userRepository.save(user);
     }
-
-
-
-
 
 
 

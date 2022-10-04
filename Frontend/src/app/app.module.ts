@@ -16,9 +16,17 @@ import { GoalDetailsComponent } from './goal-details/goal-details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GoalListComponent } from './goal-list/goal-list.component';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import {GOOGLE_CHARTS_LAZY_CONFIG, GoogleChartsConfig, GoogleChartsModule} from "angular-google-charts";
 import {config, ReplaySubject} from "rxjs";
 import {NgChartsModule } from 'ng2-charts';
+
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import { UpdateGoalComponent } from './update-goal/update-goal.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1);
 
 
@@ -27,13 +35,20 @@ export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1
     AppComponent,
     CalculatorComponent,
     GoalDetailsComponent,
+
       GoalListComponent,
-      IncomeDetailsComponent,
+     //  IncomeDetailsComponent,
       IncomeListComponent,
       CreateIncomeComponent,
-      UpdateIncomeComponent
-  ],
+      UpdateIncomeComponent,
 
+    
+    LoginComponent,
+    LogoutComponent,
+    UpdateGoalComponent,
+    DashboardComponent
+
+  ],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -41,8 +56,8 @@ export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1
         MatSliderModule,
         HttpClientModule,
         FormsModule,
-        GoogleChartsModule,
-        NgChartsModule
+        NgChartsModule,
+        MatTabsModule
     ],
 
   providers: [],
