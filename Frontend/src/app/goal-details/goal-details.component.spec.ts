@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { GoalDetailsComponent } from './goal-details.component';
 
 describe('GoalDetailsComponent', () => {
@@ -11,7 +10,7 @@ describe('GoalDetailsComponent', () => {
       declarations: [ GoalDetailsComponent ]
     })
     .compileComponents();
-
+    
     fixture = TestBed.createComponent(GoalDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

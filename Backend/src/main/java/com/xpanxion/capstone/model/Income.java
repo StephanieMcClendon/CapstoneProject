@@ -25,7 +25,6 @@ public class Income {
     private int frequency;
     private String description;
 
-
     @ManyToOne
     @JsonIgnore
     private User user;

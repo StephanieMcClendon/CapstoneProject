@@ -1,131 +1,63 @@
 <h3>Goalolololololsss</h3>
-<div class="row">
 
-    <div class="card text-center m-auto" style="width: 345px">
-        <div class="card-body">
-            <form (ngSubmit) = "onSubmit()" style="width: 300px" class="justify-content-center">
-                <label> Create a Goal (TEST FORM)</label><br><br>
-                <div class="form-group">
-                    <label for="saveAmount">Amount to save per month:</label><br>
-                    <input type="text" class="form-control" id="saveAmount" [(ngModel)]="goal.saveAmount" name="saveAmount">
-                </div>
-
-                <br>
-
-                <div class="form-group">
-                    <label for="goalAmount">Goal Amount:</label><br>
-                    <input type="text" class="form-control" id="goalAmount" [(ngModel)]="goal.goalAmount" name="goalAmount">
-                </div>
-
-                <br>
-
-                <div class="form-group">
-                    <label for="time_in_months">Time in months: {{ goal.time_in_months }}</label><br>
-                    <input type="text" class="form-control" id="time_in_months" [(ngModel)]="goal.time_in_months" name="time_in_months">
-                </div>
-
-                <br>
-                <br>
-                <button class="btn btn-success" type="submit">Create</button>
-            </form>
-        </div>
-
-    </div>
-    <div class="card text-center m-auto" style="width: 345px">
-        <div class="card-body">
-            <form (ngSubmit) = "onSubmit()" style="width: 300px" class="justify-content-center">
-                <label> Create a Goal (TEST FORM)</label><br><br>
-                <div class="form-group">
-                    <label for="saveAmount">Amount to save per month:</label><br>
-                    <input type="text" class="form-control" id="" [(ngModel)]="goal.saveAmount" name="saveAmount">
-                </div>
-
-                <br>
-
-                <div class="form-group">
-                    <label for="goalAmount">Goal Amount:</label><br>
-                    <input type="text" class="form-control" id="" [(ngModel)]="goal.goalAmount" name="goalAmount">
-                </div>
-
-                <br>
-
-                <div class="form-group">
-                    <label for="time_in_months">Time in months: {{ goal.time_in_months }}</label><br>
-                    <input type="text" class="form-control" id="" [(ngModel)]="goal.time_in_months" name="time_in_months">
-                </div>
-
-                <br>
-                <br>
-                <button class="btn btn-success" type="submit">Create</button>
-            </form>
-        </div>
-
-    </div>
-    <div class="card text-center m-auto" style="width: 345px">
-        <div class="card-body">
-            <form (ngSubmit) = "onSubmit()" style="width: 300px" class="justify-content-center">
-                <label> Create a Goal (TEST FORM)</label><br><br>
-                <div class="form-group">
-                    <label for="saveAmount">Amount to save per month:</label><br>
-                    <input type="text" class="form-control" id="" [(ngModel)]="goal.saveAmount" name="saveAmount">
-                </div>
-
-                <br>
-
-                <div class="form-group">
-                    <label for="goalAmount">Goal Amount:</label><br>
-                    <input type="text" class="form-control" id="" [(ngModel)]="goal.goalAmount" name="goalAmount">
-                </div>
-
-                <br>
-
-                <div class="form-group">
-                    <label for="time_in_months">Time in months: {{ goal.time_in_months }}</label><br>
-                    <input type="text" class="form-control" id="" [(ngModel)]="goal.time_in_months" name="time_in_months">
-                </div>
-
-                <br>
-                <br>
-                <button class="btn btn-success" type="submit">Create</button>
-            </form>
-        </div>
-
+<!-- CREATE GOAL FORM -->
+<div class="card text-center" style="width: 335px">
+    <div class="card-body">
+<form (ngSubmit) = "onSubmit()" style="width: 300px" class="justify-content-center">
+    <label> Create a Goal (TEST FORM)</label><br><br>
+    <div class="form-group">
+        <label for="saveAmount">Amount to save per month:</label><br>
+        <input type="text" class="form-control" id="saveAmount" [(ngModel)]="goal.saveAmount" name="saveAmount">
     </div>
 
+    <br>
+
+    <div class="form-group">
+        <label for="goalAmount">Goal Amount:</label><br>
+        <input type="text" class="form-control" id="goalAmount" [(ngModel)]="goal.goalAmount" name="goalAmount">
+    </div>
+
+    <br>
+
+    <div class="form-group">
+        <label for="time_in_months">Time in days: {{ trackDays }} </label><br>
+    </div>
+    <br>
+    <br>
+    <button class="btn btn-success" type="submit">Create</button>
+</form>
+</div>
 </div>
 <br>
 <br>
 
+<table class = "table table-striped">
+    <thead>
+        <tr>
+           <th> Goal #</th>
+            <th> Amount to Save</th>
+            <th> Goal Amount</th>
+            <th> How much to save ($/Monthly)</th>
+            <th> Goal Created </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let goal of goals" >
+            <td> {{goal.id}} </td>
+            <td > {{goal.saveAmount}} </td>
+            <td> {{goal.goalAmount}}</td>
+            <td> {{goal.time_in_months}}</td>
+            <td> {{goal.startDate}} <td>
+                <button (click) = "goToGoalDetails(goal.id)" title="View Goal Details" class = "btn btn-primary" style="margin-left: 15px"> View Goal Details </button>
+                
+                <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-secondary" style="margin-left: 15px"> Update goal </button>               
+                
+                <button (click) = "deleteGoal(goal.id)" title="Delete Goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal </button>
+                
+            </td>
 
-<mat-tab-group>
-    <mat-tab label="Income"> Details </mat-tab>
-    <mat-tab label="Expense"> Expense Table List </mat-tab>
-    <mat-tab label="Goals">
-        <table class = "table table-striped">
-            <thead>
-            <tr>
-                <th> Goal #</th>
-                <th> Amount to Save</th>
-                <th> Goal Amount</th>
-                <th> Time in months</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor = "let goal of goals" >
-                <td> {{goal.id}}</td>
-                <td > {{goal.saveAmount}} </td>
-                <td> {{goal.goalAmount}}</td>
-                <td> {{goal.time_in_months}}</td>
-                <td>
-                    <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-secondary" style="margin-left: 15px"> Update goal (no function yet)  </button>
-                    <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal (no function yet) </button>
-                    <button (click) = "goToGoalDetails(goal.id)" title="View Goal Details" class = "btn btn-primary" style="margin-left: 15px"> View Goal Details </button>
-                </td>
+        </tr>
 
-            </tr>
-
-            </tbody>
-            <!-- Another Commment for Github -->
-        </table>
-    </mat-tab>
-</mat-tab-group>
+    </tbody>
+<!-- Another Commment for Github -->
+</table>
