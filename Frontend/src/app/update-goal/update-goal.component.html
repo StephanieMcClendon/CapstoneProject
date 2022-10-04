@@ -2,13 +2,13 @@
 <div class="card text-center" style="width: 335px">
 <div class="card-body">
     <div>
-        <label> Goal #: </label> {{ goal.id }}
+        <label> Goal name: </label> {{ goal.title }}
     </div>
     <br>
     <form (ngSubmit)="onSubmit()">
 
         <div class="form-group">
-            <label>Amount to save per month:</label>
+            <label>Saved Amount:</label>
             <input type="text" class="form-control" id="saveAmount" [(ngModel)]="goal.saveAmount"
                 name="saveAmount">
         </div>
@@ -20,10 +20,13 @@
         </div>
         <br>
         <div class="form-group">
-            <label>Time in months: {{ goal.time_in_months }}</label>
+            <label for="time_in_months">Months to Goal:</label><br>
+            <input type="text" class="form-control" id="time_in_months" [(ngModel)]="goal.time_in_months" name="time_in_months">
         </div>
-
-        <br />
+        <br>
+        <button ></button>
+        
+        <br>
         <button class="btn btn-success" type="submit">Update</button>
     </form>
 </div>
