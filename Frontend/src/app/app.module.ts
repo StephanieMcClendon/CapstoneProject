@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import {GOOGLE_CHARTS_LAZY_CONFIG, GoogleChartsConfig, GoogleChartsModule} from "angular-google-charts";
 import {config, ReplaySubject} from "rxjs";
 import {NgChartsModule } from 'ng2-charts';
+import { ExpenseComponent } from './expense/expense.component';
 
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -35,15 +36,13 @@ export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1
     AppComponent,
     CalculatorComponent,
     GoalDetailsComponent,
-
       GoalListComponent,
-     //  IncomeDetailsComponent,
+      ExpenseComponent,
+     LoginComponent,
+     // IncomeDetailsComponent,
       IncomeListComponent,
       CreateIncomeComponent,
       UpdateIncomeComponent,
-
-    
-    LoginComponent,
     LogoutComponent,
     UpdateGoalComponent,
     DashboardComponent

@@ -9,5 +9,6 @@ import { GoalService } from './goal.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'capstoneFront';
+  
+  title = 'expense';
 }

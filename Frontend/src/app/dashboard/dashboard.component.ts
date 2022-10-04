@@ -3,7 +3,6 @@ import {Goal} from "../goal";
 import {GoalService} from "../goal.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import { MatTabGroup } from '@angular/material/tabs';
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -16,8 +15,8 @@ export class DashboardComponent implements OnInit {
   searchText: any;
 
   constructor(private goalService: GoalService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+   private route: ActivatedRoute,
+   private router: Router) { }
 
   ngOnInit(): void {
     // @JsonIgnore in spring boot to avoid over populating db
