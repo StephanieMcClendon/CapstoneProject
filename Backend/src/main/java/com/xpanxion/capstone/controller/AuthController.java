@@ -33,6 +33,8 @@ public class AuthController
         return new ResponseEntity<>(loginUser, OK);
     }
 
+
+
     private void authenticate(String username, String password)
     {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));

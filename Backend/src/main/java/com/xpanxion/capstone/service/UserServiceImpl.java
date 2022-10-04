@@ -39,4 +39,11 @@ public class UserServiceImpl implements UserDetailsService
             return userPrincipal;
         }
     }
+
+//    public User register(String username, String password, String firstName, String lastName, String email, String phoneNumber)
+//    {
+//
+//    }
+
+
 }
