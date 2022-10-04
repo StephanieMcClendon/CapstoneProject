@@ -77,7 +77,7 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="saveAmount">Saved Amount:</label><br>
+                    <label for="saveAmount">Saved Balance:</label><br>
                     <input type="text" class="form-control" id="saveAmount" [(ngModel)]="goal.saveAmount" name="saveAmount">
                 </div>
                 <br>
@@ -134,7 +134,7 @@
                 <td > {{goal.saveAmount}} </td>
                 <td> {{goal.goalAmount}}</td>
                 <td> {{goal.time_in_months}}</td>
-                <td> {{  goal.monthlyPayment }} </td>
+                <td> {{ goal.monthlyPayment }} </td>
                 <td>
                     <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-secondary" style="margin-left: 15px"> Update goal </button>
                     <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal </button>

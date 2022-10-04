@@ -28,8 +28,6 @@ import { UpdateGoalComponent } from './update-goal/update-goal.component';
 import { MatTabsModule } from "@angular/material/tabs";
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1);
-
 
 @NgModule({
   declarations: [

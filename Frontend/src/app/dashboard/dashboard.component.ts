@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
   searchText: any;
   saveAmount: number = this.goal.saveAmount;
   monthlyPayment: number = this.goal.monthlyPayment;
+  num!: number;
 
   // Income
   incomes?: any[];
@@ -35,10 +36,20 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     // @JsonIgnore in spring boot to avoid over populating db
-    // OR update application.properties to update db instead of create
-    this.getGoals();
-    
-    
+    this.num = this.getGoals();
+    console.log("number: " + this.num);
+  }
+
+  ngAfterViewInit(): void {
+    if(this.num == 0){
+      this.tabGroup.selectedIndex = 0;
+    }
+    else if(this.num == 1){
+      
+    }
+    else if(this.num == 2){
+      this.tabGroup.selectedIndex = 2;
+    }
   }
 
   // ** GOAL Methods **
@@ -54,12 +65,11 @@ export class DashboardComponent implements OnInit {
         }
       }
     });
-    
+    return 2;
   }
 
   congratulations(){
     // insert logic for pop up confetti
-
   }
 
   goToGoalDetails(id: number){
@@ -90,12 +100,12 @@ export class DashboardComponent implements OnInit {
 
   goToGoalList(){
     this.router.navigate(['/goals']);
+    
   }
 
   onSubmitGoal(){
     console.log(this.goal);
     // user_id = user id of current user logged in
-    
     this.monthlyPayment = (this.goal.goalAmount - this.goal.saveAmount) / this.goal.time_in_months;
     console.log(this.monthlyPayment);
     this.goal.monthlyPayment = this.monthlyPayment;
@@ -105,31 +115,31 @@ export class DashboardComponent implements OnInit {
 
   // ** INCOME Methods **
 
-  // private getIncomes(){
-  //   this.goalService.getIncomeList().subscribe(data => {
-  //     this.incomes = data;
-  //     console.log(this.incomes);
-  //   });
-  // }
+  private getIncomeList(){
+    this.incomeService.getIncomeList().subscribe(data => {
+      this.incomes = data;
+      console.log(this.incomes);
+    });
+    return 0;
+  }
 
   // no need for income details page
 
   updateIncome(id: number){
-    this.router.navigate(['update-goal', id]);
+    this.router.navigate(['update-income', id]);
   }
 
   deleteIncome(id: number){
     // routed to delete button
-    this.goalService.deleteGoal(id).subscribe( data => {
+    this.incomeService.deleteIncome(id).subscribe( data => {
       console.log(data);
-      this.goToGoalList();
-      this.getGoals();
+      this.getIncomeList();
     })
   }
 
   saveIncome(){
     // create button
-    this.goalService.createGoal(this.goal).subscribe( data =>{
+    this.incomeService.createIncome(this.income).subscribe( data =>{
           console.log(data);
           this.getGoals();
         },
@@ -143,8 +153,6 @@ export class DashboardComponent implements OnInit {
     this.tabGroup.selectedIndex = 0;
     this.saveIncome();
   }
-
-
 
   // ** EXPENSE Methods **
 

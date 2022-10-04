@@ -18,6 +18,7 @@ export class UpdateGoalComponent implements OnInit {
   goal: Goal = new Goal();
   monthlyPayment: number = this.goal.monthlyPayment;
   saveAmount!: number;
+  num: number = 1;
 
   constructor(private goalService: GoalService, 
     private route: ActivatedRoute, 
@@ -32,7 +33,6 @@ export class UpdateGoalComponent implements OnInit {
   }
 
   onSubmit(){
-    
     this.monthlyPayment = (this.goal.goalAmount - this.goal.saveAmount) / this.goal.time_in_months;
     this.goal.monthlyPayment = this.monthlyPayment;
     // this.goal.saveAmount = this.saveAmount;
