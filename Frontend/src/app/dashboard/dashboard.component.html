@@ -1,5 +1,8 @@
+
 <div class="container-fluid">
     <a class="btn btn-outline-primary" (click)="showForms()"> Toggle Create Forms <i class="fa fa-sliders"></i> </a>
+
+<div class="row">
 
 
 <!--    <a class="btn btn-outline-primary" (click)="showForms()"></a>-->
@@ -83,8 +86,8 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="saveAmount">Amount to save per month:</label><br>
-                    <input type="number" class="form-control" id="saveAmount" [(ngModel)]="goal.saveAmount" name="saveAmount">
+                    <label for="saveAmount">Saved Amount:</label><br>
+                    <input type="text" class="form-control" id="saveAmount" [(ngModel)]="goal.saveAmount" name="saveAmount">
                 </div>
                 <br>
 
