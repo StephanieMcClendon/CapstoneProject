@@ -3,13 +3,72 @@
 
     <div class="card text-center m-auto" style="width: 345px">
         <div class="card-body">
-            <form (ngSubmit) = "onSubmit()" style="width: 300px" class="justify-content-center">
+            <form (ngSubmit) = "onSubmitIncome()" style="width: 300px" class="justify-content-center">
+                <label> Create a Income (TEST FORM)</label><br><br>
+                <div class="form-group">
+                    <label >Amount to save per month:</label><br>
+                    <input type="text" class="form-control" >
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <label >Goal Amount:</label><br>
+                    <input type="text" class="form-control" >
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <label >Time in months: {{ goal.time_in_months }}</label><br>
+                    <input type="text" class="form-control" >
+                </div>
+
+                <br>
+                <br>
+                <button class="btn btn-success" type="submit">Create</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="card text-center m-auto" style="width: 345px">
+        <div class="card-body">
+            <form (ngSubmit) = "onSubmitExpense()" style="width: 300px" class="justify-content-center">
+                <label> Create a Expense (TEST FORM)</label><br><br>
+                <div class="form-group">
+                    <label for="saveAmount">Amount to save per month:</label><br>
+                    <input type="text" class="form-control">
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <label >Goal Amount:</label><br>
+                    <input type="text" class="form-control" >
+                </div>
+
+                <br>
+
+                <div class="form-group">
+                    <label >Time in months: {{ goal.time_in_months }}</label><br>
+                    <input type="text" class="form-control" >
+                </div>
+
+                <br>
+                <br>
+                <button class="btn btn-success" type="submit">Create</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="card text-center m-auto" style="width: 345px">
+        <div class="card-body">
+            <form (ngSubmit) = "onSubmitGoal()" style="width: 300px" class="justify-content-center">
                 <label> Create a Goal (TEST FORM)</label><br><br>
                 <div class="form-group">
                     <label for="saveAmount">Amount to save per month:</label><br>
                     <input type="text" class="form-control" id="saveAmount" [(ngModel)]="goal.saveAmount" name="saveAmount">
                 </div>
-
                 <br>
 
                 <div class="form-group">
@@ -31,66 +90,6 @@
         </div>
 
     </div>
-    <div class="card text-center m-auto" style="width: 345px">
-        <div class="card-body">
-            <form (ngSubmit) = "onSubmit()" style="width: 300px" class="justify-content-center">
-                <label> Create a Goal (TEST FORM)</label><br><br>
-                <div class="form-group">
-                    <label for="saveAmount">Amount to save per month:</label><br>
-                    <input type="text" class="form-control" id="" [(ngModel)]="goal.saveAmount" name="saveAmount">
-                </div>
-
-                <br>
-
-                <div class="form-group">
-                    <label for="goalAmount">Goal Amount:</label><br>
-                    <input type="text" class="form-control" id="" [(ngModel)]="goal.goalAmount" name="goalAmount">
-                </div>
-
-                <br>
-
-                <div class="form-group">
-                    <label for="time_in_months">Time in months: {{ goal.time_in_months }}</label><br>
-                    <input type="text" class="form-control" id="" [(ngModel)]="goal.time_in_months" name="time_in_months">
-                </div>
-
-                <br>
-                <br>
-                <button class="btn btn-success" type="submit">Create</button>
-            </form>
-        </div>
-
-    </div>
-    <div class="card text-center m-auto" style="width: 345px">
-        <div class="card-body">
-            <form (ngSubmit) = "onSubmit()" style="width: 300px" class="justify-content-center">
-                <label> Create a Goal (TEST FORM)</label><br><br>
-                <div class="form-group">
-                    <label for="saveAmount">Amount to save per month:</label><br>
-                    <input type="text" class="form-control" id="" [(ngModel)]="goal.saveAmount" name="saveAmount">
-                </div>
-
-                <br>
-
-                <div class="form-group">
-                    <label for="goalAmount">Goal Amount:</label><br>
-                    <input type="text" class="form-control" id="" [(ngModel)]="goal.goalAmount" name="goalAmount">
-                </div>
-
-                <br>
-
-                <div class="form-group">
-                    <label for="time_in_months">Time in months: {{ goal.time_in_months }}</label><br>
-                    <input type="text" class="form-control" id="" [(ngModel)]="goal.time_in_months" name="time_in_months">
-                </div>
-
-                <br>
-                <br>
-                <button class="btn btn-success" type="submit">Create</button>
-            </form>
-        </div>
-
-    </div>
 
 </div>
 <br>
@@ -98,8 +97,15 @@
 
 
 <mat-tab-group>
-    <mat-tab label="Income"> Details </mat-tab>
-    <mat-tab label="Expense"> Expense Table List </mat-tab>
+
+    <mat-tab label="Income">
+        <h1>Put Code here for Income</h1>
+    </mat-tab>
+
+    <mat-tab label="Expense">
+        <h1>Put Code here for Expense</h1>
+    </mat-tab>
+
     <mat-tab label="Goals">
         <table class = "table table-striped">
             <thead>
@@ -129,3 +135,4 @@
         </table>
     </mat-tab>
 </mat-tab-group>
+

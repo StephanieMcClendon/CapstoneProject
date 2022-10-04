@@ -19,6 +19,8 @@ import { ExpenseComponent } from './expense/expense.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { UpdateGoalComponent } from './update-goal/update-goal.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1);
 
@@ -31,8 +33,9 @@ export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1
       ExpenseComponent,
      LoginComponent,
     LogoutComponent,
-    UpdateGoalComponent],
-
+    UpdateGoalComponent,
+    DashboardComponent
+  ],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -40,7 +43,8 @@ export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1
         MatSliderModule,
         HttpClientModule,
         FormsModule,
-        NgChartsModule
+        NgChartsModule,
+        MatTabsModule
     ],
 
   providers: [],
