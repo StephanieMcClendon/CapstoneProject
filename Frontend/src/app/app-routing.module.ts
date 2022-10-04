@@ -12,7 +12,7 @@ import {AuthenticationGuard} from "./guard/authentication.guard";
 const routes: Routes = [
   {path: "calculator", component: CalculatorComponent},
   {path: 'goal-details/:id', component: GoalDetailsComponent},
-  {path: 'goals', component: GoalListComponent, canActivate: [AuthenticationGuard]},
+  {path: 'goals', component: GoalListComponent}, 
   {path: "login", component: LoginComponent},
   {path: "logout", component: LogoutComponent, canActivate: [AuthenticationGuard]},
   {path: "", redirectTo: "calculator", pathMatch: "full"}
