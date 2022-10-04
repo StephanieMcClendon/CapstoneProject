@@ -8,7 +8,7 @@ import { Income } from './income';
 })
 export class IncomeService {
 
-  private baseURL = "http://localhost:8080/api/v1/income";
+  private baseURL = "http://localhost:8080/income";
 
   constructor(private httpClient: HttpClient) { }
   
