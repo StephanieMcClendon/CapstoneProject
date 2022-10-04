@@ -8,12 +8,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.time.LocalDate;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Entity
 @Table(name="goals")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -26,11 +26,11 @@ export class GoalDetailsComponent implements OnInit {
   currDate = new Date();
 
   constructor(private goalService: GoalService,
-    private route: ActivatedRoute,
-    private router: Router) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
-  
+
     this.id = this.route.snapshot.params['id'];
     console.log(this.goal_amount);
     this.loadGoals(this.id);
@@ -42,6 +42,7 @@ export class GoalDetailsComponent implements OnInit {
       console.log(this.goal);
       this.goal_amount = this.goal.goalAmount;
       console.log(this.goal_amount)
+
       this.pieChartData.datasets[0].data[0] = this.goal.saveAmount;
       this.pieChartData.datasets[0].data[1] = this.goal_amount;
       this.chart?.update();
@@ -74,17 +75,18 @@ export class GoalDetailsComponent implements OnInit {
     };
     public pieChartData: ChartData<'pie',number[]> = {
 
-        labels:["Current Progress", "Goal Amount"],
-        datasets:[{
-          data: []
-        }]
-  };
-
+      labels:["Current Progress", "Goal Amount"],
+      datasets:[{
+        data: []
+      }]
+    };
     public pieChartType: ChartType = 'pie';
-    public pieChartPlugins = [ DatalabelsPlugin ];
+  public pieChartPlugins = [ DatalabelsPlugin ];
 
   updateGoal(id: number){
     this.router.navigate(['update-goal', id]);
   }
+  }
 
-}
+  
+

@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class GoalController {
     @Autowired
     private GoalRepository goalRepository;
@@ -46,6 +46,8 @@ public class GoalController {
         Goal goal = this.goalRepository.findById(id).get();
         goal.setGoalAmount(inputGoal.getGoalAmount());
         goal.setSaveAmount(inputGoal.getSaveAmount());
+        goal.setStartDate(inputGoal.getStartDate());
+        goal.setPresentDate(inputGoal.getPresentDate());
         goal.setTime_in_months(inputGoal.getTime_in_months());
         goal.setPresentDate(inputGoal.getPresentDate());
         goal.setStartDate(inputGoal.getStartDate());

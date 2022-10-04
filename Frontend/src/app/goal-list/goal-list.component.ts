@@ -31,6 +31,7 @@ export class GoalListComponent implements OnInit {
     // @JsonIgnore in spring boot to avoid over populating db
     // OR update application.properties to update db instead of create
     this.getGoals();
+    console.log(this.goals)
   }
 
   private getGoals(){
@@ -40,6 +41,7 @@ export class GoalListComponent implements OnInit {
       this.trackDays = Math.floor((this.presentDate.getTime() - this.startDate.getTime()) / (1000*60*60*24));
       this.presentDate = this.cDate;
       this.dt = this.cDate.returnDate();
+      console.log(this.goals);
     });
   }
 
