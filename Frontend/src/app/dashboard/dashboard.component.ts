@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Injectable, OnInit, ViewChild } from '@angular/core';
 import {Goal} from "../goal";
 import {GoalService} from "../goal.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -7,6 +7,8 @@ import { IncomeService } from '../income.service';
 import { Income } from '../income';
 import { Expense } from '../expense';
 import { ExpenseService } from '../expense.service';
+import { DOCUMENT } from '@angular/common';
+import { InjectSetupWrapper } from '@angular/core/testing';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,22 +35,38 @@ export class DashboardComponent implements OnInit {
   expenses?: any[];
   expense: Expense = new Expense();
 
-  constructor(private goalService: GoalService,
+  constructor(@Inject (DOCUMENT) private document: Document,
+    private goalService: GoalService,
    private expenseService: ExpenseService,
    private incomeService: IncomeService,
    private route: ActivatedRoute,
    private router: Router) { }
 
-    ngOnInit(): void {
-      this.getGoals();
-      this.getExpenses();
-      this.getIncomeList();
+
+  ngOnInit(): void {
+    this.getGoals();
+    this.getExpenses();
+    this.getIncomeList();
   }
 
   ngAfterViewInit(): void {
     //default tab
     this.tabGroup.selectedIndex = 2;
   }
+
+  display() { 
+    var checkRadio = document.querySelector('input[name="flexRadioDefault"]:checked');
+      
+    if(checkRadio != null) {
+        console.log((<HTMLInputElement>checkRadio).value);
+        (<HTMLInputElement>document.getElementById("disp")).innerHTML = (<HTMLInputElement>checkRadio).value + " radio button checked";
+    }
+    else {
+        console.log("Nothing selected");
+        (<HTMLInputElement>document.getElementById("disp")).innerHTML = "No one selected";
+    }
+}
+
 
   /* ***************  GOAL Methods  ****************************** */
 
@@ -111,6 +129,12 @@ export class DashboardComponent implements OnInit {
 
   /* *************** INCOME Methods ****************************** */
 
+  private getIncome(){
+    this.incomeService.getIncomeList().subscribe(data => {
+      this.incomes = data;
+      console.log(this.incomes);
+    });
+  }
 
   private getIncomeList(){
     this.incomeService.getIncomeList().subscribe(data => {
@@ -133,7 +157,7 @@ export class DashboardComponent implements OnInit {
   saveIncome(){
     this.incomeService.createIncome(this.income).subscribe( data =>{
           console.log(data);
-          this.getGoals();
+          this.getIncome();
         },
         error => console.log(error));
   }

@@ -1,37 +1,31 @@
 
         <!-- =============  Income Form ============== -->
-
+<html>
 <div class="row">
 
-    <div class="card text-center m-auto" style="width: 360px">
+    <div class="card text-center m-auto" style="width: 360px;">
         <div class="card-body">
             <form (ngSubmit) = "onSubmitIncome()" style="width: 300px" class="justify-content-center">
                 <label> Create a Income </label><br><br>
                 <div class="form-group">
-                    <label >Yearly Salary:</label><br>
-                    <input type="text" class="form-control" >
+                    <label >Income Title:</label><br>
+                    <input type="text" class="form-control"[(ngModel)]="income.description" name="description" >
                 </div>
-
                 <br>
-
                 <div class="form-group">
-                    <label >#:</label><br>
-                    <input type="text" class="form-control" >
+                    <label >Yearly Income:</label><br>
+                    <input type="number" class="form-control"[(ngModel)]="income.amount" name="amount" >
                 </div>
-
                 <br>
+                
 
-                <div class="form-group">
-                    <label >#: </label><br>
-                    <input type="text" class="form-control" >
-                </div>
-
+        <!-- =============  Radio Buttons ============== -->
+            
                 <br>
                 <br>
                 <button class="btn btn-success" type="submit">Create</button>
             </form>
         </div>
-
     </div>
 
 
@@ -50,20 +44,20 @@
 
                 <div class="form-group">
                     <label >Expense Amount:</label><br>
-                    <input type="text" class="form-control"  [(ngModel)]="expense.amount" name="amount">
+                    <input type="number" class="form-control"  [(ngModel)]="expense.amount" name="amount">
                 </div>
-
                 <br>
-
                 <div class="form-group">
                     <label >Frequency:</label><br>
-                    <input type="text" class="form-control" [(ngModel)]="expense.frequency" name="Frequency">
+                    <input type="number" class="form-control" [(ngModel)]="expense.frequency" name="Frequency">
                 </div>
-
+                
                 <br>
                 <br>
                 <button class="btn btn-success" type="submit">Create</button>
             </form>
+        
+            
         </div>
 
     </div>
@@ -87,20 +81,20 @@
                 <br>
                 <div class="form-group">
                     <label for="saveAmount">Saved Balance:</label><br>
-                    <input type="text" class="form-control" id="saveAmount" [(ngModel)]="goal.saveAmount" name="saveAmount">
+                    <input type="number" class="form-control" id="saveAmount" [(ngModel)]="goal.saveAmount" name="saveAmount">
                 </div>
                 <br>
 
                 <div class="form-group">
                     <label for="goalAmount">Goal Amount:</label><br>
-                    <input type="text" class="form-control" id="goalAmount" [(ngModel)]="goal.goalAmount" name="goalAmount">
+                    <input type="number" class="form-control" id="goalAmount" [(ngModel)]="goal.goalAmount" name="goalAmount">
                 </div>
 
                 <br>
 
                 <div class="form-group">
                     <label for="time_in_months">Months to Goal:</label><br>
-                    <input type="text" class="form-control" id="time_in_months" [(ngModel)]="goal.time_in_months" name="time_in_months">
+                    <input type="number" class="form-control" id="time_in_months" [(ngModel)]="goal.time_in_months" name="time_in_months">
                 </div>
 
                 <br>
@@ -120,8 +114,30 @@
         <!-- =============  Income Tab ============== -->
 
     <mat-tab label="Income" id="income">
-        <h1>Put Code here for Income</h1>
+        <table class = "table table-striped">
+            <thead>
+            <tr>
+                <th> Income Title</th>
+                <th> Yearly Income</th>
+                
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor = "let income of incomes" >
+                <td> {{income.description}}</td>
+                <td > {{income.amount}} </td>
+        
+                <td>
+                    <button (click) = "updateIncome(income.id)" title="Update Income" class = "btn btn-secondary" style="margin-left: 15px"> Update income </button>
+                    <button (click) = "deleteIncome(income.id)" title="Delete income" class = "btn btn-danger" style="margin-left: 15px"> Delete income </button>
+                    </td>
+
+            </tr>
+
+            </tbody>
+            </table>
     </mat-tab>
+   
 
         <!-- =============  Expense Tab ============== -->
 
@@ -143,6 +159,7 @@
                 <td> {{expense.frequency}}</td>
         
                 <td>
+
                     <button (click) = "updateExpense(expense.id)" title="Update Expense" class = "btn btn-secondary" style="margin-left: 15px"> Update expense </button>
                     <button (click) = "deleteExpense(expense.id)" title="Delete expense" class = "btn btn-danger" style="margin-left: 15px"> Delete expense </button>
                 </td>
@@ -183,4 +200,4 @@
         </table>
     </mat-tab>
 </mat-tab-group>
-
+</html>
