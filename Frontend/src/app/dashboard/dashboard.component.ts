@@ -3,7 +3,8 @@ import {Goal} from "../goal";
 import {GoalService} from "../goal.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import { MatTabGroup } from '@angular/material/tabs';
-
+import { IncomeService } from '../income.service';
+import { Income } from '../income';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -14,8 +15,10 @@ export class DashboardComponent implements OnInit {
   goals?: any[];
   goal: Goal = new Goal();
   searchText: any;
-
+incomes:Income[]=[]
+income: Income =new Income();
   constructor(private goalService: GoalService,
+    private incomeService: IncomeService,
               private route: ActivatedRoute,
               private router: Router) { }
 
@@ -24,8 +27,19 @@ export class DashboardComponent implements OnInit {
     // OR update application.properties to update db instead of create
     this.getGoals();
     console.log(this.goals)
+    this.getIncome();
+
+    
+  }
+  getIncome() {
+    this.incomeService.getIncomeList().subscribe( data =>{
+      this.incomes=data;
+      console.log(this.incomes);
+    })
+    
   }
 
+  
   private getGoals(){
     this.goalService.getGoalsList().subscribe(data => {
       this.goals = data;
@@ -73,6 +87,9 @@ export class DashboardComponent implements OnInit {
   onSubmitIncome() {
     // swipes to income tab
     this.tabGroup.selectedIndex = 0;
+    this.incomeService.createIncome(this.income).subscribe(data =>{
+    console.log(data )
+    })
   }
 
   onSubmitExpense() {

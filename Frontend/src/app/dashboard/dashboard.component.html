@@ -6,22 +6,22 @@
             <form (ngSubmit) = "onSubmitIncome()" style="width: 300px" class="justify-content-center">
                 <label> Create a Income (TEST FORM)</label><br><br>
                 <div class="form-group">
-                    <label >Amount to save per month:</label><br>
-                    <input type="text" class="form-control" >
+                    <label >Income Source:</label><br>
+                    <input type="text"  name= "income_source"[(ngModel)]="income.income_source"       class="form-control" >
                 </div>
 
                 <br>
 
                 <div class="form-group">
-                    <label >Goal Amount:</label><br>
-                    <input type="text" class="form-control" >
+                    <label  >Income Amount:</label><br>
+                    <input type="number"  name= "amount"[(ngModel)]="income.amount"     class="form-control" >
                 </div>
 
                 <br>
 
                 <div class="form-group">
-                    <label >Time in months: {{ goal.time_in_months }}</label><br>
-                    <input type="text" class="form-control" >
+                    <label >Frequency: {{ income.frequency }}</label><br>
+                    <input type="number"  name= "frequency"[(ngModel)]="income.frequency"   class="form-control" >
                 </div>
 
                 <br>
