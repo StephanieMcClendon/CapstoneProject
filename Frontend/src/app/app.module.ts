@@ -27,6 +27,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { UpdateGoalComponent } from './update-goal/update-goal.component';
 import { MatTabsModule } from "@angular/material/tabs";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgParticlesModule } from "ng-particles";
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         HttpClientModule,
         FormsModule,
         NgChartsModule,
-        MatTabsModule
+        MatTabsModule,
+        NgParticlesModule
     ],
 
   providers: [],

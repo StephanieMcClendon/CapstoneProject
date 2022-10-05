@@ -1,7 +1,9 @@
 
+        <!-- =============  Income Form ============== -->
+
 <div class="row">
 
-    <div class="card text-center m-auto" style="width: 345px">
+    <div class="card text-center m-auto" style="width: 360px">
         <div class="card-body">
             <form (ngSubmit) = "onSubmitIncome()" style="width: 300px" class="justify-content-center">
                 <label> Create a Income </label><br><br>
@@ -31,27 +33,31 @@
         </div>
 
     </div>
-    <div class="card text-center m-auto" style="width: 345px">
+
+
+        <!-- =============  Expense Form ============== -->
+
+    <div class="card text-center m-auto" style="width: 360px">
         <div class="card-body">
             <form (ngSubmit) = "onSubmitExpense()" style="width: 300px" class="justify-content-center">
                 <label> Create a Expense </label><br><br>
                 <div class="form-group">
                     <label for="saveAmount">Expense name:</label><br>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" id="saveAmount" [(ngModel)]="expense.expense_name" name="expense_name">
                 </div>
 
                 <br>
 
                 <div class="form-group">
                     <label >Expense Amount:</label><br>
-                    <input type="text" class="form-control" >
+                    <input type="text" class="form-control"  [(ngModel)]="expense.amount" name="amount">
                 </div>
 
                 <br>
 
                 <div class="form-group">
-                    <label >#:</label><br>
-                    <input type="text" class="form-control" >
+                    <label >Frequency:</label><br>
+                    <input type="text" class="form-control" [(ngModel)]="expense.frequency" name="Frequency">
                 </div>
 
                 <br>
@@ -61,7 +67,10 @@
         </div>
 
     </div>
-    <div class="card text-center m-auto" style="width: 345px">
+
+        <!-- =============  Goal Form ============== -->
+
+    <div class="card text-center m-auto" style="width: 360px">
         <div class="card-body">
             <form (ngSubmit) = "onSubmitGoal()" style="width: 300px" class="justify-content-center">
                 <label> Create a Goal </label><br><br>
@@ -106,16 +115,45 @@
 <br>
 <br>
 
-
 <mat-tab-group #tabs>
+
+        <!-- =============  Income Tab ============== -->
 
     <mat-tab label="Income" id="income">
         <h1>Put Code here for Income</h1>
     </mat-tab>
 
+        <!-- =============  Expense Tab ============== -->
+
     <mat-tab label="Expense" id="expense">
-        <h1>Put Code here for Expense</h1>
+        
+        <table class = "table table-striped">
+            <thead>
+            <tr>
+                <th> Expense Name</th>
+                <th> Expense Amount</th>
+                <th> frequency</th>
+                
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor = "let expense of expenses" >
+                <td> {{expense.expense_name}}</td>
+                <td > {{expense.amount}} </td>
+                <td> {{expense.frequency}}</td>
+        
+                <td>
+                    <button (click) = "updateExpense(expense.id)" title="Update Expense" class = "btn btn-secondary" style="margin-left: 15px"> Update expense </button>
+                    <button (click) = "deleteExpense(expense.id)" title="Delete expense" class = "btn btn-danger" style="margin-left: 15px"> Delete expense </button>
+                </td>
+
+            </tr>
+
+            </tbody>
+            </table>
     </mat-tab>
+
+        <!-- =============  Goal Tab ============== -->
 
     <mat-tab label="Goals" id="goal">
         <table class = "table table-striped">
@@ -140,11 +178,8 @@
                     <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal </button>
                     <button (click) = "goToGoalDetails(goal.id)" title="View Goal Details" class = "btn btn-primary" style="margin-left: 15px"> View Goal Details </button>
                 </td>
-
             </tr>
-
             </tbody>
-            <!-- Another Commment for Github -->
         </table>
     </mat-tab>
 </mat-tab-group>
