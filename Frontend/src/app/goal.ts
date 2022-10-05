@@ -3,7 +3,7 @@ export class Goal {
     saveAmount!: number;
     goalAmount!: number;
     time_in_months!: number;
-    presentDate!: Date;
-    startDate!: Date;
+    monthlyPayment!: number;
+    title!: String;
     userId!: number;
 }
