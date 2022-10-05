@@ -4,7 +4,7 @@
     <div class="card text-center m-auto" style="width: 345px">
         <div class="card-body">
             <form (ngSubmit) = "onSubmitIncome()" style="width: 300px" class="justify-content-center">
-                <label> Create a Income </label><br><br>
+                <label> Create an Income </label><br><br>
                 <div class="form-group">
                     <label >Income Source:</label><br>
                     <input type="text" class="form-control"[(ngModel)]="income.description" name="description" >
@@ -34,7 +34,7 @@
     <div class="card text-center m-auto" style="width: 345px">
         <div class="card-body">
             <form (ngSubmit) = "onSubmitExpense()" style="width: 300px" class="justify-content-center">
-                <label> Create a Expense </label><br><br>
+                <label> Create an Expense </label><br><br>
                 <div class="form-group">
                     <label for="saveAmount">Expense name:</label><br>
                     <input type="text" class="form-control" id="saveAmount" [(ngModel)]="expense.expense_name" name="expense_name">
@@ -155,8 +155,8 @@
                 <td> {{expense.frequency}}</td>
         
                 <td>
-                    <button (click) = "updateIncome(expense.id)" title="Update Expense" class = "btn btn-secondary" style="margin-left: 15px"> Update expense </button>
-                    <button (click) = "deleteIncome(expense.id)" title="Delete expense" class = "btn btn-danger" style="margin-left: 15px"> Delete expense </button>
+                    <button (click) = "updateExpense(expense.id)" title="Update Expense" class = "btn btn-secondary" style="margin-left: 15px"> Update expense </button>
+                    <button (click) = "deleteExpense(expense.id)" title="Delete expense" class = "btn btn-danger" style="margin-left: 15px"> Delete expense </button>
                     </td>
 
             </tr>
