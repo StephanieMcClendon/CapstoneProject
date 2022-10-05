@@ -27,6 +27,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { UpdateGoalComponent } from './update-goal/update-goal.component';
 import { MatTabsModule } from "@angular/material/tabs";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { UpdateExpenseComponent } from './update-expense/update-expense.component';
 
 export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1);
 
@@ -45,7 +46,8 @@ export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1
       UpdateIncomeComponent,
     LogoutComponent,
     UpdateGoalComponent,
-    DashboardComponent
+    DashboardComponent,
+    UpdateExpenseComponent
 
   ],
     imports: [
