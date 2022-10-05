@@ -45,6 +45,7 @@ export class DashboardComponent implements OnInit {
     // OR update application.properties to update db instead of create
     this.getGoals();
     this.getExpenses();
+    this.getIncome();
     
     
   }
@@ -113,12 +114,12 @@ export class DashboardComponent implements OnInit {
 
   // ** INCOME Methods **
 
-  // private getIncomes(){
-  //   this.goalService.getIncomeList().subscribe(data => {
-  //     this.incomes = data;
-  //     console.log(this.incomes);
-  //   });
-  // }
+  private getIncome(){
+    this.incomeService.getIncomeList().subscribe(data => {
+      this.incomes = data;
+      console.log(this.incomes);
+    });
+  }
 
   // no need for income details page
 
@@ -128,18 +129,17 @@ export class DashboardComponent implements OnInit {
 
   deleteIncome(id: number){
     // routed to delete button
-    this.goalService.deleteGoal(id).subscribe( data => {
+    this.incomeService.deleteIncome(id).subscribe( data => {
       console.log(data);
-      this.goToGoalList();
-      this.getGoals();
+     this.getIncome();
     })
   }
 
   saveIncome(){
     // create button
-    this.goalService.createGoal(this.goal).subscribe( data =>{
+    this.incomeService.createIncome(this.income).subscribe( data =>{
           console.log(data);
-          this.getGoals();
+          this.getIncome();
         },
         error => console.log(error));
   }

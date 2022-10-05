@@ -6,22 +6,22 @@
             <form (ngSubmit) = "onSubmitIncome()" style="width: 300px" class="justify-content-center">
                 <label> Create a Income </label><br><br>
                 <div class="form-group">
-                    <label >Yearly Salary:</label><br>
-                    <input type="text" class="form-control" >
+                    <label >Income Source:</label><br>
+                    <input type="text" class="form-control"[(ngModel)]="income.description" name="description" >
                 </div>
 
                 <br>
 
                 <div class="form-group">
-                    <label >#:</label><br>
-                    <input type="text" class="form-control" >
+                    <label >Yearly Salary</label><br>
+                    <input type="text" class="form-control"[(ngModel)]="income.amount" name="amount" >
                 </div>
 
                 <br>
 
                 <div class="form-group">
-                    <label >#: </label><br>
-                    <input type="text" class="form-control" >
+                    <label >Frequency </label><br>
+                    <input type="text" class="form-control"[(ngModel)]="income.frequency" name="frequency" >
                 </div>
 
                 <br>
@@ -110,8 +110,32 @@
 <mat-tab-group #tabs>
 
     <mat-tab label="Income" id="income">
-        <h1>Put Code here for Income</h1>
+        <table class = "table table-striped">
+            <thead>
+            <tr>
+                <th> Income Source</th>
+                <th>  Amount</th>
+                <th> frequency</th>
+                
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor = "let income of incomes" >
+                <td> {{income.description}}</td>
+                <td > {{income.amount}} </td>
+                <td> {{income.frequency}}</td>
+        
+                <td>
+                    <button (click) = "updateIncome(income.id)" title="Update Income" class = "btn btn-secondary" style="margin-left: 15px"> Update income </button>
+                    <button (click) = "deleteIncome(income.id)" title="Delete income" class = "btn btn-danger" style="margin-left: 15px"> Delete income </button>
+                    </td>
+
+            </tr>
+
+            </tbody>
+            </table>
     </mat-tab>
+   
 
     <mat-tab label="Expense" id="expense">
         
@@ -131,8 +155,8 @@
                 <td> {{expense.frequency}}</td>
         
                 <td>
-                    <button (click) = "updateExpense(expense.id)" title="Update Expense" class = "btn btn-secondary" style="margin-left: 15px"> Update expense </button>
-                    <button (click) = "deleteExpense(expense.id)" title="Delete expense" class = "btn btn-danger" style="margin-left: 15px"> Delete expense </button>
+                    <button (click) = "updateIncome(expense.id)" title="Update Expense" class = "btn btn-secondary" style="margin-left: 15px"> Update expense </button>
+                    <button (click) = "deleteIncome(expense.id)" title="Delete expense" class = "btn btn-danger" style="margin-left: 15px"> Delete expense </button>
                     </td>
 
             </tr>
