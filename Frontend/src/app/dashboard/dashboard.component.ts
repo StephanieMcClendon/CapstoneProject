@@ -8,7 +8,6 @@ import { Income } from '../income';
 import { Expense } from '../expense';
 import { ExpenseService } from '../expense.service';
 import { DOCUMENT } from '@angular/common';
-import { InjectSetupWrapper } from '@angular/core/testing';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,10 +21,6 @@ export class DashboardComponent implements OnInit {
   // Goals
   goals?: any[];
   goal: Goal = new Goal();
-  searchText: any;
-  saveAmount: number = this.goal.saveAmount;
-  monthlyPayment: number = this.goal.monthlyPayment;
-  num!: number;
 
   // Income
   incomes?: any[];
@@ -34,6 +29,15 @@ export class DashboardComponent implements OnInit {
   // Expenses
   expenses?: any[];
   expense: Expense = new Expense();
+
+  searchText: any;
+  saveAmount: number = this.goal.saveAmount;
+  monthlyPayment: number = this.goal.monthlyPayment;
+  incomeAmount: number = this.income.amount;
+  expenseAmount: number = this.expense.amount;
+  remainingAmount: number = 0;
+  monthToYear = 0;
+
 
   constructor(@Inject (DOCUMENT) private document: Document,
     private goalService: GoalService,
@@ -47,6 +51,8 @@ export class DashboardComponent implements OnInit {
     this.getGoals();
     this.getExpenses();
     this.getIncomeList();
+    
+    console.log("remaining amount: "+this.remainingAmount);
   }
 
   ngAfterViewInit(): void {
@@ -54,18 +60,19 @@ export class DashboardComponent implements OnInit {
     this.tabGroup.selectedIndex = 2;
   }
 
-  display() { 
-    var checkRadio = document.querySelector('input[name="flexRadioDefault"]:checked');
+  // radio buttons
+  // display() { 
+  //   var checkRadio = document.querySelector('input[name="flexRadioDefault"]:checked');
       
-    if(checkRadio != null) {
-        console.log((<HTMLInputElement>checkRadio).value);
-        (<HTMLInputElement>document.getElementById("disp")).innerHTML = (<HTMLInputElement>checkRadio).value + " radio button checked";
-    }
-    else {
-        console.log("Nothing selected");
-        (<HTMLInputElement>document.getElementById("disp")).innerHTML = "No one selected";
-    }
-}
+  //   if(checkRadio != null) {
+  //       console.log((<HTMLInputElement>checkRadio).value);
+  //       (<HTMLInputElement>document.getElementById("disp")).innerHTML = (<HTMLInputElement>checkRadio).value + " radio button checked";
+  //   }
+  //   else {
+  //       console.log("Nothing selected");
+  //       (<HTMLInputElement>document.getElementById("disp")).innerHTML = "No one selected";
+  //   }
+  // }
 
 
   /* ***************  GOAL Methods  ****************************** */
@@ -120,7 +127,8 @@ export class DashboardComponent implements OnInit {
     console.log(this.goal);
     // user_id = user id of current user logged in
     this.monthlyPayment = (this.goal.goalAmount - this.goal.saveAmount) / this.goal.time_in_months;
-    console.log(this.monthlyPayment);
+    console.log("remaining: "+ this.remainingAmount);
+    console.log("monthly: "+this.monthlyPayment);
     this.goal.monthlyPayment = this.monthlyPayment;
     this.tabGroup.selectedIndex = 2;
     this.saveGoal();
@@ -193,7 +201,7 @@ export class DashboardComponent implements OnInit {
   saveExpense(){
     this.expenseService.createExpense(this.expense).subscribe( data =>{
           console.log(data);
-
+        this.getExpenses();
         },
         error => console.log(error));
   }
@@ -201,6 +209,20 @@ export class DashboardComponent implements OnInit {
   onSubmitExpense() {
     // swipes to expense tab
     this.tabGroup.selectedIndex = 1;
+    this.monthToYear = this.expense.amount * 12;
+    console.log("month to year: "+this.monthToYear);
+    this.expense.total = this.monthToYear;
     this.saveExpense();
+  }
+
+  displayIncomeMinusExpense(){
+    this.remainingAmount = this.incomeAmount - this.expenseAmount;
+    var label = document.querySelector("remainingAmount");
+    var incomeAmount = document.getElementById("incomeAmount");
+    var expenseAmount = document.getElementById("amount");
+      
+    console.log((<HTMLInputElement>label).value);
+    (<HTMLInputElement>document.getElementById("remainingAmount")).innerHTML = `${this.remainingAmount}`;
+
   }
 }
