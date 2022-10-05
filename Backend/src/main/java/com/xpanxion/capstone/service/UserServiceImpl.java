@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,10 +19,15 @@ public class UserServiceImpl implements UserDetailsService
 
     private UserRepository userRepository;
 
-    @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
+
+    @Autowired
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
@@ -40,10 +46,24 @@ public class UserServiceImpl implements UserDetailsService
         }
     }
 
-//    public User register(String username, String password, String firstName, String lastName, String email, String phoneNumber)
-//    {
-//
-//    }
+    public User register(String username, String password, String firstName, String lastName, String email, String phoneNumber)
+    {
+        User user = new User();
+        user.setPassword(encodePassword(password));
+        user.setUsername(username);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setPhoneNumber(phoneNumber);
+        this.userRepository.save(user);
+        return user;
+
+    }
+
+    private String encodePassword(String password)
+    {
+        return bCryptPasswordEncoder.encode(password);
+    }
 
 
 }

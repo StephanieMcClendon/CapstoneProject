@@ -5,6 +5,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import { MatTabGroup } from '@angular/material/tabs';
 import { IncomeService } from '../income.service';
 import { Income } from '../income';
+import { Expense } from '../expense';
+import { ExpenseService } from '../expense.service';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -30,17 +33,23 @@ export class DashboardComponent implements OnInit {
   income: Income = new Income();
 
   // Expenses
+  expenses?: any[];
+  expense: Expense = new Expense();
 
   constructor(private goalService: GoalService,
+   private expenseService: ExpenseService,
    private incomeService: IncomeService,
    private route: ActivatedRoute,
    private router: Router) { }
+   
 
   ngOnInit(): void {
     // @JsonIgnore in spring boot to avoid over populating db
     // OR update application.properties to update db instead of create
     this.getGoals();
     console.log(this.goals)
+    this.getExpenses();
+    this.getIncome();
 
   }
 
@@ -112,12 +121,12 @@ export class DashboardComponent implements OnInit {
 
   // ** INCOME Methods **
 
-  // private getIncomes(){
-  //   this.goalService.getIncomeList().subscribe(data => {
-  //     this.incomes = data;
-  //     console.log(this.incomes);
-  //   });
-  // }
+  private getIncome(){
+    this.incomeService.getIncomeList().subscribe(data => {
+      this.incomes = data;
+      console.log(this.incomes);
+    });
+  }
 
   // no need for income details page
 
@@ -127,10 +136,9 @@ export class DashboardComponent implements OnInit {
 
   deleteIncome(id: number){
     // routed to delete button
-    this.goalService.deleteGoal(id).subscribe( data => {
+    this.incomeService.deleteIncome(id).subscribe( data => {
       console.log(data);
-      this.goToGoalList();
-      this.getGoals();
+     this.getIncome();
     })
   }
 
@@ -138,7 +146,7 @@ export class DashboardComponent implements OnInit {
     // create button
     this.incomeService.createIncome(this.income).subscribe( data =>{
           console.log(data);
-          this.getGoals();
+          this.getIncome();
         },
         error => console.log(error));
   }
@@ -155,33 +163,31 @@ export class DashboardComponent implements OnInit {
 
   // ** EXPENSE Methods **
 
-  // private getExpenses(){
-  //   this.expenseService.getExpenseList().subscribe(data => {
-  //     this.expenses = data;
-  //     console.log(this.expenses);
-  //   });
-  // }
+  private getExpenses(){
+    this.expenseService.getExpenseList().subscribe(data => {
+      this.expenses = data;
+      console.log(this.expenses);
+    });
+  }
 
   // no need for income details page
 
   updateExpense(id: number){
-    this.router.navigate(['update-goal', id]);
+    this.router.navigate(['update-expense', id]);
   }
 
   deleteExpense(id: number){
     // routed to delete button
-    this.goalService.deleteGoal(id).subscribe( data => {
+    this.expenseService.deleteExpense(id).subscribe( data => {
       console.log(data);
-      this.goToGoalList();
-      this.getGoals();
     })
   }
 
   saveExpense(){
     // create button
-    this.goalService.createGoal(this.goal).subscribe( data =>{
+    this.expenseService.createExpense(this.expense).subscribe( data =>{
           console.log(data);
-          this.getGoals();
+
         },
         error => console.log(error));
   }
@@ -189,6 +195,7 @@ export class DashboardComponent implements OnInit {
   onSubmitExpense() {
     // swipes to expense tab
     this.tabGroup.selectedIndex = 1;
+    this.saveExpense();
   }
 
 
