@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {CalculatorComponent} from "./finances/calculator/calculator.component";
 import { GoalDetailsComponent } from './goal-details/goal-details.component';
-
+import { UpdateExpenseComponent } from './update-expense/update-expense.component';
 import { GoalListComponent } from './goal-list/goal-list.component';
 import {LoginComponent} from "./login/login.component";
 import {LogoutComponent} from "./logout/logout.component";
@@ -23,7 +23,8 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "logout", component: LogoutComponent, canActivate: [AuthenticationGuard]},
   {path: "update-goal/:id", component: UpdateGoalComponent},
-  {path: "", redirectTo: "calculator", pathMatch: "full"}
+  {path: "", redirectTo: "calculator", pathMatch: "full"},
+  {path: "update-expense/:id", component: UpdateExpenseComponent}
   ];
 
 

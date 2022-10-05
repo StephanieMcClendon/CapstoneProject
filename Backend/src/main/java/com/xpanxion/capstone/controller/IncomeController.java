@@ -9,10 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-@RestController
-@RequestMapping("/api/v1")
 @CrossOrigin(origins = "http://localhost:4200")
+@RestController
+
+
+
 public class IncomeController
 {
     private final IncomeRepository incomeRepository;
@@ -21,7 +22,7 @@ public class IncomeController
             this.incomeRepository = incomeRepository;
         }
 
-        @PostMapping("add /income")
+        @PostMapping("/income")
         public Income createIncome(@RequestBody Income income)
         {
             return this.incomeRepository.save(income);
@@ -38,14 +39,14 @@ public class IncomeController
         return this.incomeRepository.findById(id).get();
     }
 
-    @DeleteMapping("/delete-income/{id}") // http://localhost:8080/api/v1/delete-income/1
+    @DeleteMapping("/income/{id}") // http://localhost:8080/api/v1/delete-income/1
     public void deleteIncomeById(@PathVariable Long id)
     {
         this.incomeRepository.deleteById(id);
         System.out.println("Deleted Income id " + id);
     }
 
-    @PutMapping("/update-income/{id}") // http://localhost:8080/api/v1/update-income/1
+    @PutMapping("/income/{id}") // http://localhost:8080/api/v1/update-income/1
     public Income updateIncomeById(@PathVariable Long id, @RequestBody Income incomeInput)
     {
         Income income = this.incomeRepository.findById(id).get();
