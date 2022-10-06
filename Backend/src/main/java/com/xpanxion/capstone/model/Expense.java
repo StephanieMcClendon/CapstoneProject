@@ -20,7 +20,7 @@ public class Expense {
     private Long id;
     private String expense_name;
     private double amount;
-    private int frequency;
+    private double total;
     private String description;
 
     @ManyToOne

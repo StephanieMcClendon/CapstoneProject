@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Goal } from '../goal';
 import { GoalService } from '../goal.service';
+
 import { MatTabGroup } from '@angular/material/tabs';
 import {DashboardComponent} from "../dashboard/dashboard.component";
 
@@ -18,8 +19,9 @@ export class UpdateGoalComponent implements OnInit {
   goal: Goal = new Goal();
   monthlyPayment: number = this.goal.monthlyPayment;
   saveAmount!: number;
+  num: number = 1;
 
-  constructor(private goalService: GoalService, 
+  constructor(private goalService: GoalService,
     private route: ActivatedRoute, 
     private router: Router) { }
 
@@ -32,7 +34,6 @@ export class UpdateGoalComponent implements OnInit {
   }
 
   onSubmit(){
-    
     this.monthlyPayment = (this.goal.goalAmount - this.goal.saveAmount) / this.goal.time_in_months;
     this.goal.monthlyPayment = this.monthlyPayment;
     // this.goal.saveAmount = this.saveAmount;
