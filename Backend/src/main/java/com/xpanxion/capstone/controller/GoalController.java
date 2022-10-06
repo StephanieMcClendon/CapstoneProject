@@ -1,7 +1,9 @@
 package com.xpanxion.capstone.controller;
 
 import com.xpanxion.capstone.model.Goal;
+import com.xpanxion.capstone.model.User;
 import com.xpanxion.capstone.repository.GoalRepository;
+import com.xpanxion.capstone.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,27 +12,38 @@ import java.util.List;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class GoalController {
-    @Autowired
+
     private GoalRepository goalRepository;
 
+    private UserRepository userRepository;
     // dependency injection  > field injection (@Autowired)
-    public GoalController(GoalRepository goalRepository){
+
+
+    @Autowired
+    public GoalController(GoalRepository goalRepository, UserRepository userRepository)
+    {
         this.goalRepository = goalRepository;
+        this.userRepository = userRepository;
     }
 
-    @GetMapping("/goals")
-    public List<Goal> listGoals(){
-        return this.goalRepository.findAll();
+    @GetMapping("/goals/user/{user_id}")
+    public List<Goal> listGoals(@PathVariable("user_id") Long user_id)
+    {
+        return this.goalRepository.findGoalsByUserId(user_id);
     }
 
     @GetMapping("/goals/{id}")
-    public Goal listGoal(@PathVariable Long id){
+    public Goal listGoal(@PathVariable Long id)
+    {
         return this.goalRepository.findById(id).get();
     }
 
     // link to user id
-    @PostMapping("/goals")
-    public Goal createGoal(@RequestBody Goal goal){
+    @PostMapping("/goals/{user_id}")
+    public Goal createGoal(@RequestBody Goal goal, @PathVariable("user_id") Long user_id)
+    {
+        User user = this.userRepository.findById(user_id).get();
+        goal.setUser(user);
         return this.goalRepository.save(goal);
     }
 

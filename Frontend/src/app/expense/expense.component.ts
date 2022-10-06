@@ -18,14 +18,13 @@ export class ExpenseComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getIncomes();
+    // this.getIncomes();
   }
-  private getIncomes(){
-    this.expenseService.getExpenseList().subscribe(data => {
-      this.expenses = data;
-    });
-   
-  }
+  // private getIncomes(){
+  //   this.expenseService.getExpenseList().subscribe(data => {
+  //     this.expenses = data;
+  //   });
+  // }
   incomeDetails(id: number){
     this.router.navigate(['income-details', id]);
   }

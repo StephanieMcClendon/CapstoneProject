@@ -24,14 +24,14 @@ throw new Error('Method not implemented.');
    }
 
   ngOnInit(): void {
-    this.getIncomes();
+    // this.getIncomes();
   }
-  private getIncomes(){
-    this.incomeService.getIncomeList().subscribe(data => {
-      this.incomes = data;
-    });
-   
-  }
+  // private getIncomes(){
+  //   this.incomeService.getIncomeList().subscribe(data => {
+  //     this.incomes = data;
+  //   });
+  //
+  // }
   incomeDetails(id: number){
     this.router.navigate(['income-details', id]);
   }
@@ -43,7 +43,7 @@ throw new Error('Method not implemented.');
   deleteIncome(id: number){
     this.incomeService.deleteIncome(id).subscribe( data => {
       console.log(data);
-      this.getIncomes();
+      // this.getIncomes();
     })
   }
 }

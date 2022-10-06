@@ -13,8 +13,6 @@ export class AuthenticationService {
 
   public loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-
-
   constructor(private http: HttpClient) { }
 
   public login(user: User): Observable<HttpResponse<any>>
@@ -50,7 +48,6 @@ export class AuthenticationService {
   public getRole()
   {
     this.role = JSON.parse(localStorage.getItem("role")!);
-    // console.log(this.role);
     return this.role;
   }
 

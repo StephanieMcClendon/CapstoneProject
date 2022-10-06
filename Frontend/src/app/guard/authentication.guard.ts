@@ -31,6 +31,7 @@ export class AuthenticationGuard implements CanActivate {
       return true;
     }
     this.router.navigate(["/login"]);
+    this.notificationService.notify(NotificationType.WARNING, "you do not have access to this page".toUpperCase());
     console.log("Do not have access to this route")
     return false;
   }
