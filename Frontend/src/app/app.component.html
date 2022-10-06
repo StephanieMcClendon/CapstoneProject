@@ -1,1 +1,66 @@
+<div >
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">We Budget</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/calculator">Calculator</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/dashboard">Dashboard</a>
+                </li>
+<!--                <li class="nav-item dropdown">-->
+<!--                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                        Dropdown-->
+<!--                    </a>-->
+<!--                    <ul class="dropdown-menu">-->
+<!--                        <li><a class="nav-link" routerLink="/calculator"  routerLinkActive="active">Calculator</a></li>-->
+<!--                        <li><a class="nav-link ml-auto" routerLink="/login"> Login </a></li>-->
+<!--                        <li><hr class="dropdown-divider"></li>-->
+<!--                        <li><a class="nav-link " routerLink="/logout"> Logout </a></li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+            </ul>
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/login">Login</a>
+                </li>
+                <li class="nav-item" *ngIf="isLoggedIn">
+                    <a class="nav-link active" aria-current="page" routerLink="/logout">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="/register">Register</a>
+                </li>
+            </ul>
+<!--            <form class="d-flex" role="search">-->
+<!--                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--                <button class="btn btn-outline-success" type="submit">Search</button>-->
+<!--            </form>-->
 
+        </div>
+    </div>
+</nav>
+
+<!--<nav class="nav nav-borders navbar-main">-->
+
+<!--    <a class="nav-link" routerLink="/calculator"  routerLinkActive="active">Calculator</a>-->
+<!--    <a class="nav-link" routerLink="/dashboard"  routerLinkActive="active">Dashboard</a>-->
+<!--    <a class="nav-link ml-auto" routerLink="/login"> Login </a>-->
+<!--    <a class="nav-link ml-auto" routerLink="/register"> Register </a>-->
+<!--    <div *ngIf="isLoggedIn">-->
+<!--        <a class="nav-link" routerLink="/logout" > Logout </a>-->
+<!--    </div>-->
+
+
+<!--</nav>-->
+
+<!--<hr>-->
+<div class="container" style="margin-top: 20px">
+
+    <router-outlet></router-outlet>
+</div>
+</div>

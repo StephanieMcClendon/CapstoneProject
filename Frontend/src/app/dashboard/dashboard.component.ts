@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, Injectable, OnInit, ViewChild } from '@angular/core';
 import {Goal} from "../goal";
 import {GoalService} from "../goal.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -7,7 +7,7 @@ import { IncomeService } from '../income.service';
 import { Income } from '../income';
 import { Expense } from '../expense';
 import { ExpenseService } from '../expense.service';
-
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,38 +19,69 @@ export class DashboardComponent implements OnInit {
   @ViewChild('tabs') tabGroup!: MatTabGroup;
 
   // Goals
-  goals?: any[];
+  goals?: Goal[];
   goal: Goal = new Goal();
+  incomeCard = false;
+  expenseCard = false;
+  goalsCard = false;
   searchText: any;
   saveAmount: number = this.goal.saveAmount;
   monthlyPayment: number = this.goal.monthlyPayment;
-
   // Income
   incomes?: any[];
   income: Income = new Income();
-
   // Expenses
   expenses?: any[];
   expense: Expense = new Expense();
+  incomeAmount: number = this.income.amount;
+  expenseAmount: number = this.expense.amount;
+  remainingAmount: number = 0;
+  monthToYear = 0;
 
-  constructor(private goalService: GoalService,
+
+  constructor(@Inject (DOCUMENT) private document: Document,
+    private goalService: GoalService,
    private expenseService: ExpenseService,
    private incomeService: IncomeService,
    private route: ActivatedRoute,
    private router: Router) { }
-   
+
 
   ngOnInit(): void {
-    // @JsonIgnore in spring boot to avoid over populating db
-    // OR update application.properties to update db instead of create
     this.getGoals();
+    console.log(this.goals)
     this.getExpenses();
     this.getIncome();
-    
-    
+    this.getIncomeList();
+    console.log("remaining amount: "+this.remainingAmount);
+
   }
 
   // ** GOAL Methods **
+
+  ngAfterViewInit(): void {
+    //default tab
+    this.tabGroup.selectedIndex = 2;
+  }
+
+  // radio buttons
+  // display() { 
+  //   var checkRadio = document.querySelector('input[name="flexRadioDefault"]:checked');
+      
+  //   if(checkRadio != null) {
+  //       console.log((<HTMLInputElement>checkRadio).value);
+  //       (<HTMLInputElement>document.getElementById("disp")).innerHTML = (<HTMLInputElement>checkRadio).value + " radio button checked";
+  //   }
+  //   else {
+  //       console.log("Nothing selected");
+  //       (<HTMLInputElement>document.getElementById("disp")).innerHTML = "No one selected";
+  //   }
+  // }
+
+
+  /* ***************  GOAL Methods  ****************************** */
+
+
   private getGoals(){
     this.goalService.getGoalsList().subscribe(data => {
       this.goals = data;
@@ -59,16 +90,13 @@ export class DashboardComponent implements OnInit {
         console.log(this.goals![i].saveAmount)
         if(this.goals![i].monthlyPayment === 0){
           // call congratulations();
-          console.log("You win");
         }
       }
     });
-    
   }
 
   congratulations(){
     // insert logic for pop up confetti
-
   }
 
   goToGoalDetails(id: number){
@@ -80,7 +108,6 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteGoal(id: number){
-    // routed to delete button
     this.goalService.deleteGoal(id).subscribe( data => {
       console.log(data);
       this.goToGoalList();
@@ -89,12 +116,14 @@ export class DashboardComponent implements OnInit {
   }
 
   saveGoal(){
-    // create button
     this.goalService.createGoal(this.goal).subscribe( data =>{
           console.log(data);
           this.getGoals();
         },
-        error => console.log(error));
+        error => console.log(error)
+    );
+
+
   }
 
   goToGoalList(){
@@ -104,15 +133,16 @@ export class DashboardComponent implements OnInit {
   onSubmitGoal(){
     console.log(this.goal);
     // user_id = user id of current user logged in
-    
     this.monthlyPayment = (this.goal.goalAmount - this.goal.saveAmount) / this.goal.time_in_months;
-    console.log(this.monthlyPayment);
+    console.log("remaining: "+ this.remainingAmount);
+    console.log("monthly: "+this.monthlyPayment);
     this.goal.monthlyPayment = this.monthlyPayment;
     this.tabGroup.selectedIndex = 2;
     this.saveGoal();
   }
 
-  // ** INCOME Methods **
+
+  /* *************** INCOME Methods ****************************** */
 
   private getIncome(){
     this.incomeService.getIncomeList().subscribe(data => {
@@ -121,30 +151,31 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  // no need for income details page
+  private getIncomeList(){
+    this.incomeService.getIncomeList().subscribe(data => {
+      this.incomes = data;
+      console.log(this.incomes);
+    });
+  }
 
   updateIncome(id: number){
-    this.router.navigate(['update-goal', id]);
+    this.router.navigate(['update-income', id]);
   }
 
   deleteIncome(id: number){
-    // routed to delete button
     this.incomeService.deleteIncome(id).subscribe( data => {
       console.log(data);
-     this.getIncome();
+      this.getIncomeList();
     })
   }
 
   saveIncome(){
-    // create button
     this.incomeService.createIncome(this.income).subscribe( data =>{
           console.log(data);
           this.getIncome();
         },
         error => console.log(error));
   }
-
-  // no goal list needed, switch to tab instead
 
   onSubmitIncome() {
     // swipes to income tab
@@ -153,8 +184,8 @@ export class DashboardComponent implements OnInit {
   }
 
 
+  /* *************** EXPENSE Methods ****************************** */
 
-  // ** EXPENSE Methods **
 
   private getExpenses(){
     this.expenseService.getExpenseList().subscribe(data => {
@@ -163,24 +194,21 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  // no need for income details page
-
   updateExpense(id: number){
     this.router.navigate(['update-expense', id]);
   }
 
   deleteExpense(id: number){
-    // routed to delete button
     this.expenseService.deleteExpense(id).subscribe( data => {
       console.log(data);
+      this.getExpenses();
     })
   }
 
   saveExpense(){
-    // create button
     this.expenseService.createExpense(this.expense).subscribe( data =>{
           console.log(data);
-
+        this.getExpenses();
         },
         error => console.log(error));
   }
@@ -188,7 +216,17 @@ export class DashboardComponent implements OnInit {
   onSubmitExpense() {
     // swipes to expense tab
     this.tabGroup.selectedIndex = 1;
+    this.monthToYear = this.expense.amount * 12;
+    console.log("month to year: "+this.monthToYear);
+    this.expense.total = this.monthToYear;
     this.saveExpense();
+  }
+
+
+  showForms() {
+    this.incomeCard = !this.incomeCard;
+    this.expenseCard = !this.expenseCard;
+    this.goalsCard = !this.goalsCard;
   }
 
   
@@ -398,4 +436,16 @@ export class DashboardComponent implements OnInit {
 //     //
 //     loop();
 // })()
+
+
+  displayIncomeMinusExpense(){
+    this.remainingAmount = this.incomeAmount - this.expenseAmount;
+    var label = document.querySelector("remainingAmount");
+    var incomeAmount = document.getElementById("incomeAmount");
+    var expenseAmount = document.getElementById("amount");
+      
+    console.log((<HTMLInputElement>label).value);
+    (<HTMLInputElement>document.getElementById("remainingAmount")).innerHTML = `${this.remainingAmount}`;
+
+  }
 }

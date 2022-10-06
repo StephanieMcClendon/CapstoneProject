@@ -11,12 +11,12 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class ExpenseController {
     private ExpenseRepository expenseRepository;
+
     @Autowired
     public ExpenseController(ExpenseRepository expenseRepository)
     {
         this.expenseRepository = expenseRepository;
     }
-
 
     @PostMapping("/expense") // http://localhost:8080/api/v1/create-expense
     public Expense createExpense(@RequestBody Expense expense)
@@ -49,7 +49,7 @@ public class ExpenseController {
 
         expense.setExpense_name(userInput.getExpense_name());
         expense.setAmount(userInput.getAmount());
-        expense.setFrequency(userInput.getFrequency());
+        expense.setTotal(userInput.getTotal());
         expense.setDescription(userInput.getDescription());
 
         return this.expenseRepository.save(expense);
