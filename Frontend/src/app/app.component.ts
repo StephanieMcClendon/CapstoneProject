@@ -11,13 +11,24 @@ import {AuthenticationService} from "./service/authentication.service";
 })
 export class AppComponent {
 
-  isLoggedIn: boolean = this.authenticationService.isUserLoggedIn();
+  isLoggedIn!: boolean;
 
   constructor(private authenticationService: AuthenticationService)
   {
 
   }
 
+
+  public loggedIn(): boolean
+  {
+    if(this.authenticationService.isUserLoggedIn())
+    {
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 
   
   title = 'expense';
