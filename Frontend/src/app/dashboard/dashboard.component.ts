@@ -124,7 +124,7 @@ export class DashboardComponent implements OnInit {
   // no need for income details page
 
   updateIncome(id: number){
-    this.router.navigate(['update-goal', id]);
+    this.router.navigate(['update-income', id]);
   }
 
   deleteIncome(id: number){

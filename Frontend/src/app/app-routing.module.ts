@@ -9,7 +9,7 @@ import {LogoutComponent} from "./logout/logout.component";
 import {AuthenticationGuard} from "./guard/authentication.guard";
 import { UpdateGoalComponent } from './update-goal/update-goal.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
-
+import { UpdateIncomeComponent } from './update-income/update-income.component';
 
 
 const routes: Routes = [
@@ -20,7 +20,8 @@ const routes: Routes = [
   {path: "logout", component: LogoutComponent, canActivate: [AuthenticationGuard]},
   {path: "update-goal/:id", component: UpdateGoalComponent},
   {path: "", redirectTo: "calculator", pathMatch: "full"},
-  {path: "update-expense/:id", component: UpdateExpenseComponent}
+  {path: "update-expense/:id", component: UpdateExpenseComponent},
+  {path: "update-income/:id", component: UpdateIncomeComponent}
   ];
 
 
