@@ -16,6 +16,7 @@ import {RegisterComponent} from "./register/register.component";
 const routes: Routes = [
   {path: "calculator", component: CalculatorComponent},
   {path: 'goal-details/:id', component: GoalDetailsComponent},
+  {path: 'goals', component: GoalListComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: "login", component: LoginComponent},
   {path: "logout", component: LogoutComponent, canActivate: [AuthenticationGuard]},
