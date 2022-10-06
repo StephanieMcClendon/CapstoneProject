@@ -62,7 +62,10 @@ export class CalculatorComponent implements OnInit {
   ngOnInit(): void
   {
     console.log("This is a simple calc")
+  }
 
+  ngAfterViewInit(): void {
+    // location.reload();
   }
 
 
