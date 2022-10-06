@@ -16,16 +16,16 @@ export class GoalService {
     return this.httpClient.get<Goal>(`${this.baseURL}/${id}`);
   }
 
-  getGoalsList(): Observable<Goal[]>{
-    return this.httpClient.get<Goal[]>(`${this.baseURL}`);
+  getGoalsList(userId: number): Observable<Goal[]>{
+    return this.httpClient.get<Goal[]>(`${this.baseURL}/user/${userId}`);
   }
 
   deleteGoal(id: number): Observable<Goal>{
     return this.httpClient.delete<Goal>(`${this.baseURL}/${id}`);
   }
 
-  createGoal(goal: Goal): Observable<any>{
-    return this.httpClient.post(`${this.baseURL}`, goal);
+  createGoal(goal: Goal, userId: number): Observable<any>{
+    return this.httpClient.post(`${this.baseURL}/${userId}`, goal);
   }
 
   updateGoal(id: number, goal: Goal): Observable<Object>{

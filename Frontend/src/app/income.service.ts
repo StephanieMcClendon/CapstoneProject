@@ -12,12 +12,12 @@ export class IncomeService {
 
   constructor(private httpClient: HttpClient) { }
   
-  getIncomeList(): Observable<Income[]>{
-    return this.httpClient.get<Income[]>(`${this.baseURL}`);
+  getIncomeList(userId: number): Observable<Income[]>{
+    return this.httpClient.get<Income[]>(`${this.baseURL}/user/${userId}`);
   }
 
-  createIncome(income: Income): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}`, income);
+  createIncome(income: Income, userId: number): Observable<Object>{
+    return this.httpClient.post(`${this.baseURL}/${userId}`, income);
   }
 
   getIncomeById(id: number): Observable<Income>{

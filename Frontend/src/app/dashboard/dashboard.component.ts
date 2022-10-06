@@ -37,6 +37,7 @@ export class DashboardComponent implements OnInit {
   expenseAmount: number = this.expense.amount;
   remainingAmount: number = 0;
   monthToYear = 0;
+  id: number = JSON.parse(localStorage.getItem("id")!);
 
 
   constructor(@Inject (DOCUMENT) private document: Document,
@@ -83,7 +84,7 @@ export class DashboardComponent implements OnInit {
 
 
   private getGoals(){
-    this.goalService.getGoalsList().subscribe(data => {
+    this.goalService.getGoalsList(this.id).subscribe(data => {
       this.goals = data;
       console.log(this.goals);
       for(let i = 0; i < this.goals!.length; i++){
@@ -110,13 +111,12 @@ export class DashboardComponent implements OnInit {
   deleteGoal(id: number){
     this.goalService.deleteGoal(id).subscribe( data => {
       console.log(data);
-      this.goToGoalList();
       this.getGoals();
     })
   }
 
   saveGoal(){
-    this.goalService.createGoal(this.goal).subscribe( data =>{
+    this.goalService.createGoal(this.goal, this.id).subscribe( data =>{
           console.log(data);
           this.getGoals();
         },
@@ -145,14 +145,14 @@ export class DashboardComponent implements OnInit {
   /* *************** INCOME Methods ****************************** */
 
   private getIncome(){
-    this.incomeService.getIncomeList().subscribe(data => {
+    this.incomeService.getIncomeList(this.id).subscribe(data => {
       this.incomes = data;
       console.log(this.incomes);
     });
   }
 
   private getIncomeList(){
-    this.incomeService.getIncomeList().subscribe(data => {
+    this.incomeService.getIncomeList(this.id).subscribe(data => {
       this.incomes = data;
       console.log(this.incomes);
     });
@@ -170,7 +170,7 @@ export class DashboardComponent implements OnInit {
   }
 
   saveIncome(){
-    this.incomeService.createIncome(this.income).subscribe( data =>{
+    this.incomeService.createIncome(this.income, this.id).subscribe( data =>{
           console.log(data);
           this.getIncome();
         },
@@ -188,7 +188,7 @@ export class DashboardComponent implements OnInit {
 
 
   private getExpenses(){
-    this.expenseService.getExpenseList().subscribe(data => {
+    this.expenseService.getExpenseList(this.id).subscribe(data => {
       this.expenses = data;
       console.log(this.expenses);
     });
@@ -206,7 +206,7 @@ export class DashboardComponent implements OnInit {
   }
 
   saveExpense(){
-    this.expenseService.createExpense(this.expense).subscribe( data =>{
+    this.expenseService.createExpense(this.expense, this.id).subscribe( data =>{
           console.log(data);
         this.getExpenses();
         },

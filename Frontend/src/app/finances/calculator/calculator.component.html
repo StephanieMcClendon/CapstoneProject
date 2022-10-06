@@ -1,49 +1,68 @@
 <section class="vh-100 gradient-custom">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="card bg-dark text-white" style="border-radius: 1rem;">
                     <div class="card-body p-5">
+                        <a class="btn btn-outline-primary" (click)="aprCalc()">Toggle Calc</a>
 
                         <form (submit)="onSubmit()">
                         <div class="mb-md-5 mt-md-4 pb-5">
 
-                            <h2 class="fw-bold mb-2 text-uppercase">Simple Calculator</h2>
+                            <div *ngIf="!isAprShown">
+                                <h2 class="fw-bold mb-2 text-uppercase">Simple Calculator</h2>
+                            </div>
+                            <div *ngIf="isAprShown">
+                                <h2 class="fw-bold mb-2 text-uppercase">APR Calculator</h2>
+                            </div>
+
                             <p class="text-white-50 mb-5">Please enter the information below: </p>
 
-                            <div class="form-outline form-white mb-4">
+                            <div class="d-flex flex-row row align-items-center col-md-12">
+                            <div class="form-outline form-white col-md-5  flex-fill mb-4">
                                 <label class="form-label" for="savingsGoal">Savings Goal</label>
                                 <input type="number" id="savingsGoal" name="savingsGoal" [(ngModel)]="savingsGoal" class="form-control form-control-lg" />
                             </div>
 
-                            <div class="form-outline form-white mb-4">
+                            <div class="form-outline form-white col-md-5 flex-fill mb-4" *ngIf="!isAprShown">
                                 <label class="form-label" for="startingBalance">Starting Balances</label>
                                 <input type="number" id="startingBalance" name="startingBalance" [(ngModel)]="startingBalance" class="form-control form-control-lg" />
+                            </div>
+
+                            <div class="form-outline col-md-5 flex-fill mb-4" *ngIf="isAprShown">
+                                <label class="form-label" >APR %</label>
+                                <input type="number"  name="startingBalance" [(ngModel)]="aprTotal" class="form-control form-control-lg" />
+                            </div>
+
                             </div>
 
                             <div>
 
 
                             <div class="d-flex flex-row row align-items-center col-md-6">
-                                <div class="form-outline flex-fill col-md-2 ">
+                                <div class="form-outline flex-fill col-md-2 mb-4">
                                     <label class="form-label" for="years">Years</label>
                                     <input type="number" id="years" name="years" [(ngModel)]="years" class="form-control" />
                                 </div>
-                                <div class="form-outline flex-fill col-md-2 ">
+                                <div class="form-outline flex-fill col-md-2 mb-4">
                                     <label class="form-label" for="months">Months</label>
                                     <input type="number" id="months" name="months" [(ngModel)]="months" class="form-control" />
                                 </div>
 
                             </div>
+
                             </div>
 
 
-                            <button class="btn btn-outline-light btn-lg px-5 mt-4" type="submit">Calculate</button>
+                            <button class="btn btn-outline-light btn-lg " type="submit">Calculate</button>
 
                         </div>
                         </form>
 
-                        <div>
+                        <div *ngIf="isAprShown">
+                            <h1> Monthly Payment: ${{totalValueForApr| number:'1.0-2'}}</h1>
+                        </div>
+                        <div *ngIf="!isAprShown">
                             <h1> Monthly Payment: ${{monthlyPayment | number:'1.0-2'}}</h1>
                         </div>
 

@@ -17,6 +17,10 @@ export class CalculatorComponent implements OnInit {
   monthlyPayment: number = 0.00;
   xAxis: number = 0;
   yAxis: number = 0;
+  aprTotal: number = 0;
+  isAprShown: boolean = false;
+  aprFormula!: number;
+  totalValueForApr: number = 0;
 
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
@@ -62,6 +66,7 @@ export class CalculatorComponent implements OnInit {
   ngOnInit(): void
   {
     console.log("This is a simple calc")
+    this.aprTotal = 0;
   }
 
   ngAfterViewInit(): void {
@@ -70,7 +75,14 @@ export class CalculatorComponent implements OnInit {
 
 
   onSubmit() {
-    this.monthlyPayment = (this.savingsGoal - this.startingBalance) / ((this.months) + (this.years * 12));
+    this.monthlyPayment = ((this.savingsGoal - this.startingBalance) / ((this.months) + (this.years * 12)));
+    // 10000 - 10% 2 - 2000
+    // 10,000 / (.10) * (2)
+    // 10,000 / .2 = 2,000
+    // 12,000
+
+    this.aprFormula = ((this.savingsGoal) * ((this.aprTotal/100) * (((this.months) + (this.years * 12))/12)));
+    this.totalValueForApr = (this.aprFormula + this.savingsGoal) / ((this.months) + (this.years * 12));
     this.xAxis = (this.years * 12) + this.months;
     this.chartUpdate();
 
@@ -86,10 +98,38 @@ export class CalculatorComponent implements OnInit {
     this.yAxis = 0;
     for (let i = 1; i <= this.xAxis; i++) {
       this.chartLabels[i] = i;
-      this.chartData.datasets[0].data[i] = (this.yAxis += this.monthlyPayment);
+      if(!this.isAprShown)
+      {
+        this.chartData.datasets[0].data[i] = (this.yAxis += this.monthlyPayment);
+      }
+      else{
+        this.chartData.datasets[0].data[i] = (this.yAxis += this.totalValueForApr);
+      }
+
     }
     this.chart?.update();
 
   }
 
+  aprCalc() {
+    this.isAprShown = !this.isAprShown;
+
+    this.chartLabels = [];
+    this.chartData.datasets[0].data = [];
+    this.chartLabels[0] = 0;
+    this.chartData.datasets[0].data[0] = 0;
+    this.yAxis = 0;
+    for (let i = 1; i <= this.xAxis; i++) {
+      this.chartLabels[i] = i;
+      if(!this.isAprShown)
+      {
+        this.chartData.datasets[0].data[i] = (this.yAxis += this.monthlyPayment);
+      }
+      else{
+        this.chartData.datasets[0].data[i] = (this.yAxis += this.totalValueForApr);
+      }
+
+    }
+    this.chart?.update();
+  }
 }
