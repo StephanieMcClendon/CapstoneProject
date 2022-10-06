@@ -4,6 +4,7 @@ import { Goal } from '../goal';
 import { GoalService } from '../goal.service';
 import { MatTabGroup } from '@angular/material/tabs';
 import {DashboardComponent} from "../dashboard/dashboard.component";
+import { Location } from '@angular/common'
 
 
 @Component({
@@ -20,8 +21,9 @@ export class UpdateGoalComponent implements OnInit {
   saveAmount!: number;
   num: number = 1;
 
-  constructor(private goalService: GoalService, 
-    private route: ActivatedRoute, 
+  constructor(private goalService: GoalService,
+    private location: Location,
+    private route: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -32,10 +34,14 @@ export class UpdateGoalComponent implements OnInit {
     }, error => console.log(error));
   }
 
+  previousPage(): void {
+    // implement relative routing importing/injecting Location and using .back()
+    this.location.back()
+  }
+
   onSubmit(){
     this.monthlyPayment = (this.goal.goalAmount - this.goal.saveAmount) / this.goal.time_in_months;
     this.goal.monthlyPayment = this.monthlyPayment;
-    // this.goal.saveAmount = this.saveAmount;
     this.goalService.updateGoal(this.id, this.goal).subscribe( data =>{
       this.goToGoalDetails();
     }
@@ -43,7 +49,7 @@ export class UpdateGoalComponent implements OnInit {
   }
 
   goToGoalDetails(){
-    this.router.navigate(['dashboard']);
+    this.previousPage();
   }
   
 }

@@ -6,7 +6,6 @@ import { GoalService } from '../goal.service';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import { CurrDate } from '../currDate';
 
 @Component({
   selector: 'app-goal-details',
@@ -21,16 +20,9 @@ export class GoalDetailsComponent implements OnInit {
   goal_id = this.goal.id;
   goal_amount!: number;
   save_amount = this.goal.saveAmount;
-  // presentDate = this.goal.presentDate;
-  // startDate = this.goal.startDate;
   monthly!: number;
-  currDate: Date = new Date();
-  cDate: CurrDate = new CurrDate(this.currDate.getMonth(), this.currDate.getDay(), this.currDate.getFullYear());
-  
-  // getDate() returns number of days into the month
-  trackDays = this.currDate.getDate();
-
-  // convert milliseconds to days = (1000 * 24 * 24 * 60)
+  currentProgress: String = "";
+  goalTotal: String = "";
 
   constructor(private goalService: GoalService,
               private route: ActivatedRoute,
@@ -41,50 +33,50 @@ export class GoalDetailsComponent implements OnInit {
     console.log(this.goal_amount);
     this.loadGoals(this.id);
   }
+
   public loadGoals(goalId: number)
   {
     this.goalService.getGoalById(this.id).subscribe( data => {
       this.goal = data;
-      console.log(this.goal);
-      this.goal_amount = this.goal.goalAmount;
-      console.log(this.goal_amount)
-
-      this.pieChartData.datasets[0].data[0] = this.goal.saveAmount;
-      this.pieChartData.datasets[0].data[1] = this.goal_amount;
+      this.goal_amount = this.goal.goalAmount - this.goal.saveAmount;
+      this.currentProgress = "" + ((this.goal.saveAmount / this.goal.goalAmount) * 100) + "%"
+      this.goalTotal = "" + (this.goal_amount / this.goal.goalAmount) * 100 + "%"
+      
+      this.pieChartData.datasets[0].data[0] = ((this.goal.saveAmount / this.goal.goalAmount) * 100);
+      this.pieChartData.datasets[0].data[1] = (this.goal_amount / this.goal.goalAmount) * 100;
       this.chart?.update();
       this.goal.monthlyPayment = Math.round(this.goal_amount / this.goal.time_in_months);
-      // convert into days
-      // this.trackDays = Math.floor((this.presentDate - this.startDate) / (1000*60*60*24));
-      // this.presentDate = this.currDate.getDate();
-      console.log("time in months:" + this.goal.time_in_months);
-      // console.log("presentDate: "+this.presentDate);
-      console.log("trackDays: " + this.trackDays);
+
     });
   }
 
     //Math.floor((current_date - start_date) / (1000*60*60*24))
-  
+    
     public pieChartOptions: ChartConfiguration['options'] = {
       responsive: true,
       maintainAspectRatio: false,
+  
       plugins: {
+        title: {
+          display: true,
+          text: "Goal Current Progress"
+      },
         legend: {
           display: true,
-          position: 'top',
+          position: 'top'
         },
         datalabels: {
           formatter: (value, ctx) => {
             if (ctx.chart.data.labels) {
               return ctx.chart.data.labels[ctx.dataIndex];
-              
             }
           },
         },
       }
     };
     public pieChartData: ChartData<'pie',number[]> = {
-
-      labels:["Current Progress", "Goal Amount"],
+      
+      labels:[`Current Progress in ${this.currentProgress}%`, `Goal Amount in ${this.goalTotal}%`],
       datasets:[{
         data: []
       }]

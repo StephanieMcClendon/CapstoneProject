@@ -43,13 +43,13 @@
                 <br>
 
                 <div class="form-group">
-                    <label >Expense Amount:</label><br>
+                    <label >Monthly Expense Amount:</label><br>
                     <input type="number" class="form-control" id="amount" [(ngModel)]="expense.amount" name="amount">
                 </div>
                 <br>
                 <div class="form-group">
                     <label >Yearly Total Expense:</label><br>
-                    <label type="text" id="remainingAmount"> {{ this.expense.amount * 12 }}</label>
+                    <label type="text" id="remainingAmount"> ${{ this.expense.amount * 12 }}</label>
                 </div>
                 
                 <br>
@@ -169,7 +169,7 @@
             <thead>
             <tr>
                 <th> Goal</th>
-                <th> Saved Amount</th>
+                <th> Saved Balance</th>
                 <th> Goal Amount</th>
                 <th> Months to Goal</th>
                 <th> Monthly Payment </th>

@@ -84,7 +84,7 @@ export class DashboardComponent implements OnInit {
       console.log(this.goals);
       for(let i = 0; i < this.goals!.length; i++){
         console.log(this.goals![i].saveAmount)
-        if(this.goals![i].monthlyPayment === 0){
+        if(this.goals![i].monthlyPayment === 0){ // or if(this.goals![i].saveAmount == this.goals![i].goalAmount)
           // call congratulations();
         }
       }
@@ -215,14 +215,4 @@ export class DashboardComponent implements OnInit {
     this.saveExpense();
   }
 
-  displayIncomeMinusExpense(){
-    this.remainingAmount = this.incomeAmount - this.expenseAmount;
-    var label = document.querySelector("remainingAmount");
-    var incomeAmount = document.getElementById("incomeAmount");
-    var expenseAmount = document.getElementById("amount");
-      
-    console.log((<HTMLInputElement>label).value);
-    (<HTMLInputElement>document.getElementById("remainingAmount")).innerHTML = `${this.remainingAmount}`;
-
-  }
 }
