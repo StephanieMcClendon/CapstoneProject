@@ -9,6 +9,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 export class AuthenticationService {
 
   baseApi: string = "http://localhost:8080"
+  public role!: string | null;
 
   public loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -44,6 +45,13 @@ export class AuthenticationService {
     }
     return true
 
+  }
+
+  public getRole()
+  {
+    this.role = JSON.parse(localStorage.getItem("role")!);
+    // console.log(this.role);
+    return this.role;
   }
 
   public logout()
