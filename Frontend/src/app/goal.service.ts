@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Goal } from './goal';
@@ -31,4 +31,10 @@ export class GoalService {
   updateGoal(id: number, goal: Goal): Observable<Object>{
     return this.httpClient.put(`${this.baseURL}/${id}`, goal);
   }
+
+  // @Output() clickEvent = new EventEmitter<string>();
+
+  // switchGoalTab(msg: string) {
+  //   this.clickEvent.emit(msg);
+  // }
 }

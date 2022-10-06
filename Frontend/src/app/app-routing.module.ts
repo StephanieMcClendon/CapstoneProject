@@ -9,6 +9,7 @@ import {LogoutComponent} from "./logout/logout.component";
 import {AuthenticationGuard} from "./guard/authentication.guard";
 import { UpdateGoalComponent } from './update-goal/update-goal.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
+import {RegisterComponent} from "./register/register.component";
 
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: "login", component: LoginComponent},
   {path: "logout", component: LogoutComponent, canActivate: [AuthenticationGuard]},
+  {path: "register", component: RegisterComponent},
   {path: "update-goal/:id", component: UpdateGoalComponent},
   {path: "", redirectTo: "calculator", pathMatch: "full"},
   {path: "update-expense/:id", component: UpdateExpenseComponent}

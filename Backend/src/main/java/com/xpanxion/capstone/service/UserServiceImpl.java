@@ -21,12 +21,12 @@ public class UserServiceImpl implements UserDetailsService
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
     public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    @Autowired
 
 
     @Override
@@ -54,6 +54,7 @@ public class UserServiceImpl implements UserDetailsService
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);
+        user.setRole("ROLE_USER");
         user.setPhoneNumber(phoneNumber);
         this.userRepository.save(user);
         return user;

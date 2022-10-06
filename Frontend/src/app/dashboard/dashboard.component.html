@@ -1,76 +1,76 @@
 
-<div class="container-fluid">
-    <a class="btn btn-outline-primary" (click)="showForms()"> Toggle Create Forms <i class="fa fa-sliders"></i> </a>
 
-<div class="row">
+<a class="btn btn-outline-primary" (click)="showForms()"> Toggle Create Forms <i class="fa fa-sliders"></i> </a>
+
 
 
 <!--    <a class="btn btn-outline-primary" (click)="showForms()"></a>-->
-</div>
 <div style="margin-top: 10px">
 <div class="row" >
 
     <div class="card text-center m-auto" style="width: 345px" *ngIf="incomeCard">
+
+        <!-- =============  Income Form ============== -->
+
+
         <div class="card-body">
             <form (ngSubmit) = "onSubmitIncome()" style="width: 300px" class="justify-content-center">
                 <label> Create an Income </label><br><br>
                 <div class="form-group">
-                    <label >Income Source:</label><br>
-                    <input type="text" class="form-control"[(ngModel)]="income.description" name="description" >
+                    <label >Income Title:</label><br>
+                    <input type="text" class="form-control" id="description" [(ngModel)]="income.description" name="description" >
                 </div>
-
                 <br>
-
                 <div class="form-group">
-                    <label >Yearly Salary</label><br>
-                    <input type="text" class="form-control"[(ngModel)]="income.amount" name="amount" >
+                    <label >Yearly Income:</label><br>
+                    <input type="number" class="form-control" id="incomeAmount" [(ngModel)]="income.amount" name="amount" >
                 </div>
-
                 <br>
+                
 
-                <div class="form-group">
-                    <label >Frequency </label><br>
-                    <input type="text" class="form-control"[(ngModel)]="income.frequency" name="frequency" >
-                </div>
-
+        <!-- =============  Radio Buttons ============== -->
+            
                 <br>
                 <br>
-                <button class="btn btn-success" type="submit">Create</button>
+                <button class="btn btn-success" type="submit">Add</button>
             </form>
         </div>
-
     </div>
     <div class="card text-center m-auto" style="width: 345px" *ngIf="expenseCard">
+
+
+        <!-- =============  Expense Form ============== -->
         <div class="card-body">
             <form (ngSubmit) = "onSubmitExpense()" style="width: 300px" class="justify-content-center">
                 <label> Create an Expense </label><br><br>
                 <div class="form-group">
-                    <label for="saveAmount">Expense name:</label><br>
-                    <input type="text" class="form-control" id="saveAmount" [(ngModel)]="expense.expense_name" name="expense_name">
+                    <label for="saveAmount">Expense Name:</label><br>
+                    <input type="text" class="form-control" id="expense_name" [(ngModel)]="expense.expense_name" name="expense_name">
                 </div>
 
                 <br>
 
                 <div class="form-group">
                     <label >Expense Amount:</label><br>
-                    <input type="text" class="form-control"  [(ngModel)]="expense.amount" name="amount">
+                    <input type="number" class="form-control" id="amount" [(ngModel)]="expense.amount" name="amount">
                 </div>
-
                 <br>
-
                 <div class="form-group">
-                    <label >Frequency:</label><br>
-                    <input type="text" class="form-control" [(ngModel)]="expense.frequency" name="Frequency">
+                    <label >Yearly Total Expense:</label><br>
+                    <label type="text" id="remainingAmount"> {{ this.expense.amount * 12 }}</label>
                 </div>
-
+                
                 <br>
                 <br>
-                <button class="btn btn-success" type="submit">Create</button>
+                <button class="btn btn-success" type="submit">Add</button>
             </form>
+        
         </div>
 
     </div>
     <div class="card text-center m-auto" style="width: 345px" *ngIf="goalsCard">
+
+        <!-- =============  Goal Form ============== -->
         <div class="card-body">
             <form (ngSubmit) = "onSubmitGoal()" style="width: 300px" class="justify-content-center">
                 <label> Create a Goal </label><br><br>
@@ -81,13 +81,14 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <label >Remaining (Income - Expense): <!--{{ remaining = income - expense }}--></label><br>
+
+                    <label >Remaining (Income - Expense):</label><br>
                     
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="saveAmount">Saved Amount:</label><br>
-                    <input type="text" class="form-control" id="saveAmount" [(ngModel)]="goal.saveAmount" name="saveAmount">
+                    <label for="saveAmount">Saved Balance:</label><br>
+                    <input type="number" class="form-control" id="saveAmount" [(ngModel)]="goal.saveAmount" name="saveAmount">
                 </div>
                 <br>
 
@@ -100,7 +101,7 @@
 
                 <div class="form-group">
                     <label for="time_in_months">Months to Goal:</label><br>
-                    <input type="text" class="form-control" id="time_in_months" [(ngModel)]="goal.time_in_months" name="time_in_months">
+                    <input type="number" class="form-control" id="time_in_months" [(ngModel)]="goal.time_in_months" name="time_in_months">
                 </div>
 
                 <br>
@@ -115,30 +116,26 @@
 </div>
 <br>
 <br>
-
-
 <mat-tab-group #tabs>
+
+        <!-- =============  Income Tab ============== -->
 
     <mat-tab label="Income" id="income">
         <table class = "table table-striped">
             <thead>
             <tr>
-                <th> Income Source</th>
-                <th>  Amount</th>
-                <th> frequency</th>
-                
+                <th> Income Title</th>
+                <th> Yearly Income</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor = "let income of incomes" >
                 <td> {{income.description}}</td>
                 <td > {{income.amount}} </td>
-                <td> {{income.frequency}}</td>
-        
                 <td>
                     <button (click) = "updateIncome(income.id)" title="Update Income" class = "btn btn-secondary" style="margin-left: 15px"> Update income </button>
                     <button (click) = "deleteIncome(income.id)" title="Delete income" class = "btn btn-danger" style="margin-left: 15px"> Delete income </button>
-                    </td>
+                </td>
 
             </tr>
 
@@ -147,6 +144,8 @@
     </mat-tab>
    
 
+        <!-- =============  Expense Tab ============== -->
+
     <mat-tab label="Expense" id="expense">
         
         <table class = "table table-striped">
@@ -154,26 +153,24 @@
             <tr>
                 <th> Expense Name</th>
                 <th> Expense Amount</th>
-                <th> frequency</th>
-                
+                <th> Yearly Total Expense</th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor = "let expense of expenses" >
                 <td> {{expense.expense_name}}</td>
                 <td > {{expense.amount}} </td>
-                <td> {{expense.frequency}}</td>
-        
+                <td> {{expense.total}}</td>
                 <td>
                     <button (click) = "updateExpense(expense.id)" title="Update Expense" class = "btn btn-secondary" style="margin-left: 15px"> Update expense </button>
                     <button (click) = "deleteExpense(expense.id)" title="Delete expense" class = "btn btn-danger" style="margin-left: 15px"> Delete expense </button>
-                    </td>
-
+                </td>
             </tr>
-
             </tbody>
             </table>
     </mat-tab>
+
+        <!-- =============  Goal Tab ============== -->
 
     <mat-tab label="Goals" id="goal">
         <table class = "table table-striped">
@@ -192,17 +189,14 @@
                 <td > {{goal.saveAmount}} </td>
                 <td> {{goal.goalAmount}}</td>
                 <td> {{goal.time_in_months}}</td>
-                <td> {{  goal.monthlyPayment }} </td>
+                <td> {{ goal.monthlyPayment }} </td>
                 <td>
                     <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-secondary" style="margin-left: 15px"> Update goal </button>
                     <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal </button>
                     <button (click) = "goToGoalDetails(goal.id)" title="View Goal Details" class = "btn btn-primary" style="margin-left: 15px"> View Goal Details </button>
                 </td>
-
             </tr>
-
             </tbody>
-            <!-- Another Commment for Github -->
         </table>
     </mat-tab>
 </mat-tab-group>

@@ -52,8 +52,6 @@ public class IncomeController
         income.setAmount(incomeInput.getAmount());
         income.setFrequency(incomeInput.getFrequency());
         income.setDescription(incomeInput.getDescription());
-
-
         return this.incomeRepository.save(income);
     }
 

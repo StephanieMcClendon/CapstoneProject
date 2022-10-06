@@ -23,6 +23,7 @@ export class GoalDetailsComponent implements OnInit {
   save_amount = this.goal.saveAmount;
   // presentDate = this.goal.presentDate;
   // startDate = this.goal.startDate;
+  monthly!: number;
   currDate: Date = new Date();
   cDate: CurrDate = new CurrDate(this.currDate.getMonth(), this.currDate.getDay(), this.currDate.getFullYear());
   
@@ -51,7 +52,7 @@ export class GoalDetailsComponent implements OnInit {
       this.pieChartData.datasets[0].data[0] = this.goal.saveAmount;
       this.pieChartData.datasets[0].data[1] = this.goal_amount;
       this.chart?.update();
-      this.goal.time_in_months = Math.round(this.goal_amount / 30);
+      this.goal.monthlyPayment = Math.round(this.goal_amount / this.goal.time_in_months);
       // convert into days
       // this.trackDays = Math.floor((this.presentDate - this.startDate) / (1000*60*60*24));
       // this.presentDate = this.currDate.getDate();
@@ -93,7 +94,7 @@ export class GoalDetailsComponent implements OnInit {
 
   updateGoal(id: number){
     this.router.navigate(['update-goal', id]);
-  }
+    }
   }
 
   

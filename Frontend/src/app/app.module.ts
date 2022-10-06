@@ -27,9 +27,10 @@ import { LogoutComponent } from './logout/logout.component';
 import { UpdateGoalComponent } from './update-goal/update-goal.component';
 import { MatTabsModule } from "@angular/material/tabs";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgParticlesModule } from "ng-particles";
 import { UpdateExpenseComponent } from './update-expense/update-expense.component';
+import { RegisterComponent } from './register/register.component';
 
-export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1);
 
 
 @NgModule({
@@ -39,15 +40,15 @@ export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1
     GoalDetailsComponent,
       GoalListComponent,
       ExpenseComponent,
-     LoginComponent,
-     // IncomeDetailsComponent,
+      LoginComponent,
       IncomeListComponent,
       CreateIncomeComponent,
       UpdateIncomeComponent,
     LogoutComponent,
     UpdateGoalComponent,
     DashboardComponent,
-    UpdateExpenseComponent
+    UpdateExpenseComponent,
+    RegisterComponent
 
   ],
     imports: [
@@ -58,7 +59,8 @@ export const googleChartsConfigSubject = new ReplaySubject<GoogleChartsConfig>(1
         HttpClientModule,
         FormsModule,
         NgChartsModule,
-        MatTabsModule
+        MatTabsModule,
+        NgParticlesModule
     ],
 
   providers: [],

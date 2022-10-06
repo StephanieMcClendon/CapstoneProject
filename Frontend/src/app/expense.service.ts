@@ -17,7 +17,7 @@ export class ExpenseService {
     return this.httpClient.get<Expense[]>(`${this.baseURL}`);
   }
 
-  createExpense(expense: Expense): Observable<Object>{
+  createExpense(expense: Expense): Observable<any>{
     return this.httpClient.post(`${this.baseURL}`, expense);
   }
 

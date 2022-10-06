@@ -21,9 +21,9 @@ public class Income {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private double income_source;
-    private double amount;
+    private double amount; // income amount we are using in angular
     private int frequency;
-    private String description;
+    private String description; // income name we are using in angular
 
     @ManyToOne
     @JsonIgnore
