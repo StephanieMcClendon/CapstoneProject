@@ -29,6 +29,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgParticlesModule } from "ng-particles";
 import { UpdateExpenseComponent } from './update-expense/update-expense.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -39,14 +40,15 @@ import { UpdateExpenseComponent } from './update-expense/update-expense.componen
     GoalDetailsComponent,
       GoalListComponent,
       ExpenseComponent,
-     LoginComponent,
+      LoginComponent,
       IncomeListComponent,
       CreateIncomeComponent,
       UpdateIncomeComponent,
     LogoutComponent,
     UpdateGoalComponent,
     DashboardComponent,
-    UpdateExpenseComponent
+    UpdateExpenseComponent,
+    RegisterComponent
 
   ],
     imports: [

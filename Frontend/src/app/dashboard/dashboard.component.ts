@@ -7,7 +7,6 @@ import { IncomeService } from '../income.service';
 import { Income } from '../income';
 import { Expense } from '../expense';
 import { ExpenseService } from '../expense.service';
-import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,27 +18,29 @@ export class DashboardComponent implements OnInit {
   @ViewChild('tabs') tabGroup!: MatTabGroup;
 
   // Goals
-  goals?: any[];
+  goals?: Goal[];
   goal: Goal = new Goal();
-
-  // Income
-  incomes?: any[];
-  income: Income = new Income();
-
-  // Expenses
-  expenses?: any[];
-  expense: Expense = new Expense();
-
+  incomeCard = false;
+  expenseCard = false;
+  goalsCard = false;
   searchText: any;
   saveAmount: number = this.goal.saveAmount;
   monthlyPayment: number = this.goal.monthlyPayment;
+  // Income
+  incomes?: any[];
+  income: Income = new Income();
+  // Expenses
+  expenses?: any[];
+  expense: Expense = new Expense();
   incomeAmount: number = this.income.amount;
   expenseAmount: number = this.expense.amount;
   remainingAmount: number = 0;
-  monthToYear = 0;
+  monthToYear: number = 0;
+  totalIncome!: number;
+  totalExpense!: number;
 
 
-  constructor(@Inject (DOCUMENT) private document: Document,
+  constructor(
     private goalService: GoalService,
    private expenseService: ExpenseService,
    private incomeService: IncomeService,
@@ -49,30 +50,19 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGoals();
+    console.log(this.goals)
     this.getExpenses();
-    this.getIncomeList();
-    
-    console.log("remaining amount: "+this.remainingAmount);
+    this.getIncome();
+    console.log("remaining amount: " + this.remainingAmount);
+
   }
+
+  // ** GOAL Methods **
 
   ngAfterViewInit(): void {
     //default tab
     this.tabGroup.selectedIndex = 2;
   }
-
-  // radio buttons
-  // display() { 
-  //   var checkRadio = document.querySelector('input[name="flexRadioDefault"]:checked');
-      
-  //   if(checkRadio != null) {
-  //       console.log((<HTMLInputElement>checkRadio).value);
-  //       (<HTMLInputElement>document.getElementById("disp")).innerHTML = (<HTMLInputElement>checkRadio).value + " radio button checked";
-  //   }
-  //   else {
-  //       console.log("Nothing selected");
-  //       (<HTMLInputElement>document.getElementById("disp")).innerHTML = "No one selected";
-  //   }
-  // }
 
 
   /* ***************  GOAL Methods  ****************************** */
@@ -116,7 +106,8 @@ export class DashboardComponent implements OnInit {
           console.log(data);
           this.getGoals();
         },
-        error => console.log(error));
+        error => console.log(error)
+    );
   }
 
   goToGoalList(){
@@ -141,15 +132,21 @@ export class DashboardComponent implements OnInit {
     this.incomeService.getIncomeList().subscribe(data => {
       this.incomes = data;
       console.log(this.incomes);
+      this.totalIncome = 0;
+      for(let i = 0; i < this.incomes.length; i++){
+        this.totalIncome += this.incomes[i].amount;
+      }
+      console.log("" + this.totalIncome);
     });
   }
 
-  private getIncomeList(){
-    this.incomeService.getIncomeList().subscribe(data => {
-      this.incomes = data;
-      console.log(this.incomes);
-    });
-  }
+  // private getIncomeList(){
+  //   this.incomeService.getIncomeList().subscribe(data => {
+  //     this.incomes = data;
+      
+  //     console.log(this.incomes);
+  //   });
+  // }
 
   updateIncome(id: number){
     this.router.navigate(['update-income', id]);
@@ -158,7 +155,7 @@ export class DashboardComponent implements OnInit {
   deleteIncome(id: number){
     this.incomeService.deleteIncome(id).subscribe( data => {
       console.log(data);
-      this.getIncomeList();
+      this.getIncome();
     })
   }
 
@@ -213,6 +210,24 @@ export class DashboardComponent implements OnInit {
     console.log("month to year: "+this.monthToYear);
     this.expense.total = this.monthToYear;
     this.saveExpense();
+  }
+
+  showForms() {
+    this.incomeCard = !this.incomeCard;
+    this.expenseCard = !this.expenseCard;
+    this.goalsCard = !this.goalsCard;
+  }
+
+
+  displayIncomeMinusExpense(){
+    this.remainingAmount = this.incomeAmount - this.expenseAmount;
+    var label = document.querySelector("remainingAmount");
+    var incomeAmount = document.getElementById("incomeAmount");
+    var expenseAmount = document.getElementById("amount");
+      
+    console.log((<HTMLInputElement>label).value);
+    (<HTMLInputElement>document.getElementById("remainingAmount")).innerHTML = `${this.remainingAmount}`;
+
   }
 
 }

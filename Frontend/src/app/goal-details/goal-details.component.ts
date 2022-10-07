@@ -2,10 +2,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Goal } from '../goal';
 import { GoalService } from '../goal.service';
+import { Expense } from '../expense';
+import { Income } from '../income';
 
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { IncomeService } from '../income.service';
+import { ExpenseService } from '../expense.service';
 
 @Component({
   selector: 'app-goal-details',
@@ -17,6 +21,8 @@ export class GoalDetailsComponent implements OnInit {
   id!: number;
   result: number = 0;
   goal: Goal = new Goal();
+  income: Income = new Income();
+  expense: Expense = new Expense();
   goal_id = this.goal.id;
   goal_amount!: number;
   save_amount = this.goal.saveAmount;
@@ -24,14 +30,20 @@ export class GoalDetailsComponent implements OnInit {
   currentProgress: String = "";
   goalTotal: String = "";
 
+  // expense
+  remainingAmount!: number;
+  
   constructor(private goalService: GoalService,
-              private route: ActivatedRoute,
-              private router: Router) { }
+    private incomeService: IncomeService,
+    private expenseService: ExpenseService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     console.log(this.goal_amount);
     this.loadGoals(this.id);
+    this.remainingAmount = this.income.amount - this.expense.amount;
   }
 
   public loadGoals(goalId: number)

@@ -1,9 +1,18 @@
 
-        <!-- =============  Income Form ============== -->
-<html>
-<div class="row">
 
-    <div class="card text-center m-auto" style="width: 360px;">
+<a class="btn btn-outline-primary" (click)="showForms()"> Toggle Create Forms <i class="fa fa-sliders"></i> </a>
+
+
+
+<!--    <a class="btn btn-outline-primary" (click)="showForms()"></a>-->
+<div style="margin-top: 10px">
+<div class="row" >
+
+    <div class="card text-center m-auto" style="width: 345px" *ngIf="incomeCard">
+
+        <!-- =============  Income Form ============== -->
+
+
         <div class="card-body">
             <form (ngSubmit) = "onSubmitIncome()" style="width: 300px" class="justify-content-center">
                 <label> Create an Income </label><br><br>
@@ -27,11 +36,10 @@
             </form>
         </div>
     </div>
+    <div class="card text-center m-auto" style="width: 345px" *ngIf="expenseCard">
 
 
         <!-- =============  Expense Form ============== -->
-
-    <div class="card text-center m-auto" style="width: 360px">
         <div class="card-body">
             <form (ngSubmit) = "onSubmitExpense()" style="width: 300px" class="justify-content-center">
                 <label> Create an Expense </label><br><br>
@@ -49,7 +57,7 @@
                 <br>
                 <div class="form-group">
                     <label >Yearly Total Expense:</label><br>
-                    <label type="text" id="remainingAmount"> ${{ this.expense.amount * 12 }}</label>
+                    <label type="text" id="remainingAmount" *ngIf="this.expense.amount != null"> ${{ this.expense.amount * 12 }}</label>
                 </div>
                 
                 <br>
@@ -60,10 +68,9 @@
         </div>
 
     </div>
+    <div class="card text-center m-auto" style="width: 345px" *ngIf="goalsCard">
 
         <!-- =============  Goal Form ============== -->
-
-    <div class="card text-center m-auto" style="width: 360px">
         <div class="card-body">
             <form (ngSubmit) = "onSubmitGoal()" style="width: 300px" class="justify-content-center">
                 <label> Create a Goal </label><br><br>
@@ -74,7 +81,8 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="remaining" id="remainingAmount" name="remainingAmount">Remaining (Income - Expense):</label><br>
+
+                    <label >Remaining (Income - Expense):</label><br>
                     
                 </div>
                 <br>
@@ -105,9 +113,9 @@
     </div>
 
 </div>
+</div>
 <br>
 <br>
-
 <mat-tab-group #tabs>
 
         <!-- =============  Income Tab ============== -->
@@ -192,4 +200,4 @@
         </table>
     </mat-tab>
 </mat-tab-group>
-</html>
+

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Goal } from '../goal';
 import { GoalService } from '../goal.service';
+
 import { MatTabGroup } from '@angular/material/tabs';
 import {DashboardComponent} from "../dashboard/dashboard.component";
 import { Location } from '@angular/common'
