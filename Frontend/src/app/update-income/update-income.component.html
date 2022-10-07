@@ -1,1 +1,30 @@
-<p>update-income works!</p>
+<p>Update goal</p>
+<div class="card text-center" style="width: 335px">
+    <div class="card-body">
+        <!-- <div>
+            <label>Expense Name:</label> {{ expense.expense_name }}
+        </div> -->
+        <br>
+        <form (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+                <label>Expense Name:</label>
+                <input type="text" class="form-control" id="income_source" [(ngModel)]="income.description"
+                       name="income_source">
+            </div>
+            <div class="form-group">
+                <label>Expense Amount:</label>
+                <input type="text" class="form-control" id="amount" [(ngModel)]="income.amount"
+                       name="amount">
+            </div>
+            <br>
+
+            <br>
+            <button ></button>
+
+            <br>
+            <button class="btn btn-success" type="submit">Update</button>
+        </form>
+    </div>
+</div>
+

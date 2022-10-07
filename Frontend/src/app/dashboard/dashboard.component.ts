@@ -159,6 +159,7 @@ export class DashboardComponent implements OnInit {
   }
 
   updateIncome(id: number){
+
     this.router.navigate(['update-income', id]);
   }
 
