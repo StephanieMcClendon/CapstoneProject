@@ -25,7 +25,9 @@ public class Income {
     private int frequency;
     private String description; // income name we are using in angular
 
+
     @ManyToOne
+    @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 

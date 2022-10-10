@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../service/authentication.service";
 import {User} from "../model/user";
-import {HttpResponse} from "@angular/common/http";
+import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {NotificationService} from "../service/notification.service";
+import {NotificationType} from "../enum/notification-type";
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,7 @@ import {HttpResponse} from "@angular/common/http";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private authenticationService: AuthenticationService) { }
+  constructor(private router: Router, private authenticationService: AuthenticationService, private notificationService: NotificationService) { }
 
   ngOnInit(): void
   {
@@ -32,10 +34,19 @@ export class LoginComponent implements OnInit {
         }
         this.router.navigateByUrl('/calculator');
       },
-      error: err => {
-        console.log(err)
+      error: (errorResponse: HttpErrorResponse) =>
+      {
+        this.sendErrorNotification(NotificationType.ERROR, errorResponse.error.message);
       }
     });
+  }
+
+  private sendErrorNotification(notificationType: NotificationType, message: string): void {
+    if (message) {
+      this.notificationService.notify(notificationType, "Invalid Username or Password. Please try again.");
+    } else {
+      this.notificationService.notify(notificationType, 'An error occurred. Please try again.');
+    }
   }
 
 }

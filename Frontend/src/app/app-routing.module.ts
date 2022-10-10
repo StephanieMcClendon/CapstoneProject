@@ -10,20 +10,24 @@ import {AuthenticationGuard} from "./guard/authentication.guard";
 import { UpdateGoalComponent } from './update-goal/update-goal.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {RegisterComponent} from "./register/register.component";
+import {AdminDashboardComponent} from "./admin/admin-dashboard/admin-dashboard.component";
+import {UpdateIncomeComponent} from "./update-income/update-income.component";
 
 
 
 const routes: Routes = [
   {path: "calculator", component: CalculatorComponent},
-  {path: 'goal-details/:id', component: GoalDetailsComponent},
-  {path: 'goals', component: GoalListComponent},
-  {path: 'dashboard', component: DashboardComponent},
+  {path: 'goal-details/:id', component: GoalDetailsComponent, canActivate: [AuthenticationGuard], data: {role: "ROLE_USER"}},
+  {path: 'goals', component: GoalListComponent, canActivate: [AuthenticationGuard], data: {role: "ROLE_USER"}},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthenticationGuard], data: {role: "ROLE_USER"}},
   {path: "login", component: LoginComponent},
   {path: "logout", component: LogoutComponent, canActivate: [AuthenticationGuard]},
   {path: "register", component: RegisterComponent},
-  {path: "update-goal/:id", component: UpdateGoalComponent},
+  {path: "update-goal/:id", component: UpdateGoalComponent, canActivate: [AuthenticationGuard], data: {role: "ROLE_USER"}},
+  {path: "update-expense/:id", component: UpdateExpenseComponent, canActivate: [AuthenticationGuard], data: {role: "ROLE_USER"}},
+  {path: "update-income/:id", component: UpdateIncomeComponent, canActivate: [AuthenticationGuard], data: {role: "ROLE_USER"}},
+  {path: "admin/dashboard", component: AdminDashboardComponent,  canActivate: [AuthenticationGuard], data: {role: "ROLE_ADMIN"}},
   {path: "", redirectTo: "calculator", pathMatch: "full"},
-  {path: "update-expense/:id", component: UpdateExpenseComponent}
   ];
 
 

@@ -32,20 +32,20 @@ export class GoalListComponent implements OnInit {
   ngOnInit(): void {
     // @JsonIgnore in spring boot to avoid over populating db
     // OR update application.properties to update db instead of create
-    this.getGoals();
+    // this.getGoals();
     console.log(this.goals)
   }
 
-  private getGoals(){
-    this.goalService.getGoalsList().subscribe(data => {
-      this.goals = data;
-      this.goal.time_in_months = Math.round(this.goal.goalAmount / 30);
-      // this.trackDays = Math.floor((this.presentDate.getTime() - this.startDate.getTime()) / (1000*60*60*24));
-      // this.presentDate = this.cDate;
-      // this.dt = this.cDate.returnDate();
-      console.log(this.goals);
-    });
-  }
+  // private getGoals(){
+  //   this.goalService.getGoalsList().subscribe(data => {
+  //     this.goals = data;
+  //     this.goal.time_in_months = Math.round(this.goal.goalAmount / 30);
+  //     // this.trackDays = Math.floor((this.presentDate.getTime() - this.startDate.getTime()) / (1000*60*60*24));
+  //     // this.presentDate = this.cDate;
+  //     // this.dt = this.cDate.returnDate();
+  //     console.log(this.goals);
+  //   });
+  // }
 
   goToGoalDetails(id: number){
     this.router.navigate(['goal-details', id]);
@@ -60,20 +60,20 @@ export class GoalListComponent implements OnInit {
     this.goalService.deleteGoal(id).subscribe( data => {
       console.log(data);
       this.goToGoalList();
-      this.getGoals();
+      // this.getGoals();
     })
   }
 
-  saveGoal(){
-    // this.presentDate = this.cDate;
-    // this.dt = this.cDate.returnDate();
-    this.goalService.createGoal(this.goal).subscribe( data =>{
-      console.log(data);
-      
-      this.getGoals();
-    },
-    error => console.log(error));
-  }
+  // saveGoal(){
+  //   // this.presentDate = this.cDate;
+  //   // this.dt = this.cDate.returnDate();
+  //   this.goalService.createGoal(this.goal).subscribe( data =>{
+  //     console.log(data);
+  //
+  //     this.getGoals();
+  //   },
+  //   error => console.log(error));
+  // }
 
   goToGoalList(){
     this.router.navigate(['/dashboard']);
@@ -82,6 +82,6 @@ export class GoalListComponent implements OnInit {
   onSubmit(){
     // user_id = user id of current user logged in
     
-    this.saveGoal();
+    // this.saveGoal();
   }
 }

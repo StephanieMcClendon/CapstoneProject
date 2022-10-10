@@ -13,7 +13,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
