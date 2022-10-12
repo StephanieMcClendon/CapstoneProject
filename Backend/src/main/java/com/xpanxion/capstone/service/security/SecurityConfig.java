@@ -1,4 +1,4 @@
-package com.xpanxion.capstone.security;
+package com.xpanxion.capstone.service.security;
 
 import com.xpanxion.capstone.model.User;
 import com.xpanxion.capstone.repository.UserRepository;

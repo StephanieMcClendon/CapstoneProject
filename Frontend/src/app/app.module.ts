@@ -1,3 +1,4 @@
+import { NgParticlesModule } from 'ng-particles';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -27,10 +28,10 @@ import { LogoutComponent } from './logout/logout.component';
 import { UpdateGoalComponent } from './update-goal/update-goal.component';
 import { MatTabsModule } from "@angular/material/tabs";
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { NgParticlesModule } from "ng-particles";
+
 import { UpdateExpenseComponent } from './update-expense/update-expense.component';
 import { RegisterComponent } from './register/register.component';
-import {NotifierModule} from "angular-notifier";
+
 import {NotificationModule} from "./notification.module";
 import {NotificationService} from "./service/notification.service";
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
@@ -53,9 +54,8 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
     DashboardComponent,
     UpdateExpenseComponent,
     RegisterComponent,
-    AdminDashboardComponent
-
-  ],
+    AdminDashboardComponent,],
+    
     imports: [
         BrowserModule,
         AppRoutingModule,

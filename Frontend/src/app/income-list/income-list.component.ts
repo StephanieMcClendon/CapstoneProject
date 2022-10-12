@@ -1,6 +1,6 @@
+import { Income } from './../income';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Income } from '../income';
 import { IncomeService } from '../income.service';
 
 @Component({
@@ -14,15 +14,17 @@ amount: any;
 frequecy: any;
 description: any;
 user_id: any;
-onSubmit() {
-throw new Error('Method not implemented.');
-}
+
  incomes?:Income[];
+
+ income:Income= new Income();
  
   constructor(private incomeService:IncomeService, private router: Router) {
 
    }
-
+   onSubmit() {
+    throw new Error('Method not implemented.');
+    }
   ngOnInit(): void {
     // this.getIncomes();
   }
