@@ -10,7 +10,9 @@ import {NotificationType} from "../enum/notification-type";
 })
 export class AuthenticationGuard implements CanActivate {
 
-  constructor(private authenticationService: AuthenticationService, private router: Router, private notificationService: NotificationService) {
+  constructor(private authenticationService: AuthenticationService, 
+    private router: Router, 
+    private notificationService: NotificationService) {
 
   }
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

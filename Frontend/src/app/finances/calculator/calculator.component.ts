@@ -51,7 +51,6 @@ export class CalculatorComponent implements OnInit {
 
   chartLabels: number[] = [];
 
-
   public chartOptions: ChartConfiguration<'line'>['options'] = {
     responsive: true,
     maintainAspectRatio: true
