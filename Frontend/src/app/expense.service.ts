@@ -13,12 +13,12 @@ export class ExpenseService {
 
   constructor(private httpClient: HttpClient) { }
   
-  getExpenseList(): Observable<Expense[]>{
-    return this.httpClient.get<Expense[]>(`${this.baseURL}`);
+  getExpenseList(userId: number): Observable<Expense[]>{
+    return this.httpClient.get<Expense[]>(`${this.baseURL}/user/${userId}`);
   }
 
-  createExpense(expense: Expense): Observable<any>{
-    return this.httpClient.post(`${this.baseURL}`, expense);
+  createExpense(expense: Expense, userId: number): Observable<any>{
+    return this.httpClient.post(`${this.baseURL}/${userId}`, expense);
   }
 
   getExpenseById(id: number): Observable<Expense>{

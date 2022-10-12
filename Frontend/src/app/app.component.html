@@ -1,4 +1,7 @@
 <div >
+    <style>
+        
+    </style>
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">We Budget</a>
@@ -10,8 +13,14 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" routerLink="/calculator">Calculator</a>
                 </li>
+
                 <li class="nav-item">
+
+                <li class="nav-item" *ngIf="loggedIn() && ifUser()">
                     <a class="nav-link active" aria-current="page" routerLink="/dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item" *ngIf="loggedIn() && ifAdmin()">
+                    <a class="nav-link active" aria-current="page" routerLink="/admin/dashboard">Admin Dashboard</a>
                 </li>
 <!--                <li class="nav-item dropdown">-->
 <!--                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
@@ -26,13 +35,13 @@
 <!--                </li>-->
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item" *ngIf="!isLoggedIn">
-                    <a class="nav-link active" aria-current="page" routerLink="/login" >Login</a>
+                <li class="nav-item" *ngIf="!loggedIn()">
+                    <a class="nav-link active" aria-current="page" routerLink="/login">Login</a>
                 </li>
-                <li class="nav-item" *ngIf="isLoggedIn">
+                <li class="nav-item" *ngIf="loggedIn()">
                     <a class="nav-link active" aria-current="page" routerLink="/logout">Logout</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="!loggedIn()">
                     <a class="nav-link active" aria-current="page" routerLink="/register">Register</a>
                 </li>
             </ul>
@@ -62,5 +71,6 @@
 <div class="container" style="margin-top: 20px">
 
     <router-outlet></router-outlet>
+    <notifier-container></notifier-container>
 </div>
 </div>

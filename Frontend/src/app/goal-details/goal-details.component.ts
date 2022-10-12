@@ -58,7 +58,6 @@ export class GoalDetailsComponent implements OnInit {
       this.pieChartData.datasets[0].data[1] = (this.goal_amount / this.goal.goalAmount) * 100;
       this.chart?.update();
       this.goal.monthlyPayment = Math.round(this.goal_amount / this.goal.time_in_months);
-
     });
   }
 

@@ -23,6 +23,7 @@ export class UpdateGoalComponent implements OnInit {
   num: number = 1;
 
   constructor(private goalService: GoalService,
+
     private location: Location,
     private route: ActivatedRoute,
     private router: Router) { }

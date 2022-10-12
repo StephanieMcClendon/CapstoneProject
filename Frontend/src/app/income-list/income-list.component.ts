@@ -9,29 +9,32 @@ import { IncomeService } from '../income.service';
   styleUrls: ['./income-list.component.css']
 })
 export class IncomeListComponent implements OnInit {
+
 income_source: any;
 amount: any;
 frequecy: any;
 description: any;
 user_id: any;
+
 onSubmit() {
 throw new Error('Method not implemented.');
 }
  incomes?:Income[];
+ income: Income = new Income();
  
   constructor(private incomeService:IncomeService, private router: Router) {
 
    }
 
   ngOnInit(): void {
-    this.getIncomes();
+    // this.getIncomes();
   }
-  private getIncomes(){
-    this.incomeService.getIncomeList().subscribe(data => {
-      this.incomes = data;
-    });
-   
-  }
+  // private getIncomes(){
+  //   this.incomeService.getIncomeList().subscribe(data => {
+  //     this.incomes = data;
+  //   });
+  //
+  // }
   incomeDetails(id: number){
     this.router.navigate(['income-details', id]);
   }
@@ -43,7 +46,7 @@ throw new Error('Method not implemented.');
   deleteIncome(id: number){
     this.incomeService.deleteIncome(id).subscribe( data => {
       console.log(data);
-      this.getIncomes();
+      // this.getIncomes();
     })
   }
 }

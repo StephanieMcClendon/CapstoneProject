@@ -1,20 +1,21 @@
-import { Component, Inject, Injectable, OnInit, ViewChild } from '@angular/core';
-import {Goal} from "../goal";
-import {GoalService} from "../goal.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
-import { IncomeService } from '../income.service';
-import { Income } from '../income';
-import { Expense } from '../expense';
-import { ExpenseService } from '../expense.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Expense } from 'src/app/expense';
+import { ExpenseService } from 'src/app/expense.service';
+import { Goal } from 'src/app/goal';
+import { GoalService } from 'src/app/goal.service';
+import { Income } from 'src/app/income';
+import { IncomeService } from 'src/app/income.service';
+import { User } from 'src/app/model/user';
+import { UserService } from 'src/app/user.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-admin-dashboard',
+  templateUrl: './admin-dashboard.component.html',
+  styleUrls: ['./admin-dashboard.component.css']
 })
-
-export class DashboardComponent implements OnInit {
+export class AdminDashboardComponent implements OnInit {
   @ViewChild('tabs') tabGroup!: MatTabGroup;
 
   // Goals
@@ -39,15 +40,16 @@ export class DashboardComponent implements OnInit {
   totalIncome!: number;
   totalExpense!: number;
   id: number = JSON.parse(localStorage.getItem("id")!);
-
-
-  constructor(
-    private goalService: GoalService,
-   private expenseService: ExpenseService,
-   private incomeService: IncomeService,
-   private route: ActivatedRoute,
-   private router: Router) { }
-
+  // User
+  users?: any[];
+  user: User = new User();
+  
+  constructor(private goalService: GoalService,
+    private expenseService: ExpenseService,
+    private incomeService: IncomeService,
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getGoals();
@@ -55,16 +57,7 @@ export class DashboardComponent implements OnInit {
     this.getExpenses();
     this.getIncome();
     console.log("remaining amount: "+this.remainingAmount);
-
   }
-
-  // ** GOAL Methods **
-
-  ngAfterViewInit(): void {
-    //default tab
-    this.tabGroup.selectedIndex = 2;
-  }
-
 
   /* ***************  GOAL Methods  ****************************** */
 
@@ -236,5 +229,45 @@ export class DashboardComponent implements OnInit {
     (<HTMLInputElement>document.getElementById("remainingAmount")).innerHTML = `${this.remainingAmount}`;
 
   }
+
+  /* *************** User Methods ****************************** */
+
+
+  private getUsers(){
+    this.userService.getUserList(this.id).subscribe(data => {
+      this.users = data;
+      console.log(this.users);
+    });
+  }
+
+  updateUser(id: number){
+    this.router.navigate(['update-user', id]);
+  }
+
+  deleteUser(id: number){
+    this.expenseService.deleteExpense(id).subscribe( data => {
+      console.log(data);
+      this.getUsers();
+    })
+  }
+
+  saveUser(){
+    this.userService.createUser(this.user, this.id).subscribe( data =>{
+          console.log(data);
+        this.getUsers();
+        },
+        error => console.log(error));
+  }
+
+  onSubmitUser() {
+    // swipes to expense tab
+    this.tabGroup.selectedIndex = 1;
+    this.monthToYear = this.expense.amount * 12;
+    console.log("month to year: "+this.monthToYear);
+    this.expense.total = this.monthToYear;
+    this.tabGroup.selectedIndex = 3;
+    this.saveUser();
+  }
+  
 
 }

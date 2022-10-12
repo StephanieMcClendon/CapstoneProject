@@ -12,10 +12,12 @@ export class RegisterComponent implements OnInit {
 
   user: User = new User();
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+  constructor(private authenticationService: AuthenticationService, 
+    private router: Router) { }
 
   ngOnInit(): void
   {
+
   }
 
   onSubmit(user: any)
