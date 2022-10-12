@@ -3,6 +3,7 @@ import { Income } from '../income';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { IncomeService } from '../income.service';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-update-income',
@@ -10,7 +11,7 @@ import { IncomeService } from '../income.service';
   styleUrls: ['./update-income.component.css']
 })
 export class UpdateIncomeComponent implements OnInit {
-
+  user: User= new User();
   income : Income = new Income();
   id! : number;
 

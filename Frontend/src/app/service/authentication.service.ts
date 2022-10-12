@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {User} from "../model/user";
 import {Observable} from "rxjs";
 
@@ -10,12 +10,26 @@ export class AuthenticationService {
 
   baseApi: string = "http://localhost:8080"
 
+  public role!: String | null; 
+
   constructor(private http: HttpClient) { }
 
   public login(user: User): Observable<HttpResponse<any>>
   {
     return this.http.post<HttpResponse<any>>(`${this.baseApi}/api/v1/login`, user, {observe: 'response'});
   }
+
+  public register(user: User): Observable<User | HttpErrorResponse>
+  {
+    return this.http.post<User | HttpErrorResponse>(`${this.baseApi}/api/v1/register`, user);
+
+  }
+  public getRole()
+  {
+    this.role = JSON.parse(localStorage.getItem("role")!);
+    return this.role;
+  }
+
 
   public addUserToLocalCache(user: User): void
   {

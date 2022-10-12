@@ -1,6 +1,8 @@
+import { IfStmt } from '@angular/compiler';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {ChartConfiguration, ChartDataset, ChartOptions} from 'chart.js';
 import {BaseChartDirective} from "ng2-charts";
+import { AuthenticationService } from 'src/app/service/authentication.service';
 
 
 @Component({
@@ -56,13 +58,19 @@ export class CalculatorComponent implements OnInit {
 
   line: string = "line";
 
-  constructor() {
+  constructor(private authenticationService:AuthenticationService) {
   }
-
+      role: String | null= this.authenticationService.getRole();
   ngOnInit(): void
   {
+      if(this.role==null){
+        console.log("No User is logged in")
+      } 
+      else{
+        console.log("User is logged in")
+      }
     console.log("This is a simple calc")
-
+    
   }
 
 

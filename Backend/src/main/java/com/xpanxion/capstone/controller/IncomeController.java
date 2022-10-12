@@ -11,14 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-
-
-
 public class IncomeController
 {
     private final IncomeRepository incomeRepository;
      @Autowired
-        public IncomeController(IncomeRepository  incomeRepository) {// http://localhost:8080/api/v1/add-income
+     public IncomeController(IncomeRepository  incomeRepository) {// http://localhost:8080/api/v1/add-income
             this.incomeRepository = incomeRepository;
         }
 
@@ -55,8 +52,6 @@ public class IncomeController
         income.setAmount(incomeInput.getAmount());
         income.setFrequency(incomeInput.getFrequency());
         income.setDescription(incomeInput.getDescription());
-
-
         return this.incomeRepository.save(income);
     }
 
