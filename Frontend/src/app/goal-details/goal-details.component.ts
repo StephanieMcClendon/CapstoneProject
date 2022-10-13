@@ -10,6 +10,7 @@ import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { IncomeService } from '../income.service';
 import { ExpenseService } from '../expense.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-goal-details',
@@ -46,6 +47,10 @@ export class GoalDetailsComponent implements OnInit {
     this.remainingAmount = this.income.amount - this.expense.amount;
   }
 
+  ngAfterViewInit(): void {
+    
+  }
+
   public loadGoals(goalId: number)
   {
     this.goalService.getGoalById(this.id).subscribe( data => {
@@ -58,6 +63,10 @@ export class GoalDetailsComponent implements OnInit {
       this.pieChartData.datasets[0].data[1] = (this.goal_amount / this.goal.goalAmount) * 100;
       this.chart?.update();
       this.goal.monthlyPayment = Math.round(this.goal_amount / this.goal.time_in_months);
+      if(this.goal.saveAmount == this.goal.goalAmount){
+        console.log("CONGRATS!");
+        this.congratulations();
+      }
     });
   }
 
@@ -70,11 +79,13 @@ export class GoalDetailsComponent implements OnInit {
       plugins: {
         title: {
           display: true,
-          text: "Goal Current Progress"
+          text: "Goal Current Progress",
+          
       },
         legend: {
           display: true,
           position: 'top'
+          
         },
         datalabels: {
           formatter: (value, ctx) => {
@@ -87,7 +98,7 @@ export class GoalDetailsComponent implements OnInit {
     };
     public pieChartData: ChartData<'pie',number[]> = {
       
-      labels:[`Current Progress in ${this.currentProgress}%`, `Goal Amount in ${this.goalTotal}%`],
+      labels:[`Current Progress in ${this.currentProgress}%`, `Goal Remaining ${this.goalTotal}%`],
       datasets:[{
         data: []
       }]
@@ -98,6 +109,23 @@ export class GoalDetailsComponent implements OnInit {
   updateGoal(id: number){
     this.router.navigate(['update-goal', id]);
     }
+
+    congratulations(){
+  
+    Swal.fire({
+      title: 'Congratulations! You reached your goal!',
+      width: 600,
+      padding: '3em',
+      color: '#F9CA38',
+      background: '#fff',
+      backdrop: `
+        rgba(255, 218, 72,0.4)
+        url("./assets/confetti-44.webp")
+        center top
+        no-repeat
+      `
+    });
+  }
   }
 
   

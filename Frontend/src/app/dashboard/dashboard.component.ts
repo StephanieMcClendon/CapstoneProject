@@ -51,11 +51,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGoals();
-    console.log(this.goals)
     this.getExpenses();
     this.getIncome();
-    console.log("remaining amount: "+this.remainingAmount);
-
   }
 
   // ** GOAL Methods **
@@ -116,9 +113,8 @@ export class DashboardComponent implements OnInit {
   onSubmitGoal(){
     console.log(this.goal);
     // user_id = user id of current user logged in
-    this.monthlyPayment = (this.goal.goalAmount - this.goal.saveAmount) / this.goal.time_in_months;
-    console.log("remaining: "+ this.remainingAmount);
-    console.log("monthly: "+this.monthlyPayment);
+    this.monthlyPayment = ((this.goal.goalAmount - this.goal.saveAmount) / this.goal.time_in_months);
+    this.monthlyPayment = Math.floor(this.monthlyPayment * 100) / 100;
     this.goal.monthlyPayment = this.monthlyPayment;
     this.tabGroup.selectedIndex = 2;
     this.saveGoal();

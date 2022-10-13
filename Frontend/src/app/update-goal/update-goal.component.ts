@@ -23,7 +23,6 @@ export class UpdateGoalComponent implements OnInit {
   num: number = 1;
 
   constructor(private goalService: GoalService,
-
     private location: Location,
     private route: ActivatedRoute,
     private router: Router) { }
@@ -46,6 +45,10 @@ export class UpdateGoalComponent implements OnInit {
     this.goal.monthlyPayment = this.monthlyPayment;
     this.goalService.updateGoal(this.id, this.goal).subscribe( data =>{
       this.goToGoalDetails();
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate(['/update-user']);
+        this.tabGroup.selectedIndex = 2;
+    });
     }
     , error => console.log(error));
   }

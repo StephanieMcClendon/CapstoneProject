@@ -1,6 +1,5 @@
 <br>
-<div class="row">
-    <div class="card col-md-6 offset-md-3 offset-md-3">
+    <div class="card left m-auto" style="height: 300px; width: 400px">
        <div class="row">
         <header>
             <h3 style="text-align: center;"> Goal Details </h3>
@@ -10,33 +9,42 @@
     <div class="form-group" style="text-align:center">
       <button (click) = "updateGoal(this.id)" title = "Edit Goal" class = "btn btn-secondary" type="submit"> Edit </button>
     </div>
+    <br>
+    <br>
     <div>
       <!-- Swap logic -->
         <label style="margin-left: 20px"> <b> Goal Name: </b> </label> {{ goal.title }}
     </div>
+
     <div>
-        <label style="margin-left: 20px"> <b> Saved Balance: </b></label> {{ goal.saveAmount }}
+      <label style="margin-left: 20px"> <b> Goal Amount: </b></label> {{ goal.goalAmount }}
+  </div>
+    
+    <div>
+        <label style="margin-left: 20px"> <b> Saved Towards Goal: </b></label> {{ goal.saveAmount }}
+    </div>
+  
+    <div>
+        <!-- <label style="margin-left: 20px"> <b> Yearly Total Savings: </b> ${{ this.remainingAmount }}</label>  -->
+        <label style="margin-left: 20px"> <b> Monthly Savings: </b> ${{ goal.monthlyPayment }}</label> 
     </div>
     <div>
-        <label style="margin-left: 20px"> <b> Goal Amount: </b></label> {{ goal.goalAmount }}
+      <label style="margin-left: 20px"> <b> Goal Duration (Months): </b></label> {{ goal.time_in_months }}
     </div>
     <div>
-        <label style="margin-left: 20px"> <b> Save per month: </b> ${{ goal.monthlyPayment }}</label> 
-        <br>
-        <label style="margin-left: 20px"> <b> Yearly Total Savings: </b> ${{ this.remainingAmount }}</label> 
-        <label style="margin-left: 20px"> <b> Monthly Total Savings: </b> ${{ goal.monthlyPayment }}</label> 
-    </div>
+      <label style="margin-left: 20px"> <b> Months Left To Goal: </b></label> {{ goal.time_in_months - (goal.time_in_months * (this.goal.saveAmount / this.goal.goalAmount)) }}
+  </div>
     
   <br>
 </div>
 </div>
 </div>
-</div>
-
 
 <div>
+  <div class="card text-center m-auto center" style="width: 600px">
+    <div class="card-body">
     <div>
-      <div class="chart" style="display: block; width: 500px; height: 400px;">
+      <div class="chart" style="display: block; width: 600px; height: 400px; ">
         <canvas baseChart
                 [data]="pieChartData"
                 [type]="pieChartType"
@@ -46,6 +54,9 @@
       </div>
     </div>
   </div>
+  </div>
+</div>
+
   <!-- PieChart buttons
     // repurpose buttons for CRUD functions
   <div class="button-row">

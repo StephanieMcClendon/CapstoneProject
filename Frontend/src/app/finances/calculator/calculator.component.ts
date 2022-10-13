@@ -1,6 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+import { Router } from '@angular/router';
 import {ChartConfiguration, ChartDataset, ChartOptions} from 'chart.js';
 import {BaseChartDirective} from "ng2-charts";
+import { User } from 'src/app/model/user';
+import { AuthenticationService } from 'src/app/service/authentication.service';
+import { UserService } from 'src/app/user.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -21,6 +26,7 @@ export class CalculatorComponent implements OnInit {
   isAprShown: boolean = false;
   aprFormula!: number;
   totalValueForApr: number = 0;
+  loanAmount: number = 0;
 
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
@@ -58,20 +64,47 @@ export class CalculatorComponent implements OnInit {
   };
 
   line: string = "line";
-
-  constructor() {
+  
+  constructor(private authenticationService: AuthenticationService,
+    private userService: UserService,
+    private router: Router) {
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
+
+  role: string | null = this.authenticationService.getRole();
+  user: string | null = localStorage.getItem("user");
+  first_name!: string | null;
+  bool: boolean = false;
+  loggedIn: boolean = true;
 
   ngOnInit(): void
   {
+    this.first_name = JSON.parse(this.user!).firstname;
     console.log("This is a simple calc")
     this.aprTotal = 0;
+    
   }
 
   ngAfterViewInit(): void {
-    // location.reload();
+    // if(this.authenticationService.isUserLoggedIn()){
+      
+    //   this.successNotification();
+    // }
+    // else{
+    //   return;
+    // }
   }
 
+
+  reloadPage(){
+    this.router.navigateByUrl('/login', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/calculator'])
+  }); 
+  }
+
+  successNotification() {
+    Swal.fire('Login Success!', `Welcome, ${this.first_name}`, 'success');
+  }
 
   onSubmit() {
     this.monthlyPayment = ((this.savingsGoal - this.startingBalance) / ((this.months) + (this.years * 12)));

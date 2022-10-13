@@ -1,8 +1,11 @@
-<p>Update goal</p>
+
 <div class="card text-center" style="width: 335px">
 <div class="card-body">
     <div>
-        <label> Goal name: </label> {{ goal.title }}
+        <h2>Update Goal</h2>
+    </div>
+    <div>
+        <label > Goal name: <br><b>{{ goal.title }}</b></label> 
     </div>
     <br>
     <form (ngSubmit)="onSubmit()">
@@ -30,3 +33,5 @@
     </form>
 </div>
 </div>
+
+

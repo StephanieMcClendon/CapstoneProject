@@ -31,6 +31,7 @@
     "ng2-charts": "^4.0.1",
     "popper.js": "^1.16.1",
     "rxjs": "~7.5.0",
+    "sweetalert2": "^11.5.1",
     "tsparticles": "^2.3.4",
     "tsparticles-engine": "^2.3.3",
     "tsparticles-shape-confetti": "^1.14.2",

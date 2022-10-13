@@ -2,17 +2,17 @@
 
 <a class="btn btn-outline-primary" (click)="showForms()"> Toggle Create Forms <i class="fa fa-sliders"></i> </a>
 
-
-
 <!--    <a class="btn btn-outline-primary" (click)="showForms()"></a>-->
+
+
+ <!-- =============  Income Form ============== -->
+
+
 <div style="margin-top: 10px">
 <div class="row" >
 
     <div class="card text-center m-auto" style="width: 345px" *ngIf="incomeCard">
-
-        <!-- =============  Income Form ============== -->
-
-
+        
         <div class="card-body">
             <form (ngSubmit) = "onSubmitIncome()" style="width: 300px" class="justify-content-center">
                 <label> Create an Income </label><br><br>
@@ -26,9 +26,6 @@
                     <input type="number" class="form-control" id="incomeAmount" [(ngModel)]="income.amount" name="amount" >
                 </div>
                 <br>
-                
-
-        <!-- =============  Radio Buttons ============== -->
             
                 <br>
                 <br>
@@ -36,11 +33,12 @@
             </form>
         </div>
     </div>
+
+
+<!-- =============  Expense Form ============== -->
+
     <div class="card text-center m-auto" style="width: 345px" *ngIf="expenseCard">
 
-
-        <!-- =============  Expense Form ============== -->
-        
         <div class="card-body">
             <form (ngSubmit) = "onSubmitExpense()" style="width: 300px" class="justify-content-center">
                 <label> Create an Expense </label><br><br>
@@ -117,10 +115,11 @@
 </div>
 <br>
 <br>
+
+<!-- =============  Income Tab ============== -->
+
+
 <mat-tab-group #tabs>
-
-        <!-- =============  Income Tab ============== -->
-
     <mat-tab label="Income" id="income">
         <table class = "table table-striped">
             <thead>
@@ -132,7 +131,7 @@
             <tbody>
             <tr *ngFor = "let income of incomes" >
                 <td> {{income.description}}</td>
-                <td > {{income.amount}} </td>
+                <td > ${{income.amount}} </td>
                 <td>
                     <button (click) = "updateIncome(income.id)" title="Update Income" class = "btn btn-secondary" style="margin-left: 15px"> Update income </button>
                     <button (click) = "deleteIncome(income.id)" title="Delete income" class = "btn btn-danger" style="margin-left: 15px"> Delete income </button>
@@ -160,8 +159,8 @@
             <tbody>
             <tr *ngFor = "let expense of expenses" >
                 <td> {{expense.expense_name}}</td>
-                <td > {{expense.amount}} </td>
-                <td> {{expense.total}}</td>
+                <td > ${{expense.amount}} </td>
+                <td> ${{expense.total}}</td>
                 <td>
                     <button (click) = "updateExpense(expense.id)" title="Update Expense" class = "btn btn-secondary" style="margin-left: 15px"> Update expense </button>
                     <button (click) = "deleteExpense(expense.id)" title="Delete expense" class = "btn btn-danger" style="margin-left: 15px"> Delete expense </button>
@@ -187,10 +186,10 @@
             <tbody>
             <tr *ngFor = "let goal of goals" >
                 <td> {{goal.title}}</td>
-                <td > {{goal.saveAmount}} </td>
-                <td> {{goal.goalAmount}}</td>
+                <td > ${{goal.saveAmount}} </td>
+                <td> ${{goal.goalAmount}}</td>
                 <td> {{goal.time_in_months}}</td>
-                <td> {{ goal.monthlyPayment }} </td>
+                <td> ${{ goal.monthlyPayment }} </td>
                 <td>
                     <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-secondary" style="margin-left: 15px"> Update goal </button>
                     <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal </button>

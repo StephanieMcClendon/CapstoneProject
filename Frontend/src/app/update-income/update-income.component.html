@@ -1,9 +1,11 @@
-<p>Update income</p>
+
 <div class="card text-center" style="width: 335px">
 <div class="card-body">
-
     <div>
-        <label> Income: </label> {{ income.description }}
+        <h2>Update income</h2>
+    </div>
+    <div>
+        <label> Income: <b>{{ income.description }}</b></label>
     </div>
     <br>
     <form (ngSubmit)="onSubmit()">
@@ -18,6 +20,11 @@
             <input type="text" class="form-control" id=" income frequency" [(ngModel)]="income.frequency"
                 name="frequency">
         </div>
+
+        <br>
+        
+        <br>
+        <button class="btn btn-success" type="submit">Update</button>
        </form>
     </div>
 

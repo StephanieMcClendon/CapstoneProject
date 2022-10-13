@@ -17,7 +17,6 @@ public class IncomeController
 
     private UserRepository userRepository;
 
-
     @Autowired
     public IncomeController(IncomeRepository incomeRepository, UserRepository userRepository) {
         this.incomeRepository = incomeRepository;
