@@ -42,7 +42,7 @@ export class DashboardComponent implements OnInit {
 
 
   constructor(
-    private goalService: GoalService,
+      private goalService: GoalService,
    private expenseService: ExpenseService,
    private incomeService: IncomeService,
    private route: ActivatedRoute,
@@ -147,7 +147,7 @@ export class DashboardComponent implements OnInit {
   //   });
   // }
 
-  private getIncomeList(){
+  getIncomeList(){
     this.incomeService.getIncomeList(this.id).subscribe(data => {
       this.incomes = data;
       console.log(this.incomes);

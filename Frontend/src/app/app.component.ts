@@ -27,9 +27,9 @@ export class AppComponent {
 
   public loggedIn(): boolean
   {
-    if(this.authenticationService.isUserLoggedIn())
+    if (this.authenticationService.isUserLoggedIn())
     {
-      console.log("this role: "+this.role);
+      // console.log("this role: "+this.role);
       return true;
     }
     else{
@@ -39,7 +39,7 @@ export class AppComponent {
 
   public ifAdmin()
   {
-    if(this.role=="ROLE_ADMIN"){
+    if(this.authenticationService.getRole() == "ROLE_ADMIN"){
       return true;
     }
     else{
@@ -49,7 +49,7 @@ export class AppComponent {
 
   public ifUser()
   {
-    if(this.role=="ROLE_USER"){
+    if(this.authenticationService.getRole() == "ROLE_USER"){
       return true;
     }
     else{

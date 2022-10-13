@@ -56,6 +56,7 @@ export class AdminDashboardComponent implements OnInit {
     console.log(this.goals)
     this.getExpenses();
     this.getIncome();
+    this.getUsers();
     console.log("remaining amount: "+this.remainingAmount);
   }
 
@@ -233,8 +234,8 @@ export class AdminDashboardComponent implements OnInit {
   /* *************** User Methods ****************************** */
 
 
-  private getUsers(){
-    this.userService.getUserList(this.id).subscribe(data => {
+  getUsers(){
+    this.userService.getAllUsers().subscribe(data => {
       this.users = data;
       console.log(this.users);
     });
