@@ -31,7 +31,8 @@ export class AuthenticationService {
     localStorage.setItem("username", JSON.stringify(user?.username));
     localStorage.setItem("id", JSON.stringify(user?.id));
     localStorage.setItem("role", JSON.stringify(user?.role));
-    localStorage.setItem("auth_token98329293", JSON.stringify(user))
+    localStorage.setItem("auth_token98329293", JSON.stringify(user));
+    localStorage.setItem("firstname", JSON.stringify(user?.firstName));
   }
 
   public isUserLoggedIn(): boolean
@@ -58,5 +59,6 @@ export class AuthenticationService {
     localStorage.removeItem("username");
     localStorage.removeItem("role");
     localStorage.removeItem("auth_token98329293");
+    localStorage.removeItem("firstname");
   }
 }

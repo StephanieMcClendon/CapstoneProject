@@ -5,6 +5,7 @@ import {User} from "../model/user";
 import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {NotificationService} from "../service/notification.service";
 import {NotificationType} from "../enum/notification-type";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -19,23 +20,35 @@ export class LoginComponent implements OnInit {
 
   role: string | null = this.authenticationService.getRole();
   current_role: string | null = localStorage.getItem("role");
+  loggedIn: boolean = false;
+  user: string | null = localStorage.getItem("user");
+  name!: string | undefined;
 
   ngOnInit(): void
   {
+    
     if (this.authenticationService.isUserLoggedIn()) {
-      this.router.navigateByUrl('/calculator');
-    } else {
+      this.router.navigate(['/calculator'])
+
+    }
+  else {
       this.router.navigateByUrl('/login');
     }
+    
   }
   ngAfterViewInit(user: User): void
   {
-    if(this.role == "ROLE_ADMIN"){
+
+    if(this.authenticationService.getRole() == "ROLE_ADMIN"){
       localStorage.setItem("role", JSON.stringify("ROLE_ADMIN"));
     }
     else{
       localStorage.setItem("role", JSON.stringify("ROLE_USER"));
     }
+  }
+
+  successNotification() {
+    Swal.fire('Login Success!', `Welcome, ${this.name}`, 'success');
   }
 
   public onLogin(user: User)
@@ -46,7 +59,10 @@ export class LoginComponent implements OnInit {
         if (response.body) {
           this.authenticationService.addUserToLocalCache(response.body);
         }
+        this.name = response.body?.firstName;
+        this.successNotification();
         this.router.navigateByUrl('/calculator');
+        
       },
       error: (errorResponse: HttpErrorResponse) =>
       {

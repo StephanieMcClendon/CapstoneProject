@@ -147,13 +147,6 @@ export class DashboardComponent implements OnInit {
   //   });
   // }
 
-  private getIncomeList(){
-    this.incomeService.getIncomeList(this.id).subscribe(data => {
-      this.incomes = data;
-      console.log(this.incomes);
-    });
-  }
-
   updateIncome(id: number){
 
     this.router.navigate(['update-income', id]);

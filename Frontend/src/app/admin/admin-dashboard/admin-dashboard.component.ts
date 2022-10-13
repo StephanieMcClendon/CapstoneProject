@@ -56,6 +56,7 @@ export class AdminDashboardComponent implements OnInit {
     console.log(this.goals)
     this.getExpenses();
     this.getIncome();
+    this.getUsers();
     console.log("remaining amount: "+this.remainingAmount);
   }
 
@@ -245,7 +246,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   deleteUser(id: number){
-    this.expenseService.deleteExpense(id).subscribe( data => {
+    this.userService.deleteUser(id).subscribe( data => {
       console.log(data);
       this.getUsers();
     })
@@ -261,10 +262,6 @@ export class AdminDashboardComponent implements OnInit {
 
   onSubmitUser() {
     // swipes to expense tab
-    this.tabGroup.selectedIndex = 1;
-    this.monthToYear = this.expense.amount * 12;
-    console.log("month to year: "+this.monthToYear);
-    this.expense.total = this.monthToYear;
     this.tabGroup.selectedIndex = 3;
     this.saveUser();
   }

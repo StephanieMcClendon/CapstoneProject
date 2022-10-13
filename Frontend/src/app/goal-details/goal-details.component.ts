@@ -87,7 +87,7 @@ export class GoalDetailsComponent implements OnInit {
     };
     public pieChartData: ChartData<'pie',number[]> = {
       
-      labels:[`Current Progress in ${this.currentProgress}%`, `Goal Amount in ${this.goalTotal}%`],
+      labels:[`Current Progress in ${this.currentProgress}%`, `Goal Remaining ${this.goalTotal}%`],
       datasets:[{
         data: []
       }]
