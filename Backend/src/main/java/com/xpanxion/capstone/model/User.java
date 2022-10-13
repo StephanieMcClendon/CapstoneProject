@@ -32,7 +32,4 @@ public class User
     private List<Income> incomes;
     @OneToMany(mappedBy = "user")
     private List<Expense> expenses;
-
-
-
 }

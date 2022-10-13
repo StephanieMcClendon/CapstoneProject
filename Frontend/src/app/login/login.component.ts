@@ -13,7 +13,12 @@ import {NotificationType} from "../enum/notification-type";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private authenticationService: AuthenticationService, private notificationService: NotificationService) { }
+  constructor(private router: Router, 
+    private authenticationService: AuthenticationService, 
+    private notificationService: NotificationService) { }
+
+  role: string | null = this.authenticationService.getRole();
+  current_role: string | null = localStorage.getItem("role");
 
   ngOnInit(): void
   {
@@ -21,6 +26,15 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/calculator');
     } else {
       this.router.navigateByUrl('/login');
+    }
+  }
+  ngAfterViewInit(user: User): void
+  {
+    if(this.role == "ROLE_ADMIN"){
+      localStorage.setItem("role", JSON.stringify("ROLE_ADMIN"));
+    }
+    else{
+      localStorage.setItem("role", JSON.stringify("ROLE_USER"));
     }
   }
 

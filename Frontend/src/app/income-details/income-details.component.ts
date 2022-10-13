@@ -28,7 +28,6 @@ export class IncomeDetailsComponent implements OnInit {
     this.incomeService.getIncomeById(this.id).subscribe(data =>{
        this.income=data;
     
-  
      }
      )
   }

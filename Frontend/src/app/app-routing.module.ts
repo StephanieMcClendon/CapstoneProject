@@ -27,6 +27,7 @@ const routes: Routes = [
   {path: "update-expense/:id", component: UpdateExpenseComponent, canActivate: [AuthenticationGuard], data: {role: "ROLE_USER"}},
   {path: "update-income/:id", component: UpdateIncomeComponent, canActivate: [AuthenticationGuard], data: {role: "ROLE_USER"}},
   {path: "admin/dashboard", component: AdminDashboardComponent,  canActivate: [AuthenticationGuard], data: {role: "ROLE_ADMIN"}},
+
   {path: "", redirectTo: "calculator", pathMatch: "full"},
   ];
 
