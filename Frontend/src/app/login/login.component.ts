@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
   }
 
   successNotification() {
-    Swal.fire('Login Success!', `Welcome, ${this.name}`, 'success');
+    Swal.fire('Login Success!', `Welcome, ${this.name}!`, 'success');
   }
 
   public onLogin(user: User)

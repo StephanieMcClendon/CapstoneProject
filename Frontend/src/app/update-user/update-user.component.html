@@ -1,0 +1,125 @@
+
+<div class="row" >
+
+<div class="card text-center left" style="width: 335px">
+<div class="card-body">
+    <div>
+        <h1>Update User</h1>
+    </div>
+    <br>
+    <form (ngSubmit)="onSubmitUpdateUser()">
+
+        <div class="form-group">
+            <label>First Name:</label>
+            <input type="text" class="form-control" id="firstname" [(ngModel)]="user.firstName" name="firstName">
+        </div>
+
+        <div class="form-group">
+            <label>Last Name:</label>
+            <input type="text" class="form-control" id="lastname" [(ngModel)]="user.lastName" name="lastName">
+        </div>
+
+        <div class="form-group">
+            <label>Email:</label>
+            <input type="text" class="form-control" id="email" [(ngModel)]="user.email" name="email">
+        </div>
+        <br>
+        <div class="form-group">
+            <label>Role:</label><br>
+            <input type="text" class="form-control" id="role" [(ngModel)]="user.role" name="role">
+        </div>
+        <br>
+        
+        <br>
+        <button class="btn btn-success" type="submit">Update</button>
+    </form>
+</div>
+</div>
+
+
+<!-- ================= TABS GROUP ================= -->
+
+
+<div class="card text-center m-auto" style="width: 960px; height: 440px">
+<div class="card-body">
+<mat-tab-group #tabs>
+    <mat-tab label="Income" id="income">
+        <table class = "table table-striped">
+            <thead>
+            <tr>
+                <th> Income Title</th>
+                <th> Yearly Income</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor = "let income of incomes" >
+                <td> {{income.description}}</td>
+                <td > ${{income.amount}} </td>
+                <td class="center">
+                    <button (click) = "updateIncome(income.id)" title="Update Income" class = "btn btn-secondary" style="margin-left: 15px"> Update income </button>
+                    <button (click) = "deleteIncome(income.id)" title="Delete income" class = "btn btn-danger" style="margin-left: 15px"> Delete income </button>
+                </td>
+            </tr>
+
+            </tbody>
+            </table>
+    </mat-tab>
+
+        <!-- =============  Expense Tab ============== -->
+
+    <mat-tab label="Expense" id="expense">
+        
+        <table class = "table table-striped">
+            <thead>
+            <tr>
+                <th> Expense Name</th>
+                <th> Expense Amount</th>
+                <th> Yearly Total Expense</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor = "let expense of expenses" >
+                <td> {{expense.expense_name}}</td>
+                <td > ${{expense.amount}} </td>
+                <td> ${{expense.total}}</td>
+                <td>
+                    <button (click) = "updateExpense(expense.id)" title="Update Expense" class = "btn btn-secondary" style="margin-left: 15px"> Update expense </button>
+                    <button (click) = "deleteExpense(expense.id)" title="Delete expense" class = "btn btn-danger" style="margin-left: 15px"> Delete expense </button>
+                </td>
+            </tr>
+            </tbody>
+            </table>
+    </mat-tab>
+
+        <!-- =============  Goal Tab ============== -->
+
+    <mat-tab label="Goals" id="goal">
+        <table class = "table table-striped">
+            <thead>
+            <tr>
+                <th> Goal</th>
+                <th> Saved Balance</th>
+                <th> Goal Amount</th>
+                <th> Months to Goal</th>
+                <th> Monthly Payment </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor = "let goal of goals" >
+                <td> {{goal.title}}</td>
+                <td > ${{goal.saveAmount}} </td>
+                <td> ${{goal.goalAmount}}</td>
+                <td> {{goal.time_in_months}}</td>
+                <td> ${{ goal.monthlyPayment }} </td>
+                <td>
+                    <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-secondary" style="margin-left: 15px"> Update goal </button>
+                    <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal </button>
+                    <button (click) = "goToGoalDetails(goal.id)" title="View Goal Details" class = "btn btn-primary" style="margin-left: 15px"> View Goal </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </mat-tab>
+</mat-tab-group>
+</div>
+</div>

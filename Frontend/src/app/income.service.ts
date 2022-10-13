@@ -16,7 +16,7 @@ export class IncomeService {
     return this.httpClient.get<Income[]>(`${this.baseURL}/user/${userId}`);
   }
 
-  createIncome(income: Income, userId: number): Observable<Object>{
+  createIncome(income: Income, userId: number): Observable<any>{
     return this.httpClient.post(`${this.baseURL}/${userId}`, income);
   }
 

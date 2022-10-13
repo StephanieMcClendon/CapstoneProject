@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Goal } from './goal';
 import { GoalService } from './goal.service';
+import { User } from './model/user';
 import {AuthenticationService} from "./service/authentication.service";
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +15,12 @@ export class AppComponent {
 
   isLoggedIn: boolean = this.authenticationService.isUserLoggedIn();
   role: string | null = this.authenticationService.getRole();
+  user: User = new User();
   count!: number;
+  first_name = JSON.parse(localStorage.getItem("firstname")!);
 
   constructor(private authenticationService: AuthenticationService,
+    private userService: UserService,
     private router: Router)
   {
 
@@ -27,9 +32,10 @@ export class AppComponent {
 
   public loggedIn(): boolean
   {
-    if(this.authenticationService.isUserLoggedIn())
+    if (this.authenticationService.isUserLoggedIn())
     {
-      console.log("this role: "+this.role);
+      this.first_name = JSON.parse(localStorage.getItem("firstname")!);
+      // console.log("this role: "+this.role);
       return true;
     }
     else{
@@ -39,7 +45,7 @@ export class AppComponent {
 
   public ifAdmin()
   {
-    if(this.role=="ROLE_ADMIN"){
+    if(this.authenticationService.getRole() == "ROLE_ADMIN"){
       return true;
     }
     else{
@@ -49,7 +55,7 @@ export class AppComponent {
 
   public ifUser()
   {
-    if(this.role=="ROLE_USER"){
+    if(this.authenticationService.getRole() == "ROLE_USER"){
       return true;
     }
     else{

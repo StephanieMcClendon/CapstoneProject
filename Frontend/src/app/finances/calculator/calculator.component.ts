@@ -26,6 +26,7 @@ export class CalculatorComponent implements OnInit {
   isAprShown: boolean = false;
   aprFormula!: number;
   totalValueForApr: number = 0;
+  loanAmount: number = 0;
 
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
@@ -94,9 +95,6 @@ export class CalculatorComponent implements OnInit {
     // }
   }
 
-  alreadyLoggedIn(){
-
-  }
 
   reloadPage(){
     this.router.navigateByUrl('/login', { skipLocationChange: true }).then(() => {

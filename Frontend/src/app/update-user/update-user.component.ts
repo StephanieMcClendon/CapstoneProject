@@ -1,22 +1,26 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTabGroup } from '@angular/material/tabs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Expense } from 'src/app/expense';
-import { ExpenseService } from 'src/app/expense.service';
-import { Goal } from 'src/app/goal';
-import { GoalService } from 'src/app/goal.service';
-import { Income } from 'src/app/income';
-import { IncomeService } from 'src/app/income.service';
-import { User } from 'src/app/model/user';
-import { AuthenticationService } from 'src/app/service/authentication.service';
-import { UserService } from 'src/app/user.service';
+import { User } from '../model/user';
+import { UserService } from '../user.service';
+import { Location } from '@angular/common'
+import { FormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+
+import { MatTabGroup } from '@angular/material/tabs';
+import {DashboardComponent} from "../dashboard/dashboard.component";
+import { ExpenseService } from '../expense.service';
+import { IncomeService } from '../income.service';
+import { Expense } from '../expense';
+import { Income } from '../income';
+import { Goal } from '../goal';
+import { GoalService } from '../goal.service';
 
 @Component({
-  selector: 'app-admin-dashboard',
-  templateUrl: './admin-dashboard.component.html',
-  styleUrls: ['./admin-dashboard.component.css']
+  selector: 'app-update-user',
+  templateUrl: './update-user.component.html',
+  styleUrls: ['./update-user.component.css']
 })
-export class AdminDashboardComponent implements OnInit {
+export class UpdateUserComponent implements OnInit {
   @ViewChild('tabs') tabGroup!: MatTabGroup;
 
   // Goals
@@ -41,28 +45,52 @@ export class AdminDashboardComponent implements OnInit {
   totalIncome!: number;
   totalExpense!: number;
   id: number = JSON.parse(localStorage.getItem("id")!);
-  // User
-  users?: any[];
   user: User = new User();
-  
+
   constructor(private goalService: GoalService,
     private expenseService: ExpenseService,
     private incomeService: IncomeService,
     private userService: UserService,
-    private authenticationService: AuthenticationService,
+    private location: Location,
     private route: ActivatedRoute,
     private router: Router) { }
 
+
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+
+    this.userService.getUserById(this.id).subscribe(data => {
+      this.user = data;
+    }, error => console.log(error));
+
     this.getGoals();
-    console.log(this.goals)
     this.getExpenses();
     this.getIncome();
-    this.getUsers();
-    console.log("remaining amount: "+this.remainingAmount);
   }
 
-  /* ***************  GOAL Methods  ****************************** */
+  previousPage(): void {
+    // implement relative routing importing/injecting Location and using .back()
+    this.location.back()
+  }
+
+  onSubmitUpdateUser(){
+    this.userService.updateUser(this.id, this.user).subscribe( data =>{
+      this.previousPage();
+    }
+    , error => console.log(error));
+  }
+
+  ngAfterViewInit(): void {
+    //default tab
+  }
+
+  // onSubmitGoalDetails(){
+  //   this.goalService.updateGoal(this.id, this.goal).subscribe( data =>{
+  //     this.goToGoalDetails(this.id);
+  //   }
+  //   , error => console.log(error));
+  // }
+
 
   private getGoals(){
     this.goalService.getGoalsList(this.id).subscribe(data => {
@@ -78,7 +106,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   congratulations(){
-    // insert logic for pop up confetti
+    // insert logic to congratulate user on making progress
   }
 
   goToGoalDetails(id: number){
@@ -143,7 +171,7 @@ export class AdminDashboardComponent implements OnInit {
   //   });
   // }
 
-  private getIncomeList(){
+  getIncomeList(){
     this.incomeService.getIncomeList(this.id).subscribe(data => {
       this.incomes = data;
       console.log(this.incomes);
@@ -232,54 +260,4 @@ export class AdminDashboardComponent implements OnInit {
     (<HTMLInputElement>document.getElementById("remainingAmount")).innerHTML = `${this.remainingAmount}`;
 
   }
-
-  /* *************** USER Methods ****************************** */
-
-
-  getUsers(){
-    this.userService.getAllUsers().subscribe(data => {
-      this.users = data;
-      console.log(this.users);
-    });
-  }
-
-  updateUser(id: number){
-    this.router.navigate(['update-user', id]);
-  }
-
-  deleteUser(id: number){
-    this.userService.deleteUser(id).subscribe( data => {
-      console.log(data);
-      this.getUsers();
-    })
-  }
-
-  ifNotAdmin(role: any){
-    if(role == "ROLE_ADMIN"){
-      return false;
-    }
-    else{
-      return true;
-    }
-  }
-
-  goToUserDetails(id: number){
-    this.router.navigate(['user-details', id]);
-  }
-
-  saveUser(){
-    this.userService.createUser(this.user, this.id).subscribe( data =>{
-          console.log(data);
-        this.getUsers();
-        },
-        error => console.log(error));
-  }
-
-  onSubmitUser() {
-    // swipes to expense tab
-    this.tabGroup.selectedIndex = 3;
-    this.saveUser();
-  }
-  
-
 }

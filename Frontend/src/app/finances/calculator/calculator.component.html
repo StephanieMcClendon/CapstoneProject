@@ -20,7 +20,8 @@
 
                             <div class="d-flex flex-row row align-items-center col-md-12">
                             <div class="form-outline form-white col-md-5  flex-fill mb-4">
-                                <label class="form-label" for="savingsGoal">Savings Goal</label>
+                                <label class="form-label" for="savingsGoal" *ngIf="!isAprShown">Savings Goal</label>
+                                <label class="form-label" for="savingsGoal" *ngIf="isAprShown">Loan Amount</label>
                                 <input type="number" id="savingsGoal" name="savingsGoal" [(ngModel)]="savingsGoal" class="form-control form-control-lg" />
                             </div>
 
