@@ -35,6 +35,7 @@ import {NotifierModule} from "angular-notifier";
 import {NotificationModule} from "./notification.module";
 import {NotificationService} from "./service/notification.service";
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import {NgPasswordValidatorModule} from "ng-password-validator";
 
 
 
@@ -68,7 +69,8 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
         NgChartsModule,
         MatTabsModule,
         NgParticlesModule,
-        NotificationModule
+        NotificationModule,
+        NgPasswordValidatorModule
     ],
 
   providers: [NotificationService],
