@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http";
 import {User} from "../model/user";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,9 @@ import {Observable} from "rxjs";
 export class AuthenticationService {
 
   baseApi: string = "http://localhost:8080"
+  public role!: string | null;
 
-  public role!: String | null; 
+  public loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +23,6 @@ export class AuthenticationService {
   public register(user: User): Observable<User | HttpErrorResponse>
   {
     return this.http.post<User | HttpErrorResponse>(`${this.baseApi}/api/v1/register`, user);
-
   }
   public getRole()
   {
@@ -40,14 +40,18 @@ export class AuthenticationService {
     localStorage.setItem("auth_token98329293", JSON.stringify(user))
   }
 
-  public isUserLoggedIn(): boolean {
+  public isUserLoggedIn(): boolean
+  {
     let user = localStorage.getItem("auth_token98329293");
     if(user === null)
     {
       return false
     }
     return true
+
   }
+
+ 
 
   public logout()
   {

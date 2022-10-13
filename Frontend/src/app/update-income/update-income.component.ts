@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Income } from '../income';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { IncomeService } from '../income.service';
 import { User } from '../model/user';
+
+
+import {Expense} from "../expense";
+
+
 
 @Component({
   selector: 'app-update-income',
@@ -15,12 +21,20 @@ export class UpdateIncomeComponent implements OnInit {
   income : Income = new Income();
   id! : number;
 
+
   constructor(private incomeService: IncomeService, 
     private route: ActivatedRoute, 
     private router: Router) { }
 
+  
+  
+
+  
+
+
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
+
 
     this.incomeService.getIncomeById(this.id).subscribe(data => {
       this.income = data;
@@ -34,11 +48,20 @@ export class UpdateIncomeComponent implements OnInit {
       this.goToGoalDetails();
     }
     , error => console.log(error));
+
+    this.incomeService.getIncomeById(this.id).subscribe({
+      next: value => {
+        this.income = value;
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
   }
+
+  
 
   goToGoalDetails(){
     this.router.navigate(['dashboard']);
   }
-  
-
 }

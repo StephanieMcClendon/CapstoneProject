@@ -12,29 +12,27 @@
 
                     <div class="form-group">
                         <label> income_source</label>
-                        <input type="text" class="form-control" id="income" [(ngModel)]="income_source"
+                        <input type="text" class="form-control" id="income" [(ngModel)]="income.income_source"
                             name="income_source">
                     </div>
 
                     <div class="form-group">
                         <label> amount</label>
-                        <input type="text" class="form-control" id="amount" [(ngModel)]="amount"
+                        <input type="text" class="form-control" id="amount" [(ngModel)]="income.amount"
                             name="amount">
                     </div>
 
                     <div class="form-group">
                         <label> Frequency</label>
-                        <input type="text" class="form-control" id="frequecy" [(ngModel)]="frequecy"
-                            name="frequecy">
+                        <input type="text" class="form-control" id="frequency" [(ngModel)]="income.frequency"
+                            name="frequency">
                     </div>
                     <div class="form-group">
                         <label> Description</label>
-                        <input type="text" class="form-control" id="description" [(ngModel)]="description"
-                            name="description"></div>
+                        <input type="text" class="form-control" id="description" [(ngModel)]="income.description" name="description"></div>
                             <div class="form-group">
                                 <label> User_id</label>
-                                <input type="text" class="form-control" id="user_id" [(ngModel)]="user_id"
-                                    name="user_id"></div>     
+                                <input type="text" class="form-control" id="user_id" [(ngModel)]="income.user_id" name="user_id"></div>     
 
                     <br />
                     <button class="btn btn-success" type="submit">Submit</button>

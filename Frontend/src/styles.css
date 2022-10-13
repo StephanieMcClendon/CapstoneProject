@@ -3,6 +3,9 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import 'https://use.fontawesome.com/releases/v5.8.1/css/all.css';
 @import "~font-awesome/css/font-awesome.css";
+
+@import "~angular-notifier/styles";
+
 html, body {
     height: 100%;
 }
@@ -10,9 +13,17 @@ html, body {
 body {
     margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
     border-radius: 50px;    
-    background: #9beeb0;
+    /* fallback for old browsers */
+    background: #6a85b6;
+  
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 133, 182, 0.5), rgba(186, 200, 224, 0.5));
+  
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 133, 182, 0.5), rgba(186, 200, 224, 0.5))
+    /* background: #9beeb0;
     box-shadow: inset 20px 20px 60px #84ca96,
-                inset -20px -20px 60px #b2ffca;
+                inset -20px -20px 60px #b2ffca; */
 }
 
 .footer {
@@ -24,3 +35,7 @@ body {
     text-align: center;
     color: white;
 }
+
+.gradient-custom {
+    
+  }
