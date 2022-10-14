@@ -1,34 +1,33 @@
 
-<div class="card text-center" style="width: 335px">
+<div class="card text-center" style="width: 320px">
+    <div class="card" style="width: 20rem; float: center">
+        <div class="card-header">
+            <h2>Update Goal</h2>
+        </div>
 <div class="card-body">
-    <div>
-        <h2>Update Goal</h2>
-    </div>
     <div>
         <label > Goal name: <br><b>{{ goal.title }}</b></label> 
     </div>
-    <br>
     <form (ngSubmit)="onSubmit()">
 
         <div class="form-group">
-            <label>Saved Amount:</label>
+            <label style="float: left">Saved Amount:</label>
             <input type="text" class="form-control" id="saveAmount" [(ngModel)]="goal.saveAmount"
                 name="saveAmount">
         </div>
-
+        <br>
         <div class="form-group">
-            <label>Goal Amount:</label>
+            <label style="float: left">Goal Amount:</label>
             <input type="text" class="form-control" id="goalAmount" [(ngModel)]="goal.goalAmount"
                 name="goalAmount">
         </div>
         <br>
         <div class="form-group">
-            <label for="time_in_months">Months to Goal:</label><br>
+            <label for="time_in_months" style="float: left">Months to Goal:</label><br>
             <input type="text" class="form-control" id="time_in_months" [(ngModel)]="goal.time_in_months" name="time_in_months">
         </div>
         <br>
         
-        <br>
         <button class="btn btn-success" type="submit">Update</button>
     </form>
 </div>

@@ -1,7 +1,5 @@
 <div >
-    <style>
-        
-    </style>
+
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">WeBudget</a>
@@ -36,7 +34,7 @@
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item" *ngIf="loggedIn()">
-                    <label class="nav-link active" aria-current="page"><b>Welcome, {{ this.first_name }}!</b></label>
+                    <label class="nav-link active" aria-current="page">Logged in as:<b> {{ this.first_name }}</b></label>
                 </li>
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
@@ -68,11 +66,9 @@
 <!--    <div *ngIf="isLoggedIn">-->
 <!--        <a class="nav-link" routerLink="/logout" > Logout </a>-->
 <!--    </div>-->
-
-
 <!--</nav>-->
-
 <!--<hr>-->
+
 <div class="container" style="margin-top: 20px">
 
     <router-outlet></router-outlet>

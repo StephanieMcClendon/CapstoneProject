@@ -1,25 +1,29 @@
 
-<div class="card text-center" style="width: 335px">
+<div class="card text-center" style="width: 320px">
+    <div class="card" style="width: 20rem; float: center">
+        <div class="card-header">
+            <h2>Update Expense</h2>
+        </div>
 <div class="card-body">
     <!-- <div>
         <label>Expense Name:</label> {{ expense.expense_name }}
     </div> -->
-    <br>
     <form (ngSubmit)="onSubmit()">
         
         <div class="form-group">
-            <label>Expense Name:</label>
+            <label style="float: left">Expense Name:</label>
             <input type="text" class="form-control" id="expense_name" [(ngModel)]="expense.expense_name"
                 name="expense_name">
         </div>
+        <br>
         <div class="form-group">
-            <label>Expense Amount:</label>
+            <label style="float: left">Expense Amount:</label>
             <input type="text" class="form-control" id="amount" [(ngModel)]="expense.amount"
                 name="amount">
         </div>
         <br>
         <div class="form-group left">
-            <label><b>Total:</b> ${{ expense.total }}</label> 
+            <label style="float: left"><b>Total:</b>  ${{ expense.total }}</label> 
         </div>
         <br>
         

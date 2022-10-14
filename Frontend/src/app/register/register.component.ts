@@ -34,23 +34,13 @@ export class RegisterComponent implements OnInit {
       error: err => {
         console.log(err);
       }
-      
     });
-    
   }
 
   registerSuccessNotification() {
     Swal.fire({
-      title: `Welcome to the club, ${this.user.firstName}`,
-      width: 600,
-      padding: '3em',
-      color: '#F9CA38',
-      background: '#fff',
-      backdrop: `
-      url("./assets/Success-1.gif")
-        center top
-        no-repeat
-      `
+      title: `Register Successful! \nWelcome to the WeBudget Club, ${this.user.firstName}!`,
+      width: 600
     });
 
   }

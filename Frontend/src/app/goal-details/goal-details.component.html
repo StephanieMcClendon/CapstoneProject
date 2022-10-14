@@ -1,15 +1,25 @@
 <br>
-    <div class="card left m-auto" style="height: 300px; width: 400px">
+    <div class="card left m-auto" style="height: 300px; width: 385px">
+      
        <div class="row">
+        
         <header>
-            <h3 style="text-align: center;"> Goal Details </h3>
+          <div class="card" style="width: 24rem; float: center">
+            <div class="card-header">
+                <h2 style="text-align: center">Update Goal</h2>
+            </div>
+            </div>
+          <br>
+          <table>
+            <td>
+              <h3 style="text-align: center;"> Goal Details </h3>
+            </td>
+            <td>
+              <button (click) = "updateGoal(this.id)" style="position: relative; right: -180px" title = "Edit Goal" class = "btn btn-secondary" type="submit"> Edit </button>
+            </td>
+          </table>
         </header>
 <div>
-    <br>
-    <div class="form-group" style="text-align:center">
-      <button (click) = "updateGoal(this.id)" title = "Edit Goal" class = "btn btn-secondary" type="submit"> Edit </button>
-    </div>
-    <br>
     <br>
     <div>
       <!-- Swap logic -->

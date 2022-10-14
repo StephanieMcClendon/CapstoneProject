@@ -28,8 +28,8 @@ export class GoalDetailsComponent implements OnInit {
   goal_amount!: number;
   save_amount = this.goal.saveAmount;
   monthly!: number;
-  currentProgress: String = "";
-  goalTotal: String = "";
+  currentProgress: string = "";
+  goalTotal: string = "";
 
   // expense
   remainingAmount!: number;
@@ -63,7 +63,7 @@ export class GoalDetailsComponent implements OnInit {
       this.pieChartData.datasets[0].data[1] = (this.goal_amount / this.goal.goalAmount) * 100;
       this.chart?.update();
       this.goal.monthlyPayment = Math.round(this.goal_amount / this.goal.time_in_months);
-      if(this.goal.saveAmount == this.goal.goalAmount){
+      if(this.goal.saveAmount >= this.goal.goalAmount){
         console.log("CONGRATS!");
         this.congratulations();
       }
@@ -114,9 +114,9 @@ export class GoalDetailsComponent implements OnInit {
   
     Swal.fire({
       title: 'Congratulations! You reached your goal!',
-      width: 600,
+      width: 500,
       padding: '3em',
-      color: '#F9CA38',
+      color: '#000000',
       background: '#fff',
       backdrop: `
         rgba(255, 218, 72,0.4)
