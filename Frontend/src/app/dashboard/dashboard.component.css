@@ -8,3 +8,9 @@ div {
   height: 100%;
   z-index: -1;
 }
+
+
+.card {
+  box-shadow: 0 0 0 1rem  rgb(136, 37, 216);
+
+}
