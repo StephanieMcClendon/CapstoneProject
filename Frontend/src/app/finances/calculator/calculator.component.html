@@ -4,7 +4,7 @@
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="card bg-dark text-white" style="border-radius: 1rem;">
                     <div class="card-body p-5">
-                        <a class="btn btn-outline-primary" (click)="aprCalc()">Toggle Calc</a>
+                        <a class="btn btn-outline-primary btn-sm" (click)="aprCalc()">Toggle Calc</a>
 
                         <form (submit)="onSubmit()">
                         <div class="mb-md-5 mt-md-4 pb-5">
@@ -60,18 +60,13 @@
                         </form>
 
                         <div *ngIf="isAprShown">
-                            <h1> Monthly Payment: ${{totalValueForApr| number:'1.0-2'}}</h1>
+                            <h1> Monthly Payment: <span style="color: green;">${{totalValueForApr| number:'1.0-2'}}</span></h1>
                         </div>
                         <div *ngIf="!isAprShown">
-                            <h1> Monthly Payment: ${{monthlyPayment | number:'1.0-2'}}</h1>
+                            <h1> Monthly Payment: <span style="color: green;">${{monthlyPayment | number:'1.0-2'}}</span></h1>
                         </div>
-
                     </div>
-
-
                 </div>
-
-
             </div>
             <div class="col-md-6 card-body card bg-dark" *ngIf="yAxis">
                 <canvas (submit)="chartUpdate()"
@@ -83,10 +78,18 @@
                 >
                 </canvas>
             </div>
-
-
-
+        </div><br><br><br>
+        <div class="footer-basic">
+            <footer>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Home</a></li>
+                    <li class="list-inline-item"><a href="https://www.vanguard.com/">Vanguard</a></li>
+                    <li class="list-inline-item"><a href="https://www.thepennyhoarder.com/save-money/how-to-save-money/">Money Savings Tips</a></li>
+                    <li class="list-inline-item"><a href="#">Contact Us</a></li>
+                </ul>
+                <p class="copyright">WeBudget © 2022</p>
+            </footer>
         </div>
-    </div>
+    </div>    
 </section>
 

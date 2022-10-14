@@ -1,10 +1,10 @@
 h1{
-    color: white;
+    color:  rgb(136, 37, 216);
 }
 
 
 .footer-basic {
-    color:white;
+    color: rgb(136, 37, 216);
     bottom: 0;
     position:fixed;
     left:0;
@@ -38,6 +38,6 @@ h1{
     margin-top:15px;
     text-align:center;
     font-size:13px;
-    color:white;
+    color: rgb(136, 37, 216);
     margin-bottom:0;
   }

@@ -1,6 +1,4 @@
-
-
-<a class="btn btn-outline-primary" (click)="showForms()"> New Form <i class="fa fa-sliders"></i> </a>
+<a class="btn btn-outline-primary btn-lg" (click)="showForms()"> Toggle Forms <i class="fa fa-sliders"></i> </a>
 
 
 
@@ -15,7 +13,7 @@
 
         <div class="card-body">
             <form (ngSubmit) = "onSubmitIncome()" style="width: 300px" class="justify-content-center">
-                <label> Create an Income </label><br><br>
+                <label style="font-weight:bold ;"> Create an Income </label><br><br>
                 <div class="form-group">
                     <label >Income Title:</label><br>
                     <input type="text" class="form-control" id="description" [(ngModel)]="income.description" name="description" >
@@ -43,7 +41,7 @@
         
         <div class="card-body">
             <form (ngSubmit) = "onSubmitExpense()" style="width: 300px" class="justify-content-center">
-                <label> Create an Expense </label><br><br>
+                <label style="font-weight:bold"> Create an Expense </label><br><br>
                 <div class="form-group">
                     <label for="saveAmount">Expense Name:</label><br>
                     <input type="text" class="form-control" id="expense_name" [(ngModel)]="expense.expense_name" name="expense_name">
@@ -58,7 +56,7 @@
                 <br>
                 <div class="form-group">
                     <label >Yearly Total Expense:</label><br>
-                    <label type="text" id="remainingAmount" *ngIf="this.expense.amount != null"> ${{ this.expense.amount * 12 }}</label>
+                    <label type="text" id="remainingAmount" *ngIf="this.expense.amount != null" style="color:red; font-weight: bold"> ${{ this.expense.amount * 12 }}</label>
                 </div>
                 
                 <br>
@@ -74,7 +72,7 @@
         <!-- =============  Goal Form ============== -->
         <div class="card-body">
             <form (ngSubmit) = "onSubmitGoal()" style="width: 300px" class="justify-content-center">
-                <label> Create a Goal </label><br><br>
+                <label style="font-weight:bold"> Create a Goal </label><br><br>
                 
                 <div class="form-group">
                     <label for="title">Goal name:</label><br>
@@ -117,12 +115,12 @@
 </div>
 <br>
 <br>
-<mat-tab-group #tabs>
+<mat-tab-group mat-align-tabs="center" #tabs>
 
         <!-- =============  Income Tab ============== -->
 
     <mat-tab label="Income" id="income">
-        <table class = "table table-striped">
+        <table class = "table table-striped" style="text-align: center;">
             <thead>
             <tr>
                 <th> Income Title</th>
@@ -132,7 +130,7 @@
             <tbody>
             <tr *ngFor = "let income of incomes" >
                 <td> {{income.description}}</td>
-                <td > {{income.amount}} </td>
+                <td style="color:green"> {{income.amount}} </td>
                 <td>
                     <button (click) = "updateIncome(income.id)" title="Update Income" class = "btn btn-secondary" style="margin-left: 15px"> Update income </button>
                     <button (click) = "deleteIncome(income.id)" title="Delete income" class = "btn btn-danger" style="margin-left: 15px"> Delete income </button>
@@ -160,8 +158,8 @@
             <tbody>
             <tr *ngFor = "let expense of expenses" >
                 <td> {{expense.expense_name}}</td>
-                <td > {{expense.amount}} </td>
-                <td> {{expense.total}}</td>
+                <td style="color:red"> {{expense.amount}} </td>
+                <td style="color:red"> {{expense.total}}</td>
                 <td>
                     <button (click) = "updateExpense(expense.id)" title="Update Expense" class = "btn btn-secondary" style="margin-left: 15px"> Update expense </button>
                     <button (click) = "deleteExpense(expense.id)" title="Delete expense" class = "btn btn-danger" style="margin-left: 15px"> Delete expense </button>
@@ -190,7 +188,7 @@
                 <td > {{goal.saveAmount}} </td>
                 <td> {{goal.goalAmount}}</td>
                 <td> {{goal.time_in_months}}</td>
-                <td> {{ goal.monthlyPayment }} </td>
+                <td style="color:green"> {{ goal.monthlyPayment }} </td>
                 <td>
                     <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-secondary" style="margin-left: 15px"> Update goal </button>
                     <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal </button>
@@ -202,3 +200,15 @@
     </mat-tab>
 </mat-tab-group>
 <br><br><br><br><br>
+
+<div class="footer-basic">
+    <footer>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Home</a></li>
+            <li class="list-inline-item"><a href="https://www.vanguard.com/">Vanguard</a></li>
+            <li class="list-inline-item"><a href="https://www.thepennyhoarder.com/save-money/how-to-save-money/">Money Savings Tips</a></li>
+            <li class="list-inline-item"><a href="#">Contact Us</a></li>
+        </ul>
+        <p class="copyright">WeBudget © 2022</p>
+    </footer>
+</div>      
