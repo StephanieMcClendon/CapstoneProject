@@ -57,7 +57,7 @@ export class GoalDetailsComponent implements OnInit {
     labels: [ [`Goal ${this.goal.id}`]],
     datasets: [ {
       // input variables [current progress, total goal - current progress]
-      // how do we keep track of current progress?
+      // how do we keep track of current progress? need value to store in db
       data: [200, 250]
     } ]
   };
