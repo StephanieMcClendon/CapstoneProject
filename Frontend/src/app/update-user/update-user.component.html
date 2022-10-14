@@ -47,7 +47,7 @@
 <!-- ================= TABS GROUP ================= -->
 
 
-<div class="card text-center m-auto" style="width: 960px; height: 470px">
+<div class="card text-center m-auto" style="width: 980px; height: 470px">
 <div class="card-body">
 <mat-tab-group #tabs>
     <mat-tab label="Income" id="income">
@@ -122,6 +122,12 @@
                     <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-secondary" style="margin-left: 15px"> Update goal </button>
                     <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal </button>
                     <button (click) = "goToGoalDetails(goal.id)" title="View Goal Details" class = "btn btn-primary" style="margin-left: 15px"> View Goal </button>
+                </td>
+                <td>
+                    <div class="progress center" style="position: relative; right: 60px; height: 20px">
+                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 80px; text-align:center" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            25%</div>
+                      </div>
                 </td>
             </tr>
             </tbody>

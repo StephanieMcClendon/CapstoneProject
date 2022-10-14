@@ -28,16 +28,15 @@ export class UpdateExpenseComponent implements OnInit {
 
     this.expenseService.getExpenseById(this.id).subscribe(data => {
       this.expense = data;
+      this.expense.total = this.expense.amount * 12;
     }, error => console.log(error));
   }
   previousPage(): void {
-    // implement relative routing importing/injecting Location and using .back()
     this.location.back()
   }
 
   onSubmit(){
     
-    // this.goal.saveAmount = this.saveAmount;
     this.expenseService.updateExpense(this.id, this.expense).subscribe( data =>{
       this.goToUserDetails();
       this.previousPage();

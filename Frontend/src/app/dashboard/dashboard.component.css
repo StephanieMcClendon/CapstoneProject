@@ -8,3 +8,8 @@ div {
   height: 100%;
   z-index: -1;
 }
+
+.center {
+  display: block;
+  max-width: 1300px;
+}

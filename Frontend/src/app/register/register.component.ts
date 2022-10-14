@@ -12,14 +12,14 @@ import Swal from 'sweetalert2';
 export class RegisterComponent implements OnInit {
 
   user: User = new User();
-  userObject: string | null = localStorage.getItem("user");
-  name!: string | undefined;
+  pattern = "/^(?=.*\\d).{8,}$/";
 
   constructor(private authenticationService: AuthenticationService, 
     private router: Router) { }
 
   ngOnInit(): void
   {
+
 
   }
 
@@ -45,4 +45,8 @@ export class RegisterComponent implements OnInit {
 
   }
   
+  checkPassword()
+  {
+    
+  }
 }

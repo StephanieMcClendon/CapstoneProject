@@ -1,4 +1,6 @@
-
+<br>
+<br>
+<br>
 <div class="card text-center" style="width: 320px">
     <div class="card" style="width: 20rem; float: center">
         <div class="card-header">
@@ -23,7 +25,8 @@
         </div>
         <br>
         <div class="form-group left">
-            <label style="float: left"><b>Total:</b>  ${{ expense.total }}</label> 
+            <!-- <label style="float: left"><b> ${{ expense.total }}</b></label> -->
+            <label type="text" style="float: left" id="remainingAmount" *ngIf="this.expense.amount != null">Yearly Total Expense: <b>${{ expense.amount * 12 }}</b></label> 
         </div>
         <br>
         

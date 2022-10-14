@@ -37,6 +37,7 @@ import {NotificationService} from "./service/notification.service";
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import {NgPasswordValidatorModule} from "ng-password-validator";
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { UserDetailsComponent } from './user-details/user-details.component';
         NgChartsModule,
         MatTabsModule,
         NgParticlesModule,
-        NotificationModule
+        NotificationModule,
+        NgPasswordValidatorModule
     ],
 
   providers: [NotificationService],

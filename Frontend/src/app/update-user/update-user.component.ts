@@ -105,9 +105,6 @@ export class UpdateUserComponent implements OnInit {
     });
   }
 
-  congratulations(){
-    // insert logic to congratulate user on making progress
-  }
 
   goToGoalDetails(id: number){
     this.router.navigate(['goal-details', id]);

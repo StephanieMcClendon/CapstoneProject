@@ -58,8 +58,7 @@ export class DashboardComponent implements OnInit {
   // ** GOAL Methods **
 
   ngAfterViewInit(): void {
-    //default tab
-    this.tabGroup.selectedIndex = 2;
+    this.expense.total = this.expense.amount * 12;
   }
 
 
@@ -183,7 +182,9 @@ export class DashboardComponent implements OnInit {
   private getExpenses(){
     this.expenseService.getExpenseList(this.id).subscribe(data => {
       this.expenses = data;
+      this.expense.total = this.expense.amount * 12;
       console.log(this.expenses);
+      
     });
   }
 
@@ -220,7 +221,6 @@ export class DashboardComponent implements OnInit {
     this.expenseCard = !this.expenseCard;
     this.goalsCard = !this.goalsCard;
   }
-
 
   displayIncomeMinusExpense(){
     this.remainingAmount = this.incomeAmount - this.expenseAmount;

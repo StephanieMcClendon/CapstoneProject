@@ -19,7 +19,7 @@ import { UpdateUserComponent } from './update-user/update-user.component';
 const routes: Routes = [
   {path: "calculator", component: CalculatorComponent},
   {path: 'goal-details/:id', component: GoalDetailsComponent}, //canActivate: [AuthenticationGuard], data: {role: "ROLE_USER"}},
-  {path: 'goals', component: GoalListComponent, canActivate: [AuthenticationGuard], data: {role: "ROLE_USER"}},
+  {path: 'goals', component: DashboardComponent, canActivate: [AuthenticationGuard], data: {role: "ROLE_USER"}},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthenticationGuard], data: {role: "ROLE_USER"}},
   {path: "login", component: LoginComponent},
   {path: "logout", component: LogoutComponent, canActivate: [AuthenticationGuard]},

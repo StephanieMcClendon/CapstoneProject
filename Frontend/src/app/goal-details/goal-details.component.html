@@ -1,49 +1,53 @@
 <br>
-    <div class="card left m-auto" style="height: 300px; width: 385px">
+<br>
+<br>
+<br>
+    <div class="card left m-auto" style="height: 270px; width: 385px">
       
        <div class="row">
         
         <header>
           <div class="card" style="width: 24rem; float: center">
             <div class="card-header">
-                <h2 style="text-align: center">Update Goal</h2>
+                <h2 style="text-align: center">Goal Details</h2>
             </div>
             </div>
           <br>
           <table>
             <td>
-              <h3 style="text-align: center;"> Goal Details </h3>
+              <div>
+                <!-- Swap logic -->
+                  <label style="margin-left: 20px"> <b> Goal Name: </b> </label> {{ goal.title }}
+              </div>
+          
+              <div>
+                <label style="margin-left: 20px"> <b> Goal Amount: </b></label> {{ goal.goalAmount }}
+            </div>
+              
+              <div>
+                  <label style="margin-left: 20px"> <b> Saved Towards Goal: </b></label> {{ goal.saveAmount }}
+              </div>
+            
+              <div>
+                  <!-- <label style="margin-left: 20px"> <b> Yearly Total Savings: </b> ${{ this.remainingAmount }}</label>  -->
+                  <label style="margin-left: 20px"> <b> Monthly Savings: </b> ${{ goal.monthlyPayment }}</label> 
+              </div>
+              <div>
+                <label style="margin-left: 20px"> <b> Goal Duration (Months): </b></label> {{ goal.time_in_months }}
+              </div>
+              <div>
+                <label style="margin-left: 20px"> <b> Months Left To Goal: </b></label> {{ goal.time_in_months - (goal.time_in_months * (this.goal.saveAmount / this.goal.goalAmount)) }}
+            </div>
+
             </td>
             <td>
-              <button (click) = "updateGoal(this.id)" style="position: relative; right: -180px" title = "Edit Goal" class = "btn btn-secondary" type="submit"> Edit </button>
+              <button (click) = "updateGoal(this.id)" style="position: relative; right: -100px" title = "Edit Goal" class = "btn btn-secondary" type="submit"> Edit </button>
             </td>
           </table>
         </header>
 <div>
     <br>
-    <div>
-      <!-- Swap logic -->
-        <label style="margin-left: 20px"> <b> Goal Name: </b> </label> {{ goal.title }}
-    </div>
-
-    <div>
-      <label style="margin-left: 20px"> <b> Goal Amount: </b></label> {{ goal.goalAmount }}
-  </div>
     
-    <div>
-        <label style="margin-left: 20px"> <b> Saved Towards Goal: </b></label> {{ goal.saveAmount }}
-    </div>
-  
-    <div>
-        <!-- <label style="margin-left: 20px"> <b> Yearly Total Savings: </b> ${{ this.remainingAmount }}</label>  -->
-        <label style="margin-left: 20px"> <b> Monthly Savings: </b> ${{ goal.monthlyPayment }}</label> 
-    </div>
-    <div>
-      <label style="margin-left: 20px"> <b> Goal Duration (Months): </b></label> {{ goal.time_in_months }}
-    </div>
-    <div>
-      <label style="margin-left: 20px"> <b> Months Left To Goal: </b></label> {{ goal.time_in_months - (goal.time_in_months * (this.goal.saveAmount / this.goal.goalAmount)) }}
-  </div>
     
   <br>
 </div>

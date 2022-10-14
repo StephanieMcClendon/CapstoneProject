@@ -1,4 +1,6 @@
-
+<br>
+<br>
+<br>
 <div class="card text-center" style="width: 320px">
     <div class="card" style="width: 20rem; float: center">
         <div class="card-header">
@@ -6,7 +8,9 @@
         </div>
 <div class="card-body">
     <div>
-        <label> Income: <b>{{ income.description }}</b></label>
+        <label style="float: left"> Income: </label>
+        <input type="text"  class="form-control" id="description" [(ngModel)]="income.description"
+                name="description">
     </div>
     <br>
     <form (ngSubmit)="onSubmit()">
@@ -16,11 +20,11 @@
                 name="amount">
         </div>
         <br>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label style="float: left">Time in Months:</label>
             <input type="text" class="form-control" id=" income frequency" [(ngModel)]="income.frequency"
                 name="frequency">
-        </div>
+        </div> -->
         
         <br>
         <button class="btn btn-success" type="submit">Update</button>
