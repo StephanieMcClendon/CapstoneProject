@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -33,6 +32,4 @@ public class User
     private List<Income> incomes;
     @OneToMany(mappedBy = "user")
     private List<Expense> expenses;
-
-
 }

@@ -15,18 +15,18 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Income {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private double income_source;
-    private double amount;
+    private double amount; // income amount we are using in angular
     private int frequency;
-    private String description;
+    private String description; // income name we are using in angular
 
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
 

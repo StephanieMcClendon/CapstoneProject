@@ -1,0 +1,35 @@
+
+
+<mat-tab-group #tabs>
+
+    <!-- =============  Users Tab ============== -->
+
+    <mat-tab label="User" id="user">
+        <table class = "table table-striped">
+            <thead>
+            <tr>
+                <th> Full Name</th>
+                <th> Username</th>
+                <th> Email</th>
+                <th> Role</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor = "let user of users" >
+                <td> {{ user.firstName  + " " }} {{ user.lastName }} </td>
+                <td > {{user.username}} </td>
+                <td> {{user.email}} </td>
+                <td> {{user.role}} </td>
+                <td class="left">
+                    <button (click) = "updateUser(user.id)" title="Update User" class = "btn btn-secondary" style="margin-left: 15px"> Update User </button>
+
+                    <button (click) = "deleteUser(user.id)" *ngIf="ifNotAdmin(user.role)" title="Delete User" class = "btn btn-danger" style="margin-left: 15px"> Delete User </button>
+
+                    <button (click) = "goToUserDetails(user.id)" title="View User" class = "btn btn-primary" style="margin-left: 15px"> User Details</button>
+                </td>
+            </tr>
+            </tbody>
+            </table>
+    </mat-tab>
+</mat-tab-group>
+

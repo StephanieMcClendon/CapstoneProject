@@ -1,7 +1,6 @@
 package com.xpanxion.capstone.model;
 
 import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@Table(name="goals")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,9 +17,11 @@ public class Goal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private double saveAmount; // user wants to save this amount
-    private double goalAmount; // target goal, if it matches this goal we win
+    private String title; // new
+    private double saveAmount;
+    private double goalAmount;
     private int time_in_months;
+    private double monthlyPayment; // new
 
     @ManyToOne
     @JsonIgnore
