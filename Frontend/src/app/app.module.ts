@@ -35,6 +35,7 @@ import {NotifierModule} from "angular-notifier";
 import {NotificationModule} from "./notification.module";
 import {NotificationService} from "./service/notification.service";
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 
@@ -55,7 +56,8 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
     DashboardComponent,
     UpdateExpenseComponent,
     RegisterComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    HomePageComponent
 
   ],
     imports: [

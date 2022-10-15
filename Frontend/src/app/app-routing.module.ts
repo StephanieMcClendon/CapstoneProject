@@ -12,10 +12,11 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {RegisterComponent} from "./register/register.component";
 import {AdminDashboardComponent} from "./admin/admin-dashboard/admin-dashboard.component";
 import {UpdateIncomeComponent} from "./update-income/update-income.component";
-
+import { HomePageComponent } from './home-page/home-page.component';
 
 
 const routes: Routes = [
+  {path: "home-page", component:HomePageComponent},
   {path: "calculator", component: CalculatorComponent},
   {path: 'goal-details/:id', component: GoalDetailsComponent, canActivate: [AuthenticationGuard], data: {role: "ROLE_USER"}},
   {path: 'goals', component: GoalListComponent, canActivate: [AuthenticationGuard], data: {role: "ROLE_USER"}},
@@ -28,7 +29,7 @@ const routes: Routes = [
   {path: "update-income/:id", component: UpdateIncomeComponent, canActivate: [AuthenticationGuard], data: {role: "ROLE_USER"}},
   {path: "admin/dashboard", component: AdminDashboardComponent,  canActivate: [AuthenticationGuard], data: {role: "ROLE_ADMIN"}},
 
-  {path: "", redirectTo: "calculator", pathMatch: "full"},
+  {path: "", redirectTo: "home-page", pathMatch: "full"},
   ];
 
 

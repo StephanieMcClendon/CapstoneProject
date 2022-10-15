@@ -1,0 +1,85 @@
+.banner
+{
+    background-image: url('https://www.acclaimfcu.org/wp-content/uploads/2019/01/savings-money-coin-stacks-768x512.jpg');
+    border-radius: 15px;
+    height: 550px;
+    background-position: center;
+    background-size: cover;
+}
+.content
+{
+    top: 30%;
+    left: 20%;
+    position: absolute;
+}
+.content h1 
+{
+    color: #fff;
+    font-size: 60px;
+    font-weight: bold;
+  
+}
+.content a 
+{
+    text-decoration: none;
+    background-color: #fff;
+    color: var(--primary-color);
+    padding: 15px 20px;
+    border-radius: 5px;
+}
+
+.content a:hover 
+{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.stepBox 
+{
+    background-color: #8d65d6;
+    padding: 20px 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+.stepBox h1 
+{
+    font-size: 50px;
+    font-weight: bold;
+    color:var(--primary-color);
+}
+.stepBox p 
+{
+    font-size: 20px;
+    font-style: italic;
+    color: #fff;
+}
+.highlight
+{
+    color: var(--primary-color);
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+@media screen and (max-width:600px)
+{
+    .banner
+{
+    height: 700px;
+}
+}
+.footer-basic {
+    color: rgb(136, 37, 216);
+    position:absolute;
+    left:0;
+    right:0;
+  }
+  
+  .footer-basic .copyright {
+    margin-top:10px;
+    margin-bottom: 10px;
+    text-align:center;
+    font-size:15px;
+    color: rgb(136, 37, 216);
+  }
+  
