@@ -26,12 +26,12 @@
 
                             <div class="form-outline form-white col-md-5 flex-fill mb-4" *ngIf="!isAprShown">
                                 <label class="form-label" for="startingBalance">Starting Balances</label>
-                                <input type="number" id="startingBalance" name="startingBalance" [(ngModel)]="startingBalance" class="form-control form-control-lg" />
+                                <input type="number" id="startingBalance" name="startingBalance" style="color: green;" [(ngModel)]="startingBalance" class="form-control form-control-lg" />
                             </div>
 
                             <div class="form-outline col-md-5 flex-fill mb-4" *ngIf="isAprShown">
-                                <label class="form-label" >APR %</label>
-                                <input type="number"  name="startingBalance" [(ngModel)]="aprTotal" class="form-control form-control-lg" />
+                                <label class="form-label">APR %</label>
+                                <input type="number"  name="startingBalance" style="color: red" [(ngModel)]="aprTotal" class="form-control form-control-lg" />
                             </div>
 
                             </div>
@@ -54,16 +54,16 @@
                             </div>
 
 
-                            <button class="btn btn-outline-light btn-lg " type="submit">Calculate</button>
+                            <button class="btn btn-outline-light btn-lg" style="display:block;" type="submit">Calculate</button>
 
                         </div>
                         </form>
 
                         <div *ngIf="isAprShown">
-                            <h1> Monthly Payment: <span style="color: green;">${{totalValueForApr| number:'1.0-2'}}</span></h1>
+                            <h1> Monthly Payment: <span style="color: red;">${{totalValueForApr| number:'1.0-2'}}</span></h1>
                         </div>
                         <div *ngIf="!isAprShown">
-                            <h1> Monthly Payment: <span style="color: green;">${{monthlyPayment | number:'1.0-2'}}</span></h1>
+                            <h1> Monthly Savings: <span style="color: green;">${{monthlyPayment | number:'1.0-2'}}</span></h1>
                         </div>
                     </div>
                 </div>
