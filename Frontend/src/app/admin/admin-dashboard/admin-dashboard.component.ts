@@ -123,6 +123,7 @@ export class AdminDashboardComponent implements OnInit {
 
   /* *************** INCOME Methods ****************************** */
 
+
   private getIncome(){
     this.incomeService.getIncomeList(this.id).subscribe(data => {
       this.incomes = data;
@@ -151,7 +152,6 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   updateIncome(id: number){
-
     this.router.navigate(['update-income', id]);
   }
 
@@ -175,10 +175,10 @@ export class AdminDashboardComponent implements OnInit {
     this.tabGroup.selectedIndex = 0;
     this.saveIncome();
   }
-
+  
 
   /* *************** EXPENSE Methods ****************************** */
-
+  
 
   private getExpenses(){
     this.expenseService.getExpenseList(this.id).subscribe(data => {
@@ -221,7 +221,6 @@ export class AdminDashboardComponent implements OnInit {
     this.goalsCard = !this.goalsCard;
   }
 
-
   displayIncomeMinusExpense(){
     this.remainingAmount = this.incomeAmount - this.expenseAmount;
     var label = document.querySelector("remainingAmount");
@@ -232,6 +231,7 @@ export class AdminDashboardComponent implements OnInit {
     (<HTMLInputElement>document.getElementById("remainingAmount")).innerHTML = `${this.remainingAmount}`;
 
   }
+
 
   /* *************** USER Methods ****************************** */
 
@@ -280,6 +280,5 @@ export class AdminDashboardComponent implements OnInit {
     this.tabGroup.selectedIndex = 3;
     this.saveUser();
   }
-  
 
 }

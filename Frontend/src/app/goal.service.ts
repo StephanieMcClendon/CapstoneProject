@@ -8,7 +8,8 @@ import { Goal } from './goal';
 })
 export class GoalService {
 
-  private baseURL = "http://localhost:8080/goals";
+  // private baseURL = "http://localhost:8080/goals";
+  private baseURL = "http://webudget-env.eba-urfbsqpp.us-east-1.elasticbeanstalk.com/goals";
 
   constructor(private httpClient: HttpClient) { }
 

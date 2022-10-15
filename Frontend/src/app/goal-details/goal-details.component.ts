@@ -11,6 +11,8 @@ import { BaseChartDirective } from 'ng2-charts';
 import { IncomeService } from '../income.service';
 import { ExpenseService } from '../expense.service';
 import Swal from 'sweetalert2';
+import { Size } from 'tsparticles-engine';
+import { NonNullableFormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-goal-details',
@@ -30,6 +32,10 @@ export class GoalDetailsComponent implements OnInit {
   monthly!: number;
   currentProgress: string = "";
   goalTotal: string = "";
+  progress: string = "";
+  val1!: number;
+  val2!: number;
+  math = Math;
 
   // expense
   remainingAmount!: number;
@@ -56,11 +62,13 @@ export class GoalDetailsComponent implements OnInit {
     this.goalService.getGoalById(this.id).subscribe( data => {
       this.goal = data;
       this.goal_amount = this.goal.goalAmount - this.goal.saveAmount;
+      this.progress = "" + (((this.goal.saveAmount / this.goal.goalAmount) * 100)).toFixed(2);
       this.currentProgress = "" + ((this.goal.saveAmount / this.goal.goalAmount) * 100) + "%"
       this.goalTotal = "" + (this.goal_amount / this.goal.goalAmount) * 100 + "%"
+      // this.goal.monthlyPayment = (this.goal.time_in_months - (this.goal.time_in_months * (this.goal.saveAmount / this.goal.goalAmount)));
       
-      this.pieChartData.datasets[0].data[0] = ((this.goal.saveAmount / this.goal.goalAmount) * 100);
-      this.pieChartData.datasets[0].data[1] = (this.goal_amount / this.goal.goalAmount) * 100;
+      this.pieChartData.datasets[0].data[0] = parseFloat((((this.goal.saveAmount / this.goal.goalAmount) * 100)).toFixed(2));
+      this.pieChartData.datasets[0].data[1] = parseFloat(((this.goal_amount / this.goal.goalAmount) * 100).toFixed(2));
       this.chart?.update();
       this.goal.monthlyPayment = Math.round(this.goal_amount / this.goal.time_in_months);
       if(this.goal.saveAmount >= this.goal.goalAmount){
@@ -79,12 +87,12 @@ export class GoalDetailsComponent implements OnInit {
       plugins: {
         title: {
           display: true,
-          text: "Goal Current Progress",
-          
+          // text: "Goal Current Progress"
       },
         legend: {
           display: true,
-          position: 'top'
+          position: 'top',
+          
           
         },
         datalabels: {
@@ -112,18 +120,18 @@ export class GoalDetailsComponent implements OnInit {
 
     congratulations(){
   
-    Swal.fire({
-      title: 'Congratulations! You reached your goal!',
-      width: 500,
-      padding: '3em',
-      color: '#000000',
-      background: '#fff',
-      backdrop: `
-        rgba(255, 218, 72,0.4)
-        url("./assets/confetti-44.webp")
-        center top
-        no-repeat
-      `
+      Swal.fire({
+        title: 'Congratulations! You reached your goal!',
+        width: 500,
+        padding: '3em',
+        color: '#000000',
+        background: '#fff',
+        backdrop: `
+          rgba(255, 218, 72,0.4)
+          url("./assets/confetti-44.webp")
+          center top
+          no-repeat
+        `
     });
   }
   }

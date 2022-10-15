@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void
   {
 
-
   }
 
   onSubmit(user: any)
@@ -42,7 +41,6 @@ export class RegisterComponent implements OnInit {
       title: `Register Successful! \nWelcome to the WeBudget Club, ${this.user.firstName}!`,
       width: 600
     });
-
   }
   
   checkPassword()

@@ -81,7 +81,7 @@ export class UpdateUserComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    //default tab
+    
   }
 
   // onSubmitGoalDetails(){

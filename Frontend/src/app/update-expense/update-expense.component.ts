@@ -36,8 +36,8 @@ export class UpdateExpenseComponent implements OnInit {
   }
 
   onSubmit(){
-    
     this.expenseService.updateExpense(this.id, this.expense).subscribe( data =>{
+      // this.expense.total = this.expense.amount * 12;
       this.goToUserDetails();
       this.previousPage();
     }
@@ -52,6 +52,5 @@ export class UpdateExpenseComponent implements OnInit {
       this.router.navigate(['dashboard']);
     }
   }
-  
 
 }

@@ -10,8 +10,9 @@ import { User } from './model/user';
 })
 export class UserService {
 
-  private baseURL = "http://localhost:8080/users";
-
+  // private baseURL = "http://localhost:8080/users";
+  private baseURL = "http://webudget-env.eba-urfbsqpp.us-east-1.elasticbeanstalk.com/users";
+  
   constructor(private httpClient: HttpClient) { }
 
   getUserById(id: number): Observable<User>{

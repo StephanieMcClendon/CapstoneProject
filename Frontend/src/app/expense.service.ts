@@ -9,7 +9,8 @@ import { Expense } from './expense';
 export class ExpenseService {
 
   
-  private baseURL = "http://localhost:8080/expense";
+  // private baseURL = "http://localhost:8080/expense";
+  private baseURL = "http://webudget-env.eba-urfbsqpp.us-east-1.elasticbeanstalk.com/expense"
 
   constructor(private httpClient: HttpClient) { }
   
