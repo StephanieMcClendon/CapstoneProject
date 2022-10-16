@@ -35,9 +35,11 @@ import {NotifierModule} from "angular-notifier";
 import {NotificationModule} from "./notification.module";
 import {NotificationService} from "./service/notification.service";
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
-
+import {NgPasswordValidatorModule} from "ng-password-validator";
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     RegisterComponent,
     AdminDashboardComponent,
     UpdateUserComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    HomePageComponent
 
   ],
     imports: [
@@ -70,7 +73,8 @@ import { UserDetailsComponent } from './user-details/user-details.component';
         NgChartsModule,
         MatTabsModule,
         NgParticlesModule,
-        NotificationModule
+        NotificationModule,
+        NgPasswordValidatorModule
     ],
 
   providers: [NotificationService],

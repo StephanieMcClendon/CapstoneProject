@@ -8,7 +8,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 })
 export class AuthenticationService {
 
-  baseApi: string = "http://localhost:8080"
+  baseApi: string = "http://webudget-env.eba-urfbsqpp.us-east-1.elasticbeanstalk.com"
   public role!: string | null;
 
   public loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);

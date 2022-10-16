@@ -28,13 +28,12 @@ export class LoginComponent implements OnInit {
   {
     
     if (this.authenticationService.isUserLoggedIn()) {
+      //change 
       this.router.navigate(['/calculator'])
-
     }
   else {
       this.router.navigateByUrl('/login');
     }
-    
   }
   ngAfterViewInit(user: User): void
   {

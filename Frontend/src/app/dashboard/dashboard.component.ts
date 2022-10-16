@@ -39,6 +39,7 @@ export class DashboardComponent implements OnInit {
   totalIncome!: number;
   totalExpense!: number;
   id: number = JSON.parse(localStorage.getItem("id")!);
+  math = Math;
 
 
   constructor(
@@ -55,11 +56,8 @@ export class DashboardComponent implements OnInit {
     this.getIncome();
   }
 
-  // ** GOAL Methods **
-
   ngAfterViewInit(): void {
-    //default tab
-    this.tabGroup.selectedIndex = 2;
+    this.expense.total = this.expense.amount * 12;
   }
 
 
@@ -76,10 +74,6 @@ export class DashboardComponent implements OnInit {
         }
       }
     });
-  }
-
-  congratulations(){
-    // insert logic for pop up confetti
   }
 
   goToGoalDetails(id: number){
@@ -151,7 +145,6 @@ export class DashboardComponent implements OnInit {
   }
 
   updateIncome(id: number){
-
     this.router.navigate(['update-income', id]);
   }
 
@@ -220,7 +213,6 @@ export class DashboardComponent implements OnInit {
     this.expenseCard = !this.expenseCard;
     this.goalsCard = !this.goalsCard;
   }
-
 
   displayIncomeMinusExpense(){
     this.remainingAmount = this.incomeAmount - this.expenseAmount;

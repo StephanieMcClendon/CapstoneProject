@@ -10,28 +10,34 @@
     <form (ngSubmit)="onSubmitUpdateUser()">
 
         <div class="form-group">
-            <label>First Name:</label>
+            <label style="float: left">First Name:</label>
             <input type="text" class="form-control" id="firstname" [(ngModel)]="user.firstName" name="firstName">
         </div>
-
+        <br>
         <div class="form-group">
-            <label>Last Name:</label>
+            <label style="float: left">Last Name:</label>
             <input type="text" class="form-control" id="lastname" [(ngModel)]="user.lastName" name="lastName">
         </div>
-
+        <br>
         <div class="form-group">
-            <label>Email:</label>
+            <label style="float: left">Email:</label>
             <input type="text" class="form-control" id="email" [(ngModel)]="user.email" name="email">
         </div>
+        <!-- <div class="form-group">
+            <label style="float: left">Role:</label><br>
+            <input type="text" class="form-control" id="role" [(ngModel)]="user.role" name="role">
+        </div> -->
         <br>
         <div class="form-group">
-            <label>Role:</label><br>
-            <input type="text" class="form-control" id="role" [(ngModel)]="user.role" name="role">
+            <label for="role" style="float: left">Role</label>
+            <select id="role" class="form-control" [(ngModel)]="user.role" name="role">
+            <option>ROLE_USER</option>
+        <option>ROLE_ADMIN</option>
+        </select>
         </div>
         <br>
-        
         <br>
-        <button class="btn btn-success" type="submit">Update</button>
+        <button class="btn btn-outline-success" type="submit">Update</button>
     </form>
 </div>
 </div>
@@ -40,7 +46,7 @@
 <!-- ================= TABS GROUP ================= -->
 
 
-<div class="card text-center m-auto" style="width: 960px; height: 440px">
+<div class="card text-center m-auto" style="width: 980px; height: 470px; position: relative; left: 20px">
 <div class="card-body">
 <mat-tab-group #tabs>
     <mat-tab label="Income" id="income">
@@ -56,11 +62,10 @@
                 <td> {{income.description}}</td>
                 <td > ${{income.amount}} </td>
                 <td class="center">
-                    <button (click) = "updateIncome(income.id)" title="Update Income" class = "btn btn-secondary" style="margin-left: 15px"> Update income </button>
-                    <button (click) = "deleteIncome(income.id)" title="Delete income" class = "btn btn-danger" style="margin-left: 15px"> Delete income </button>
+                    <button (click) = "updateIncome(income.id)" title="Update Income" class = "btn btn-outline-secondary" style="margin-left: 15px"><img src = "./assets/pencil.svg" alt="alt edit" style="color: currentColor"/> Update income </button>
+                    <button (click) = "deleteIncome(income.id)" title="Delete income" class = "btn btn-outline-danger" style="margin-left: 15px"><img src = "./assets/trash.svg" alt="alt edit" style="color: currentColor"/> Delete income </button>
                 </td>
             </tr>
-
             </tbody>
             </table>
     </mat-tab>
@@ -81,10 +86,10 @@
             <tr *ngFor = "let expense of expenses" >
                 <td> {{expense.expense_name}}</td>
                 <td > ${{expense.amount}} </td>
-                <td> ${{expense.total}}</td>
+                <td> ${{expense.amount * 12}}</td>
                 <td>
-                    <button (click) = "updateExpense(expense.id)" title="Update Expense" class = "btn btn-secondary" style="margin-left: 15px"> Update expense </button>
-                    <button (click) = "deleteExpense(expense.id)" title="Delete expense" class = "btn btn-danger" style="margin-left: 15px"> Delete expense </button>
+                    <button (click) = "updateExpense(expense.id)" title="Update Expense" class = "btn btn-outline-secondary" style="margin-left: 15px"><img src = "./assets/pencil.svg" alt="alt edit" style="color: currentColor"/> Update expense </button>
+                    <button (click) = "deleteExpense(expense.id)" title="Delete expense" class = "btn btn-outline-danger" style="margin-left: 15px"><img src = "./assets/trash.svg" alt="alt edit" style="color: currentColor"/> Delete expense </button>
                 </td>
             </tr>
             </tbody>
@@ -109,13 +114,19 @@
                 <td> {{goal.title}}</td>
                 <td > ${{goal.saveAmount}} </td>
                 <td> ${{goal.goalAmount}}</td>
-                <td> {{goal.time_in_months}}</td>
+                <td> {{goal.time_in_months}} months</td>
                 <td> ${{ goal.monthlyPayment }} </td>
                 <td>
-                    <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-secondary" style="margin-left: 15px"> Update goal </button>
-                    <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal </button>
-                    <button (click) = "goToGoalDetails(goal.id)" title="View Goal Details" class = "btn btn-primary" style="margin-left: 15px"> View Goal </button>
+                    <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-outline-secondary" style="margin-left: 15px"><img src = "./assets/pencil.svg" alt="alt edit" style="color: currentColor"/> Update goal </button>
+                    <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-outline-danger" style="margin-left: 15px"><img src = "./assets/trash.svg" alt="alt edit" style="color: currentColor"/> Delete goal </button>
+                    <button (click) = "goToGoalDetails(goal.id)" title="View Goal Details" class = "btn btn-outline-primary" style="margin-left: 15px"><img src = "./assets/card.svg" alt="alt edit" style="color: currentColor"/> View </button>
                 </td>
+                <!-- <td>
+                    <div class="progress center" style="position: relative; right: 60px; height: 20px">
+                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 80px; text-align:center" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            25%</div>
+                      </div>
+                </td> -->
             </tr>
             </tbody>
         </table>

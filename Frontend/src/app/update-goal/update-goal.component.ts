@@ -42,7 +42,7 @@ export class UpdateGoalComponent implements OnInit {
 
   onSubmit(){
     this.monthlyPayment = (this.goal.goalAmount - this.goal.saveAmount) / this.goal.time_in_months;
-    this.goal.monthlyPayment = this.monthlyPayment;
+    this.goal.monthlyPayment = Math.floor(this.monthlyPayment * 100) / 100;
     this.goalService.updateGoal(this.id, this.goal).subscribe( data =>{
       this.goToGoalDetails();
       this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {

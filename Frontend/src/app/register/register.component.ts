@@ -12,8 +12,7 @@ import Swal from 'sweetalert2';
 export class RegisterComponent implements OnInit {
 
   user: User = new User();
-  userObject: string | null = localStorage.getItem("user");
-  name!: string | undefined;
+  pattern = "/^(?=.*\\d).{8,}$/";
 
   constructor(private authenticationService: AuthenticationService, 
     private router: Router) { }
@@ -34,25 +33,21 @@ export class RegisterComponent implements OnInit {
       error: err => {
         console.log(err);
       }
-      
     });
-    
   }
 
   registerSuccessNotification() {
     Swal.fire({
-      title: `Welcome to the club, ${this.user.firstName}`,
+      title: `Register Successful! \nWelcome to the WeBudget Club, ${this.user.firstName}!`,
       width: 600,
-      padding: '3em',
-      color: '#F9CA38',
-      background: '#fff',
-      backdrop: `
-      url("./assets/Success-1.gif")
-        center top
-        no-repeat
-      `
+      imageUrl: './assets/thumbsup.gif',
+      imageHeight: 90,
+      imageWidth: 90
     });
-
   }
   
+  checkPassword()
+  {
+    
+  }
 }

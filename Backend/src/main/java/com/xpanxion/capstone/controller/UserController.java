@@ -14,10 +14,9 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://webudget1.s3-website-us-east-1.amazonaws.com")
 public class UserController
 {
-
     private UserRepository userRepository; //field injection (not recommended)
 
     @Autowired

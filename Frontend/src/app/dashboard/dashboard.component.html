@@ -1,6 +1,9 @@
 
+<br>
+<br>
 
-<a class="btn btn-outline-primary" (click)="showForms()"> Toggle Create Forms <i class="fa fa-sliders"></i> </a>
+<a class="btn btn-outline-primary btn-lg" (click)="showForms()"> Toggle Forms <i class="fa fa-sliders"></i> </a>
+
 
 <!--    <a class="btn btn-outline-primary" (click)="showForms()"></a>-->
 
@@ -8,14 +11,14 @@
  <!-- =============  Income Form ============== -->
 
 
-<div style="margin-top: 10px">
+<div style="margin-top: 10px;">
 <div class="row" >
 
     <div class="card text-center m-auto" style="width: 345px" *ngIf="incomeCard">
         
         <div class="card-body">
             <form (ngSubmit) = "onSubmitIncome()" style="width: 300px" class="justify-content-center">
-                <label> Create an Income </label><br><br>
+                <label style="font-weight:bold; color: green"> Create an Income </label><br><br>
                 <div class="form-group">
                     <label >Income Title:</label><br>
                     <input type="text" class="form-control" id="description" [(ngModel)]="income.description" name="description" >
@@ -29,7 +32,7 @@
             
                 <br>
                 <br>
-                <button class="btn btn-success" type="submit">Add</button>
+                <button class="btn btn-outline-success" type="submit">Add</button>
             </form>
         </div>
     </div>
@@ -41,7 +44,7 @@
 
         <div class="card-body">
             <form (ngSubmit) = "onSubmitExpense()" style="width: 300px" class="justify-content-center">
-                <label> Create an Expense </label><br><br>
+                <label style="font-weight:bold; color: red"> Create an Expense </label><br><br>
                 <div class="form-group">
                     <label for="saveAmount">Expense Name:</label><br>
                     <input type="text" class="form-control" id="expense_name" [(ngModel)]="expense.expense_name" name="expense_name">
@@ -56,23 +59,27 @@
                 <br>
                 <div class="form-group">
                     <label >Yearly Total Expense:</label><br>
-                    <label type="text" id="remainingAmount" *ngIf="this.expense.amount != null"> ${{ this.expense.amount * 12 }}</label>
+
+                    <label type="text" id="remainingAmount" *ngIf="this.expense.amount != null" style="color:red; font-weight: bold"> ${{ this.expense.amount * 12 }}</label>
+
                 </div>
                 
                 <br>
                 <br>
-                <button class="btn btn-success" type="submit">Add</button>
+                <button class="btn btn-outline-success" type="submit">Add</button>
             </form>
         
         </div>
 
     </div>
-    <div class="card text-center m-auto" style="width: 345px" *ngIf="goalsCard">
 
-        <!-- =============  Goal Form ============== -->
+    <!-- =============  Goal Form ============== -->
+    
+    <div class="card text-center m-auto" style="width: 345px" *ngIf="goalsCard">
+        
         <div class="card-body">
             <form (ngSubmit) = "onSubmitGoal()" style="width: 300px" class="justify-content-center">
-                <label> Create a Goal </label><br><br>
+                <label style="font-weight:bold; color: blue;"> Create a Goal </label><br><br>
                 
                 <div class="form-group">
                     <label for="title">Goal name:</label><br>
@@ -105,7 +112,7 @@
 
                 <br>
                 <br>
-                <button class="btn btn-success" type="submit">Create</button>
+                <button class="btn btn-outline-success" type="submit">Create</button>
             </form>
         </div>
 
@@ -116,12 +123,14 @@
 <br>
 <br>
 
+
+
 <!-- =============  Income Tab ============== -->
 
 
-<mat-tab-group #tabs>
+<mat-tab-group class="center" #tabs>
     <mat-tab label="Income" id="income">
-        <table class = "table table-striped">
+        <table class = "table table-striped" style="text-align: center;">
             <thead>
             <tr>
                 <th> Income Title</th>
@@ -131,10 +140,11 @@
             <tbody>
             <tr *ngFor = "let income of incomes" >
                 <td> {{income.description}}</td>
-                <td > ${{income.amount}} </td>
+
+                <td style="color:green">${{income.amount}} </td>
                 <td>
-                    <button (click) = "updateIncome(income.id)" title="Update Income" class = "btn btn-secondary" style="margin-left: 15px"> Update income </button>
-                    <button (click) = "deleteIncome(income.id)" title="Delete income" class = "btn btn-danger" style="margin-left: 15px"> Delete income </button>
+                    <button (click) = "updateIncome(income.id)" title="Update Income" class="btn btn-outline-primary" data-mdb-ripple-color="dark" style="margin-left: 15px"><img src = "./assets/pencil.svg" alt="alt edit" style="color: currentColor"/> Update income </button>
+                    <button (click) = "deleteIncome(income.id)" title="Delete income" class="btn btn-outline-danger" data-mdb-ripple-color="dark" style="margin-left: 15px"><img src = "./assets/trash.svg" alt="alt edit" style="color: currentColor"/> Delete income </button>
                 </td>
 
             </tr>
@@ -159,11 +169,12 @@
             <tbody>
             <tr *ngFor = "let expense of expenses" >
                 <td> {{expense.expense_name}}</td>
-                <td > ${{expense.amount}} </td>
-                <td> ${{expense.total}}</td>
+
+                <td style="color:red">${{expense.amount}} </td>
+                <td style="color:red">${{expense.amount * 12}}</td>
                 <td>
-                    <button (click) = "updateExpense(expense.id)" title="Update Expense" class = "btn btn-secondary" style="margin-left: 15px"> Update expense </button>
-                    <button (click) = "deleteExpense(expense.id)" title="Delete expense" class = "btn btn-danger" style="margin-left: 15px"> Delete expense </button>
+                    <button (click) = "updateExpense(expense.id)" title="Update Expense" class="btn btn-outline-primary" data-mdb-ripple-color="dark" style="margin-left: 15px"><img src = "./assets/pencil.svg" alt="alt edit" style="color: currentColor"/> Update expense </button>
+                    <button (click) = "deleteExpense(expense.id)" title="Delete expense" class="btn btn-outline-danger" data-mdb-ripple-color="dark" style="margin-left: 15px"><img src = "./assets/trash.svg" alt="alt edit" style="color: currentColor"/> Delete expense </button>
                 </td>
             </tr>
             </tbody>
@@ -186,18 +197,26 @@
             <tbody>
             <tr *ngFor = "let goal of goals" >
                 <td> {{goal.title}}</td>
-                <td > ${{goal.saveAmount}} </td>
-                <td> ${{goal.goalAmount}}</td>
-                <td> {{goal.time_in_months}}</td>
-                <td> ${{ goal.monthlyPayment }} </td>
+
+                <td style="color:green">${{goal.saveAmount}} </td>
+                <td style="color:blue">${{goal.goalAmount}}</td>
+                <td> {{math.floor(goal.time_in_months - (goal.time_in_months * (this.goal.saveAmount / this.goal.goalAmount)))}}</td>
+                <td style="color:red">${{ goal.monthlyPayment }} </td>
                 <td>
-                    <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-secondary" style="margin-left: 15px"> Update goal </button>
-                    <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-danger" style="margin-left: 15px"> Delete goal </button>
-                    <button (click) = "goToGoalDetails(goal.id)" title="View Goal Details" class = "btn btn-primary" style="margin-left: 15px"> View Goal Details </button>
+                    <button (click) = "updateGoal(goal.id)" title="Update Goal" class="btn btn-outline-primary" data-mdb-ripple-color="dark" style="margin-left: 15px"><img src = "./assets/pencil.svg" alt="alt edit" style="color: currentColor"/> Update goal </button>
+                    <button (click) = "deleteGoal(goal.id)" title="Delete goal" class="btn btn-outline-danger" data-mdb-ripple-color="dark" style="margin-left: 15px"><img src = "./assets/trash.svg" alt="alt edit" style="color: currentColor"/> Delete goal </button>
+                    <button (click) = "goToGoalDetails(goal.id)" title="View Goal Details" class="btn btn-outline-secondary" data-mdb-ripple-color="dark" style="margin-left: 15px"><img src = "./assets/card.svg" alt="alt edit" style="color: currentColor"/> View goal</button>
                 </td>
+                <!-- <td>
+                    <div class="progress center" style="position: relative; right: 60px; height: 20px">
+                        <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 80px; text-align:center" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            25%</div>
+                      </div>
+                </td> -->
             </tr>
             </tbody>
         </table>
     </mat-tab>
 </mat-tab-group>
-
+<br>
+<br>

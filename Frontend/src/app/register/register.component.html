@@ -7,33 +7,35 @@
                         <div class="row justify-content-center">
                             <div class="col-md-10 col-lg-4 col-xl-5 order-2 order-lg-1">
 
-                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4" style="color: rgb(136, 37, 216) ;">Sign up</p>
 
-                                <form (ngSubmit)="onSubmit(user)">
+                                <form (ngSubmit)="onSubmit(user)" #myForm="ngForm">
 
                                     <div class="d-flex flex-row row align-items-center mb-4">
                                         <!--                    <i class="fa fa-user fa-lg fa-fw"></i>-->
                                         <div class="form-outline flex-fill col-md-6">
 
                                             <label class="form-label" for="firstname" >First Name</label>
-                                            <input type="text"  [(ngModel)]="user.firstName" name="firstName" id="firstname" class="form-control" placeholder="First Name">
+                                            <input type="text" required [(ngModel)]="user.firstName" name="firstName" id="firstname" class="form-control" placeholder="First Name" #firstNameInput="ngModel">
+                                            <span class="help-block" style="color:red;" *ngIf="firstNameInput.invalid && firstNameInput.touched">Please enter a First Name</span>
 
                                         </div>
                                         <div class="form-outline flex-fill col-md-6">
 
                                             <label class="form-label"  for="lastname" >Last Name</label>
-
-                                            <input type="text" [(ngModel)]="user.lastName" name="lastName"  id="lastName" class="form-control" placeholder="Last Name" >
+                                            <input type="text" required [(ngModel)]="user.lastName" name="lastName"  id="lastName" class="form-control" placeholder="Last Name" #lastNameInput="ngModel" >
+                                            <span class="help-block" style="color:red;" *ngIf="lastNameInput.invalid && lastNameInput.touched">Please enter a Last Name</span>
 
                                         </div>
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <!--                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>-->
-                                        <div class="form-outline flex-fill col-md-12">
+                                        <div class="form-outline flex-fill col-md-12 form-group ">
 
                                             <label class="form-label"  for="username">Username</label>
-                                            <input type="text" [(ngModel)]="user.username" name="username" id="username" placeholder="Username" class="form-control" >
+                                            <input type="text"  required [(ngModel)]="user.username" name="username" id="username" placeholder="Username" class="form-control" #usernameInput="ngModel" >
+                                            <span class="help-block" style="color:red;" *ngIf="usernameInput.invalid && usernameInput.touched">Please enter a Username</span>
 
                                         </div>
                                     </div>
@@ -43,18 +45,22 @@
                                         <div class="form-outline flex-fill col-md-12">
 
                                             <label class="form-label" for="email">Email</label>
-                                            <input type="email" [(ngModel)]="user.email" id="email" name="email" placeholder="Email" class="form-control" >
-
+                                            <input type="email" required [(ngModel)]="user.email" id="email" name="email" placeholder="Email" class="form-control" #emailInput="ngModel">
+                                            <span class="help-block" style="color:red;" *ngIf="emailInput.invalid && emailInput.touched">Please enter a Email</span>
                                         </div>
                                     </div>
 
                                     <div class="d-flex flex-row align-items-center mb-4">
                                         <!--                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>-->
-                                        <div class="form-outline flex-fill col-md-12">
+                                        <div class="form-outline flex-fill col-md-12 form-group">
 
                                             <label class="form-label" for="confirmPassword">Password</label>
-                                            <input type="password" [(ngModel)]="user.password" id="confirmPassword" name="password" placeholder="Password" class="form-control" >
+                                            <input type="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}" [(ngModel)]="user.password" id="confirmPassword"
+                                                   name="password" placeholder="Password" class="form-control" #passwordField="ngModel">
 
+                                            <div *ngIf="!passwordField.valid && (passwordField.dirty || passwordField.touched)" >
+                                                <span class="help-block" style="color:red;">Your password must be over 8 characters and include an uppercase letter, a number and a special character</span>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -67,27 +73,41 @@
 
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                         <div>
-                                            <button type="submit" class="btn btn-primary btn-lg" id="formButton">Register</button>
+                                            <button type="submit" class="btn btn-primary btn-lg" id="formButton" [disabled]="!myForm.form.valid" >Register</button>
                                         </div>
                                     </div>
 
                                     <p class="mt-4 d-flex justify-content-center links" style="color: #393f81;">Already have an account?
-                                        <a style="color: #393f81;" routerLink="/login" class="ml-2">Login here</a></p>
+                                        <a style="color: #393f81;" routerLink="/login" class="ml-2"> Login here</a></p>
 
                                 </form>
 
                             </div>
                             <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                                     class="img-fluid" alt="Sample image">
-
-                            </div>
+                                <img src="assets/images/Capture.PNG" class="img-fluid" alt="Logo" style="display: block; margin-left:auto; margin-right:auto; width: 400px; height: auto;">
+                            </div>    
+                            
                         </div>
                     </div>
                 </div>
             </div>
+        </div>  
+        
+        <h1 style="margin-top:50px;text-align:center; font-style: italic; color: rgb(136, 37, 216); font-size: 50px;" >Plan &#8594; Commit &#8594; Achieve &#8594; Repeat</h1>
+        <br><br><br>
+
+        <div class="footer-basic">
+            <footer>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Home</a></li>
+                    <li class="list-inline-item"><a href="https://www.vanguard.com/">Vanguard</a></li>
+                    <li class="list-inline-item"><a href="https://www.thepennyhoarder.com/save-money/how-to-save-money/">Money Savings Tips</a></li>
+                </ul>
+                <p class="copyright">WeBudget © 2022</p>
+            </footer>
         </div>
-    </div>
+    </div>       
 </section>
+
 
