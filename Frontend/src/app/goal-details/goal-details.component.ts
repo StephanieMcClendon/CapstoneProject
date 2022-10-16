@@ -67,8 +67,8 @@ export class GoalDetailsComponent implements OnInit {
       this.goalTotal = "" + (this.goal_amount / this.goal.goalAmount) * 100 + "%"
       // this.goal.monthlyPayment = (this.goal.time_in_months - (this.goal.time_in_months * (this.goal.saveAmount / this.goal.goalAmount)));
       
-      this.pieChartData.datasets[0].data[0] = parseFloat((((this.goal.saveAmount / this.goal.goalAmount) * 100)).toFixed(2));
-      this.pieChartData.datasets[0].data[1] = parseFloat(((this.goal_amount / this.goal.goalAmount) * 100).toFixed(2));
+      this.pieChartData.datasets[0].data[1] = parseFloat((((this.goal.saveAmount / this.goal.goalAmount) * 100)).toFixed(2));
+      this.pieChartData.datasets[0].data[0] = parseFloat(((this.goal_amount / this.goal.goalAmount) * 100).toFixed(2));
       this.chart?.update();
       this.goal.monthlyPayment = Math.round(this.goal_amount / this.goal.time_in_months);
       if(this.goal.saveAmount >= this.goal.goalAmount){
@@ -106,7 +106,7 @@ export class GoalDetailsComponent implements OnInit {
     };
     public pieChartData: ChartData<'pie',number[]> = {
       
-      labels:[`Current Progress in ${this.currentProgress}%`, `Goal Remaining ${this.goalTotal}%`],
+      labels:[`Goal Remaining ${this.goalTotal}%`, `Current Progress in ${this.currentProgress}%`], 
       datasets:[{
         data: []
       }]

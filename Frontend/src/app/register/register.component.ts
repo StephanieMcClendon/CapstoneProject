@@ -39,7 +39,10 @@ export class RegisterComponent implements OnInit {
   registerSuccessNotification() {
     Swal.fire({
       title: `Register Successful! \nWelcome to the WeBudget Club, ${this.user.firstName}!`,
-      width: 600
+      width: 600,
+      imageUrl: './assets/thumbsup.gif',
+      imageHeight: 90,
+      imageWidth: 90
     });
   }
   

@@ -22,9 +22,9 @@
                 <td> {{user.email}} </td>
                 <td> {{user.role}} </td>
                 <td class="left">
-                    <button (click) = "updateUser(user.id)" title="Update User" class="btn btn-outline-primary" data-mdb-ripple-color="dark" style="margin-left: 15px"> Update User </button>
+                    <button (click) = "updateUser(user.id)" title="Update User" class="btn btn-outline-primary" data-mdb-ripple-color="dark" style="margin-left: 15px"><img src = "./assets/pencil.svg" alt="alt edit" style="color: currentColor"/> Update User </button>
 
-                    <button (click) = "deleteUser(user.id)" *ngIf="ifNotAdmin(user.role)" title="Delete User" class="btn btn-outline-danger" data-mdb-ripple-color="dark" style="margin-left: 15px"> Delete User </button>
+                    <button (click) = "deleteAUser(user.id)" *ngIf="ifNotAdmin(user.role)" title="Delete User" class="btn btn-outline-danger" data-mdb-ripple-color="dark" style="margin-left: 15px"><img src = "./assets/trash.svg" alt="alt edit" style="color: currentColor"/> Delete User </button>
 
                     <!-- <button (click) = "goToUserDetails(user.id)" title="View User" class = "btn btn-primary" style="margin-left: 15px"> User Details</button> -->
                 </td>

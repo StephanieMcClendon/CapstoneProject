@@ -61,6 +61,7 @@ export class CalculatorComponent implements OnInit {
     responsive: true,
     maintainAspectRatio: true
 
+    
   };
 
   line: string = "line";

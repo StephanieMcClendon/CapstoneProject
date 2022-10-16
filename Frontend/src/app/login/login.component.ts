@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
   {
     
     if (this.authenticationService.isUserLoggedIn()) {
+      //change 
       this.router.navigate(['/calculator'])
     }
   else {

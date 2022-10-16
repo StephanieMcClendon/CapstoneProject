@@ -1,22 +1,16 @@
 <br>
 <br>
 <br>
-<br>
-    <div class="card left m-auto" style="height: 270px; width: 385px">
-      
+    <div class="card left m-auto" style="height: 270px; width: 385px; position: relative; bottom: 10px;">
+      <div class="card-header">
+        <h2 style="text-align: center">Goal Details</h2>
+        <div style="margin-left: 116px">
+          <!-- Swap logic -->
+            <label style="margin-right: 50px"> <b> Goal Name: </b> {{ goal.title }}</label> 
+        </div>
+    </div>
+    <br>
        <div class="row">
-        
-        <header>
-          <div class="card" style="width: 24rem; float: center">
-            <div class="card-header">
-                <h2 style="text-align: center">Goal Details</h2>
-                <div style="margin-left: 116px">
-                  <!-- Swap logic -->
-                    <label style="margin-right: 50px"> <b> Goal Name: </b> {{ goal.title }}</label> 
-                </div>
-            </div>
-            </div>
-          <br>
           <table>
             <td>
              <!-- <div> -->
@@ -41,36 +35,39 @@
               </div>
               <div>
                 <label style="margin-left: 20px"> <b> Months Left To Goal: </b></label> {{ math.floor(goal.time_in_months - (goal.time_in_months * (this.goal.saveAmount / this.goal.goalAmount)))}}
-            </div>
 
+            </div>
             </td>
             <td>
-              <button (click) = "updateGoal(this.id)" style="position: relative; right: -90px" title = "Edit Goal" class = "btn btn-outline-secondary" type="submit"> Edit </button>
+              <button (click) = "updateGoal(this.id)" style="position: relative; right: 20px" title = "Edit Goal" class = "btn btn-outline-secondary" type="submit"><img src = "./assets/pencil.svg" alt="alt edit" style="color: currentColor"/> Edit </button>
             </td>
           </table>
-        </header>
+          
+        
 <div>
-    <br>
-    
-    
+  <br>
   <br>
 </div>
 </div>
 </div>
 
+<br><br>
 <div>
-  <div class="card text-center m-auto center" style="width: 600px">
-    <div class="card" style="width: 39rem; float: center">
+  <div class="card text-center m-auto center" style="width: 600px; position: relative; bottom: 50px;">
+    <div class="card" style="width: 39rem; float: center; position: relative; bottom: 0px;">
       <div class="card-header">
         <h2 style="text-align: center">Goal Current Progress</h2>
       </div>
-      
     
-    <div class="card-body">
+    <div class="card-body" style="position: relative; top: 20px;">
       <br>
-      <label for="">You're {{ this.progress }}% of the way to a {{ this.goal.title }}!</label>
-    <div>
-      <div class="chart" style="display: block; width: 600px; height: 400px; ">
+      <label for="">You've achieved <b>{{ this.progress }}%</b> of the goal towards your<b> {{ this.goal.title }}!</b></label>
+    <div >
+
+      <div class="chart" style="display: block; width: 600px; height: 500px; ">
+
+      <div class="chart col-md-6 offset-md-3 offset-md-3 m-auto center" style="display: block; width: 500px; height: 400px">
+
         <canvas baseChart
                 [data]="pieChartData"
                 [type]="pieChartType"

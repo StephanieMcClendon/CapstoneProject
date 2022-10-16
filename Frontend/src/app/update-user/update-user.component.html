@@ -46,7 +46,7 @@
 <!-- ================= TABS GROUP ================= -->
 
 
-<div class="card text-center m-auto" style="width: 980px; height: 470px">
+<div class="card text-center m-auto" style="width: 980px; height: 470px; position: relative; left: 20px">
 <div class="card-body">
 <mat-tab-group #tabs>
     <mat-tab label="Income" id="income">
@@ -62,8 +62,8 @@
                 <td> {{income.description}}</td>
                 <td > ${{income.amount}} </td>
                 <td class="center">
-                    <button (click) = "updateIncome(income.id)" title="Update Income" class = "btn btn-outline-secondary" style="margin-left: 15px"> Update income </button>
-                    <button (click) = "deleteIncome(income.id)" title="Delete income" class = "btn btn-outline-danger" style="margin-left: 15px"> Delete income </button>
+                    <button (click) = "updateIncome(income.id)" title="Update Income" class = "btn btn-outline-secondary" style="margin-left: 15px"><img src = "./assets/pencil.svg" alt="alt edit" style="color: currentColor"/> Update income </button>
+                    <button (click) = "deleteIncome(income.id)" title="Delete income" class = "btn btn-outline-danger" style="margin-left: 15px"><img src = "./assets/trash.svg" alt="alt edit" style="color: currentColor"/> Delete income </button>
                 </td>
             </tr>
             </tbody>
@@ -88,8 +88,8 @@
                 <td > ${{expense.amount}} </td>
                 <td> ${{expense.amount * 12}}</td>
                 <td>
-                    <button (click) = "updateExpense(expense.id)" title="Update Expense" class = "btn btn-outline-secondary" style="margin-left: 15px"> Update expense </button>
-                    <button (click) = "deleteExpense(expense.id)" title="Delete expense" class = "btn btn-outline-danger" style="margin-left: 15px"> Delete expense </button>
+                    <button (click) = "updateExpense(expense.id)" title="Update Expense" class = "btn btn-outline-secondary" style="margin-left: 15px"><img src = "./assets/pencil.svg" alt="alt edit" style="color: currentColor"/> Update expense </button>
+                    <button (click) = "deleteExpense(expense.id)" title="Delete expense" class = "btn btn-outline-danger" style="margin-left: 15px"><img src = "./assets/trash.svg" alt="alt edit" style="color: currentColor"/> Delete expense </button>
                 </td>
             </tr>
             </tbody>
@@ -117,9 +117,9 @@
                 <td> {{goal.time_in_months}} months</td>
                 <td> ${{ goal.monthlyPayment }} </td>
                 <td>
-                    <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-outline-secondary" style="margin-left: 15px"> Update goal </button>
-                    <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-outline-danger" style="margin-left: 15px"> Delete goal </button>
-                    <button (click) = "goToGoalDetails(goal.id)" title="View Goal Details" class = "btn btn-outline-primary" style="margin-left: 15px"> View Goal </button>
+                    <button (click) = "updateGoal(goal.id)" title="Update Goal" class = "btn btn-outline-secondary" style="margin-left: 15px"><img src = "./assets/pencil.svg" alt="alt edit" style="color: currentColor"/> Update goal </button>
+                    <button (click) = "deleteGoal(goal.id)" title="Delete goal" class = "btn btn-outline-danger" style="margin-left: 15px"><img src = "./assets/trash.svg" alt="alt edit" style="color: currentColor"/> Delete goal </button>
+                    <button (click) = "goToGoalDetails(goal.id)" title="View Goal Details" class = "btn btn-outline-primary" style="margin-left: 15px"><img src = "./assets/card.svg" alt="alt edit" style="color: currentColor"/> View </button>
                 </td>
                 <!-- <td>
                     <div class="progress center" style="position: relative; right: 60px; height: 20px">

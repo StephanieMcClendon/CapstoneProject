@@ -247,7 +247,7 @@ export class AdminDashboardComponent implements OnInit {
     this.router.navigate(['update-user', id]);
   }
 
-  deleteUser(id: number){
+  deleteAUser(id: number){
     this.userService.deleteUser(id).subscribe( data => {
       console.log(data);
       this.getUsers();

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://webudget1.s3-website-us-east-1.amazonaws.com")
 public class ExpenseController {
     private ExpenseRepository expenseRepository;
     private UserRepository userRepository;

@@ -39,6 +39,7 @@ export class DashboardComponent implements OnInit {
   totalIncome!: number;
   totalExpense!: number;
   id: number = JSON.parse(localStorage.getItem("id")!);
+  math = Math;
 
 
   constructor(

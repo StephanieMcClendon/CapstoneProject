@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
+@CrossOrigin(origins = "http://webudget1.s3-website-us-east-1.amazonaws.com")
 @RequestMapping("/api/v1")
-@CrossOrigin(origins = "http://localhost:4200")
 public class AuthController
 {
     private UserRepository userRepository; //field injection (not recommended)
@@ -30,8 +30,6 @@ public class AuthController
         this.userService = userService;
         this.authenticationManager = authenticationManager;
     }
-
-
 
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody User user) {
